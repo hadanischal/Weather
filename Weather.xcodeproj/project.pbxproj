@@ -37,6 +37,9 @@
 		AF415F5C20D7F3D300BFA658 /* WeatherInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F5B20D7F3D300BFA658 /* WeatherInformation.swift */; };
 		AF415F5E20D7F3E200BFA658 /* Wind.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F5D20D7F3E200BFA658 /* Wind.swift */; };
 		AF415F6020D7F87B00BFA658 /* WeatherInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F5F20D7F87B00BFA658 /* WeatherInformationCell.swift */; };
+		AF415F6220D7FE3300BFA658 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F6120D7FE3300BFA658 /* ThemeColor.swift */; };
+		AF415F6420D7FE8900BFA658 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F6320D7FE8900BFA658 /* ActivityIndicator.swift */; };
+		AF415F6720D7FF0500BFA658 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F6620D7FF0500BFA658 /* UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +100,9 @@
 		AF415F5B20D7F3D300BFA658 /* WeatherInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInformation.swift; sourceTree = "<group>"; };
 		AF415F5D20D7F3E200BFA658 /* Wind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wind.swift; sourceTree = "<group>"; };
 		AF415F5F20D7F87B00BFA658 /* WeatherInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInformationCell.swift; sourceTree = "<group>"; };
+		AF415F6120D7FE3300BFA658 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
+		AF415F6320D7FE8900BFA658 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		AF415F6620D7FF0500BFA658 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		B0D8DE66C5FD53822054592F /* Pods_WeatherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D752A353B72E9D2CAEE9DE96 /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -175,6 +181,7 @@
 				AF415F3120D7DBFC00BFA658 /* Storyboards */,
 				AF415F3220D7DC0C00BFA658 /* Service */,
 				AF415F3420D7DC2200BFA658 /* Util */,
+				AF415F6520D7FE9700BFA658 /* Helper */,
 				AF415F3320D7DC1700BFA658 /* Extension */,
 				AF415F3620D7DC3600BFA658 /* Resources */,
 				AF415F3520D7DC2B00BFA658 /* Constants */,
@@ -265,6 +272,7 @@
 		AF415F3320D7DC1700BFA658 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				AF415F6620D7FF0500BFA658 /* UIColor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -279,6 +287,7 @@
 		AF415F3520D7DC2B00BFA658 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				AF415F6120D7FE3300BFA658 /* ThemeColor.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -325,6 +334,14 @@
 				AF415F4B20D7E41500BFA658 /* WeatherJSONClient.swift */,
 			);
 			path = APIRouter;
+			sourceTree = "<group>";
+		};
+		AF415F6520D7FE9700BFA658 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				AF415F6320D7FE8900BFA658 /* ActivityIndicator.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		BCE14502135A507ADBF44FCA /* Frameworks */ = {
@@ -560,11 +577,14 @@
 				AF415EFB20D7D8CF00BFA658 /* AppDelegate.swift in Sources */,
 				AF415F4520D7E1CC00BFA658 /* NetworkMethod.swift in Sources */,
 				AF415F5420D7F38B00BFA658 /* Clouds.swift in Sources */,
+				AF415F6420D7FE8900BFA658 /* ActivityIndicator.swift in Sources */,
+				AF415F6720D7FF0500BFA658 /* UIColor.swift in Sources */,
 				AF415F5E20D7F3E200BFA658 /* Wind.swift in Sources */,
 				AF415F4E20D7EDAF00BFA658 /* WeatherJSONProtocol.swift in Sources */,
 				AF415F3820D7DCE300BFA658 /* WeatherInformationTableViewController.swift in Sources */,
 				AF415F4720D7E1DA00BFA658 /* NetworkError.swift in Sources */,
 				AF415F5C20D7F3D300BFA658 /* WeatherInformation.swift in Sources */,
+				AF415F6220D7FE3300BFA658 /* ThemeColor.swift in Sources */,
 				AF415F5620D7F39900BFA658 /* Coord.swift in Sources */,
 				AF415F4C20D7E41500BFA658 /* WeatherJSONClient.swift in Sources */,
 				AF415F5020D7F18E00BFA658 /* JSONCompatible.swift in Sources */,

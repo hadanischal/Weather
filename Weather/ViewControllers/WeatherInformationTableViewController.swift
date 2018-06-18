@@ -18,7 +18,10 @@ class WeatherInformationTableViewController: UITableViewController {
     }
     
     func setUpUI(){
-        self.tableView.tableFooterView = UIView()
+        self.title = "Weather Information"
+        self.tableView.backgroundColor = ThemeColor.white
+        self.view.backgroundColor = ThemeColor.white
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     func setUpDataSource(){
