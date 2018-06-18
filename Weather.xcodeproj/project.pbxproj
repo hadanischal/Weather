@@ -27,6 +27,7 @@
 		AF415F4520D7E1CC00BFA658 /* NetworkMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F4420D7E1CC00BFA658 /* NetworkMethod.swift */; };
 		AF415F4720D7E1DA00BFA658 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F4620D7E1DA00BFA658 /* NetworkError.swift */; };
 		AF415F4C20D7E41500BFA658 /* WeatherJSONClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F4B20D7E41500BFA658 /* WeatherJSONClient.swift */; };
+		AF415F4E20D7EDAF00BFA658 /* WeatherJSONProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F4D20D7EDAF00BFA658 /* WeatherJSONProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		AF415F4420D7E1CC00BFA658 /* NetworkMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMethod.swift; sourceTree = "<group>"; };
 		AF415F4620D7E1DA00BFA658 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		AF415F4B20D7E41500BFA658 /* WeatherJSONClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherJSONClient.swift; sourceTree = "<group>"; };
+		AF415F4D20D7EDAF00BFA658 /* WeatherJSONProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherJSONProtocol.swift; sourceTree = "<group>"; };
 		B0D8DE66C5FD53822054592F /* Pods_WeatherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D752A353B72E9D2CAEE9DE96 /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -292,6 +294,7 @@
 		AF415F4820D7E39400BFA658 /* APIRouter */ = {
 			isa = PBXGroup;
 			children = (
+				AF415F4D20D7EDAF00BFA658 /* WeatherJSONProtocol.swift */,
 				AF415F4B20D7E41500BFA658 /* WeatherJSONClient.swift */,
 			);
 			path = APIRouter;
@@ -526,6 +529,7 @@
 				AF415EFD20D7D8CF00BFA658 /* ViewController.swift in Sources */,
 				AF415EFB20D7D8CF00BFA658 /* AppDelegate.swift in Sources */,
 				AF415F4520D7E1CC00BFA658 /* NetworkMethod.swift in Sources */,
+				AF415F4E20D7EDAF00BFA658 /* WeatherJSONProtocol.swift in Sources */,
 				AF415F3820D7DCE300BFA658 /* WeatherInformationTableViewController.swift in Sources */,
 				AF415F4720D7E1DA00BFA658 /* NetworkError.swift in Sources */,
 				AF415F4C20D7E41500BFA658 /* WeatherJSONClient.swift in Sources */,

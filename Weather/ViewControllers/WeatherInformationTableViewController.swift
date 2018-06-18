@@ -12,12 +12,15 @@ class WeatherInformationTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        WeatherJSONClient.fetchPlanets { (result) in
+            switch result {
+            case .success(let json):
+                print(json)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
