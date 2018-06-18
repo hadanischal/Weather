@@ -7,3 +7,26 @@
 //
 
 import Foundation
+import Alamofire
+
+enum NetworkMethod {
+    case get, post, put, delete
+}
+
+extension NetworkMethod {
+    func httpMethod() -> HTTPMethod {
+        switch self {
+        case .get:
+            return .get
+        case .post:
+            return .post
+        case .put:
+            return .put
+        case .delete:
+            return .delete
+        }
+    }
+}
+
+
+
