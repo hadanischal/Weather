@@ -18,13 +18,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="soF-NI-VVN">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="WeatherInformationCell" id="MhS-9i-Aft" customClass="WeatherInformationCell" customModule="Weather" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="soF-NI-VVN" id="gzB-gX-eDI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MhS-9i-Aft" id="TjB-yA-yXA">
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ve-ok-WBY">
+                                            <rect key="frame" x="10" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZT-Zl-XqH">
+                                            <rect key="frame" x="289" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="8Ve-ok-WBY" firstAttribute="centerY" secondItem="TjB-yA-yXA" secondAttribute="centerY" id="D1Q-L6-Bb2"/>
+                                        <constraint firstItem="SZT-Zl-XqH" firstAttribute="centerY" secondItem="8Ve-ok-WBY" secondAttribute="centerY" id="NdE-VV-IPE"/>
+                                        <constraint firstItem="8Ve-ok-WBY" firstAttribute="leading" secondItem="TjB-yA-yXA" secondAttribute="leading" constant="10" id="UaE-PC-lS7"/>
+                                        <constraint firstAttribute="trailing" secondItem="SZT-Zl-XqH" secondAttribute="trailing" constant="10" id="ygn-8n-SmE"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="labelCityName" destination="8Ve-ok-WBY" id="yzw-WV-lnX"/>
+                                    <outlet property="labelCityTemperature" destination="SZT-Zl-XqH" id="a0o-Qh-34o"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
