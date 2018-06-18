@@ -102,11 +102,17 @@
 		AF415EF920D7D8CF00BFA658 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				AF415EFA20D7D8CF00BFA658 /* AppDelegate.swift */,
+				AF415F2D20D7DBB300BFA658 /* AppDelegate */,
+				AF415F2E20D7DBCB00BFA658 /* Models */,
+				AF415F2F20D7DBE200BFA658 /* ViewControllers */,
+				AF415F3020D7DBF200BFA658 /* Views */,
+				AF415F3120D7DBFC00BFA658 /* Storyboards */,
+				AF415F3220D7DC0C00BFA658 /* Service */,
+				AF415F3420D7DC2200BFA658 /* Util */,
+				AF415F3320D7DC1700BFA658 /* Extension */,
+				AF415F3620D7DC3600BFA658 /* Resources */,
+				AF415F3520D7DC2B00BFA658 /* Constants */,
 				AF415EFC20D7D8CF00BFA658 /* ViewController.swift */,
-				AF415EFE20D7D8CF00BFA658 /* Main.storyboard */,
-				AF415F0420D7D8D100BFA658 /* Assets.xcassets */,
-				AF415F0620D7D8D100BFA658 /* LaunchScreen.storyboard */,
 				AF415F0920D7D8D100BFA658 /* Info.plist */,
 				AF415F0120D7D8CF00BFA658 /* Weather.xcdatamodeld */,
 			);
@@ -129,6 +135,80 @@
 				AF415F1F20D7D8D100BFA658 /* Info.plist */,
 			);
 			path = WeatherUITests;
+			sourceTree = "<group>";
+		};
+		AF415F2D20D7DBB300BFA658 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				AF415EFA20D7D8CF00BFA658 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		AF415F2E20D7DBCB00BFA658 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AF415F2F20D7DBE200BFA658 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		AF415F3020D7DBF200BFA658 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AF415F3120D7DBFC00BFA658 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				AF415EFE20D7D8CF00BFA658 /* Main.storyboard */,
+				AF415F0620D7D8D100BFA658 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		AF415F3220D7DC0C00BFA658 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		AF415F3320D7DC1700BFA658 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		AF415F3420D7DC2200BFA658 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		AF415F3520D7DC2B00BFA658 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		AF415F3620D7DC3600BFA658 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AF415F0420D7D8D100BFA658 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
