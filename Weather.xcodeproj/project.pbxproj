@@ -36,6 +36,7 @@
 		AF415F5A20D7F3B800BFA658 /* Sys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F5920D7F3B800BFA658 /* Sys.swift */; };
 		AF415F5C20D7F3D300BFA658 /* WeatherInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F5B20D7F3D300BFA658 /* WeatherInformation.swift */; };
 		AF415F5E20D7F3E200BFA658 /* Wind.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F5D20D7F3E200BFA658 /* Wind.swift */; };
+		AF415F6020D7F87B00BFA658 /* WeatherInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F5F20D7F87B00BFA658 /* WeatherInformationCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		AF415F5920D7F3B800BFA658 /* Sys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sys.swift; sourceTree = "<group>"; };
 		AF415F5B20D7F3D300BFA658 /* WeatherInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInformation.swift; sourceTree = "<group>"; };
 		AF415F5D20D7F3E200BFA658 /* Wind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wind.swift; sourceTree = "<group>"; };
+		AF415F5F20D7F87B00BFA658 /* WeatherInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInformationCell.swift; sourceTree = "<group>"; };
 		B0D8DE66C5FD53822054592F /* Pods_WeatherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D752A353B72E9D2CAEE9DE96 /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -235,6 +237,7 @@
 		AF415F3020D7DBF200BFA658 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AF415F5F20D7F87B00BFA658 /* WeatherInformationCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -251,8 +254,8 @@
 		AF415F3220D7DC0C00BFA658 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				AF415F4820D7E39400BFA658 /* APIRouter */,
 				AF415F3920D7E14800BFA658 /* APIManager */,
+				AF415F4820D7E39400BFA658 /* APIRouter */,
 				AF415F3A20D7E15900BFA658 /* Result */,
 				AF415F3B20D7E16E00BFA658 /* Networking */,
 			);
@@ -545,6 +548,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF415F6020D7F87B00BFA658 /* WeatherInformationCell.swift in Sources */,
 				AF415F3F20D7E19900BFA658 /* APIManager.swift in Sources */,
 				AF415F0320D7D8CF00BFA658 /* Weather.xcdatamodeld in Sources */,
 				AF415F3D20D7E18900BFA658 /* Result.swift in Sources */,

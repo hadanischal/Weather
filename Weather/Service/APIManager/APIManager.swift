@@ -9,8 +9,8 @@
 import Foundation
 
 enum Method: String {
-    case sydneyId = "4163971"
-    case melbourneId = "2147714"
+    case sydneyId = "2147714"
+    case melbourneId = "4163971"
     case brisbaneId = "2174003"
 }
 
@@ -24,11 +24,11 @@ struct APIManager {
     }
     
     static var melbourneURL: URL {
-        return weatherAPIURL(method: .sydneyId)
+        return weatherAPIURL(method: .melbourneId)
     }
     
     static var brisbaneURL: URL {
-        return weatherAPIURL(method: .sydneyId)
+        return weatherAPIURL(method: .brisbaneId)
     }
     
     //MARK: -  General Methods
