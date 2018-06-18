@@ -15,6 +15,7 @@
 		AF415F0820D7D8D100BFA658 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF415F0620D7D8D100BFA658 /* LaunchScreen.storyboard */; };
 		AF415F1320D7D8D100BFA658 /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F1220D7D8D100BFA658 /* WeatherTests.swift */; };
 		AF415F1E20D7D8D100BFA658 /* WeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F1D20D7D8D100BFA658 /* WeatherUITests.swift */; };
+		AF415F2C20D7DB3300BFA658 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = AF415F2B20D7DB3300BFA658 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		AF415F1920D7D8D100BFA658 /* WeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF415F1D20D7D8D100BFA658 /* WeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUITests.swift; sourceTree = "<group>"; };
 		AF415F1F20D7D8D100BFA658 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF415F2B20D7DB3300BFA658 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		AF415EEE20D7D8CF00BFA658 = {
 			isa = PBXGroup;
 			children = (
+				AF415F2B20D7DB3300BFA658 /* .gitignore */,
 				AF415EF920D7D8CF00BFA658 /* Weather */,
 				AF415F1120D7D8D100BFA658 /* WeatherTests */,
 				AF415F1C20D7D8D100BFA658 /* WeatherUITests */,
@@ -232,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF415F2C20D7DB3300BFA658 /* .gitignore in Resources */,
 				AF415F0820D7D8D100BFA658 /* LaunchScreen.storyboard in Resources */,
 				AF415F0520D7D8D100BFA658 /* Assets.xcassets in Resources */,
 				AF415F0020D7D8CF00BFA658 /* Main.storyboard in Resources */,
