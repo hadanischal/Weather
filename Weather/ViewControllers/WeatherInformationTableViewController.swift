@@ -13,7 +13,7 @@ class WeatherInformationTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        WeatherJSONClient.fetchPlanets { (result) in
+        WeatherJSONClient.fetchWeather { (result) in
             switch result {
             case .success(let json):
                 print(json)
