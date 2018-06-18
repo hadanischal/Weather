@@ -8,14 +8,14 @@
 
 import Alamofire
 
-typealias JSONCompletionHandler = (Result<Any>)->()
+typealias AlamofireJSONCompletionHandler = (Result<Any>)->()
 
 protocol Networking {
-    func request(method: NetworkMethod, url: String, parameters: [String : Any]?, completionHandler:@escaping JSONCompletionHandler)
+    func request(method: NetworkMethod, url: String, parameters: [String : Any]?, completionHandler:@escaping AlamofireJSONCompletionHandler)
 }
 
 final class NetworkManager: Networking {
-    func request(method: NetworkMethod, url: String, parameters: [String : Any]?, completionHandler:@escaping JSONCompletionHandler){
+    func request(method: NetworkMethod, url: String, parameters: [String : Any]?, completionHandler:@escaping AlamofireJSONCompletionHandler){
         let method = method.httpMethod()
         Alamofire.request(url, method: method, parameters: parameters)
             .validate()
