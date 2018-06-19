@@ -1,14 +1,14 @@
 //
-//  WeatherInformationTableViewController.swift
+//  WeatherTableViewController.swift
 //  Weather
 //
-//  Created by Nischal Hada on 6/18/18.
+//  Created by Nischal Hada on 6/19/18.
 //  Copyright © 2018 NischalHada. All rights reserved.
 //
 
 import UIKit
 
-class WeatherInformationTableViewController: UITableViewController {
+class WeatherTableViewController: UITableViewController {
     var arrayWeather : [WeatherInformation] = []
     fileprivate var activityIndicator : ActivityIndicator! = ActivityIndicator()
     

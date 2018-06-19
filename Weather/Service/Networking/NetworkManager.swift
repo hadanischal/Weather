@@ -17,7 +17,7 @@ protocol Networking {
 final class NetworkManager: Networking {
     func request(method: NetworkMethod, url: URL, parameters: [String : Any]?, completionHandler:@escaping AlamofireJSONCompletionHandler){
         print(url)
-        print(parameters)
+        print(parameters ?? "nil")
         let method = method.httpMethod()
         Alamofire.request(url, method: method, parameters: parameters)
             .validate()

@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Weather Information Table View Controller-->
+        <!--Weather Table View Controller-->
         <scene sceneID="hl2-uX-gMD">
             <objects>
-                <tableViewController storyboardIdentifier="WeatherInformationTableViewController" id="QXi-Qd-Aw8" customClass="WeatherInformationTableViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="WeatherTableViewController" id="QXi-Qd-Aw8" customClass="WeatherTableViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yNa-G7-gRb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -68,7 +68,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="SnA-Ut-is6"/>
                     <connections>
-                        <segue destination="Q08-DJ-gB4" kind="show" id="bsO-ty-Btt"/>
+                        <segue destination="Q08-DJ-gB4" kind="show" identifier="toWeatherDetailViewController" id="bsO-ty-Btt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jpn-mU-cCS" userLabel="First Responder" sceneMemberID="firstResponder"/>

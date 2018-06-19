@@ -11,6 +11,7 @@
 		61D62B6479C5F6779D58DFEA /* Pods_WeatherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 979141A1C40F53DB26479B29 /* Pods_WeatherTests.framework */; };
 		7D0E142EF70CED222501AE7F /* Pods_WeatherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0D8DE66C5FD53822054592F /* Pods_WeatherUITests.framework */; };
 		AF0DC6E320D884890084A14C /* WeatherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0DC6E220D884890084A14C /* WeatherDetailViewController.swift */; };
+		AF0DC6E520D888C60084A14C /* WeatherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0DC6E420D888C60084A14C /* WeatherTableViewController.swift */; };
 		AF415EFB20D7D8CF00BFA658 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415EFA20D7D8CF00BFA658 /* AppDelegate.swift */; };
 		AF415EFD20D7D8CF00BFA658 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415EFC20D7D8CF00BFA658 /* ViewController.swift */; };
 		AF415F0020D7D8CF00BFA658 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF415EFE20D7D8CF00BFA658 /* Main.storyboard */; };
@@ -20,7 +21,6 @@
 		AF415F1320D7D8D100BFA658 /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F1220D7D8D100BFA658 /* WeatherTests.swift */; };
 		AF415F1E20D7D8D100BFA658 /* WeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F1D20D7D8D100BFA658 /* WeatherUITests.swift */; };
 		AF415F2C20D7DB3300BFA658 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = AF415F2B20D7DB3300BFA658 /* .gitignore */; };
-		AF415F3820D7DCE300BFA658 /* WeatherInformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F3720D7DCE300BFA658 /* WeatherInformationTableViewController.swift */; };
 		AF415F3D20D7E18900BFA658 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F3C20D7E18900BFA658 /* Result.swift */; };
 		AF415F3F20D7E19900BFA658 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F3E20D7E19900BFA658 /* APIManager.swift */; };
 		AF415F4120D7E1AE00BFA658 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F4020D7E1AE00BFA658 /* NetworkManager.swift */; };
@@ -69,6 +69,7 @@
 		979141A1C40F53DB26479B29 /* Pods_WeatherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A367AB71CF6B76C00EE6A33D /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Pods/Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
 		AF0DC6E220D884890084A14C /* WeatherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewController.swift; sourceTree = "<group>"; };
+		AF0DC6E420D888C60084A14C /* WeatherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewController.swift; sourceTree = "<group>"; };
 		AF415EF720D7D8CF00BFA658 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF415EFA20D7D8CF00BFA658 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF415EFC20D7D8CF00BFA658 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,7 +85,6 @@
 		AF415F1D20D7D8D100BFA658 /* WeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUITests.swift; sourceTree = "<group>"; };
 		AF415F1F20D7D8D100BFA658 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF415F2B20D7DB3300BFA658 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		AF415F3720D7DCE300BFA658 /* WeatherInformationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInformationTableViewController.swift; sourceTree = "<group>"; };
 		AF415F3C20D7E18900BFA658 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		AF415F3E20D7E19900BFA658 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		AF415F4020D7E1AE00BFA658 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -238,7 +238,7 @@
 		AF415F2F20D7DBE200BFA658 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AF415F3720D7DCE300BFA658 /* WeatherInformationTableViewController.swift */,
+				AF0DC6E420D888C60084A14C /* WeatherTableViewController.swift */,
 				AF0DC6E220D884890084A14C /* WeatherDetailViewController.swift */,
 			);
 			path = ViewControllers;
@@ -580,12 +580,12 @@
 				AF415F5220D7F1A800BFA658 /* Weather.swift in Sources */,
 				AF415EFB20D7D8CF00BFA658 /* AppDelegate.swift in Sources */,
 				AF415F4520D7E1CC00BFA658 /* NetworkMethod.swift in Sources */,
+				AF0DC6E520D888C60084A14C /* WeatherTableViewController.swift in Sources */,
 				AF415F5420D7F38B00BFA658 /* Clouds.swift in Sources */,
 				AF415F6420D7FE8900BFA658 /* ActivityIndicator.swift in Sources */,
 				AF415F6720D7FF0500BFA658 /* UIColor.swift in Sources */,
 				AF415F5E20D7F3E200BFA658 /* Wind.swift in Sources */,
 				AF415F4E20D7EDAF00BFA658 /* WeatherJSONProtocol.swift in Sources */,
-				AF415F3820D7DCE300BFA658 /* WeatherInformationTableViewController.swift in Sources */,
 				AF415F4720D7E1DA00BFA658 /* NetworkError.swift in Sources */,
 				AF415F5C20D7F3D300BFA658 /* WeatherInformation.swift in Sources */,
 				AF415F6220D7FE3300BFA658 /* ThemeColor.swift in Sources */,
