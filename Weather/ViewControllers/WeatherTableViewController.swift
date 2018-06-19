@@ -11,6 +11,7 @@ import UIKit
 class WeatherTableViewController: UITableViewController {
     var arrayWeather : [WeatherInformation] = []
     fileprivate var activityIndicator : ActivityIndicator! = ActivityIndicator()
+    let segueIdentifier = "toDetailViewController"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,19 +91,21 @@ class WeatherTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "toDetailViewController", sender: indexPath)
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPath = (sender as! IndexPath);
+        if segue.identifier == segueIdentifier {
+            if let controller = segue.destination as? WeatherDetailViewController {
+                controller.dataSource = self.arrayWeather[indexPath.row]
+            }
+        }
+    }
 }

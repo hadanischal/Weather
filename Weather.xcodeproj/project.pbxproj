@@ -12,6 +12,10 @@
 		7D0E142EF70CED222501AE7F /* Pods_WeatherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0D8DE66C5FD53822054592F /* Pods_WeatherUITests.framework */; };
 		AF0DC6E320D884890084A14C /* WeatherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0DC6E220D884890084A14C /* WeatherDetailViewController.swift */; };
 		AF0DC6E520D888C60084A14C /* WeatherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0DC6E420D888C60084A14C /* WeatherTableViewController.swift */; };
+		AF0DC6E720D891540084A14C /* WeatherDetailTemperatureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0DC6E620D891540084A14C /* WeatherDetailTemperatureCell.swift */; };
+		AF0DC6E920D891680084A14C /* WeatherDetailOthersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0DC6E820D891680084A14C /* WeatherDetailOthersCell.swift */; };
+		AF0DC6EB20D8A2970084A14C /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0DC6EA20D8A2970084A14C /* DetailModel.swift */; };
+		AF0DC6ED20D8A3C40084A14C /* WeatherImageEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0DC6EC20D8A3C40084A14C /* WeatherImageEnum.swift */; };
 		AF415EFB20D7D8CF00BFA658 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415EFA20D7D8CF00BFA658 /* AppDelegate.swift */; };
 		AF415EFD20D7D8CF00BFA658 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415EFC20D7D8CF00BFA658 /* ViewController.swift */; };
 		AF415F0020D7D8CF00BFA658 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF415EFE20D7D8CF00BFA658 /* Main.storyboard */; };
@@ -70,6 +74,10 @@
 		A367AB71CF6B76C00EE6A33D /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Pods/Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
 		AF0DC6E220D884890084A14C /* WeatherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewController.swift; sourceTree = "<group>"; };
 		AF0DC6E420D888C60084A14C /* WeatherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewController.swift; sourceTree = "<group>"; };
+		AF0DC6E620D891540084A14C /* WeatherDetailTemperatureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailTemperatureCell.swift; sourceTree = "<group>"; };
+		AF0DC6E820D891680084A14C /* WeatherDetailOthersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailOthersCell.swift; sourceTree = "<group>"; };
+		AF0DC6EA20D8A2970084A14C /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
+		AF0DC6EC20D8A3C40084A14C /* WeatherImageEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherImageEnum.swift; sourceTree = "<group>"; };
 		AF415EF720D7D8CF00BFA658 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF415EFA20D7D8CF00BFA658 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF415EFC20D7D8CF00BFA658 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -231,6 +239,8 @@
 				AF415F5D20D7F3E200BFA658 /* Wind.swift */,
 				AF415F5320D7F38B00BFA658 /* Clouds.swift */,
 				AF415F5920D7F3B800BFA658 /* Sys.swift */,
+				AF0DC6EA20D8A2970084A14C /* DetailModel.swift */,
+				AF0DC6EC20D8A3C40084A14C /* WeatherImageEnum.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,6 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				AF415F5F20D7F87B00BFA658 /* WeatherInformationCell.swift */,
+				AF0DC6E620D891540084A14C /* WeatherDetailTemperatureCell.swift */,
+				AF0DC6E820D891680084A14C /* WeatherDetailOthersCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -570,6 +582,7 @@
 			files = (
 				AF415F6020D7F87B00BFA658 /* WeatherInformationCell.swift in Sources */,
 				AF415F3F20D7E19900BFA658 /* APIManager.swift in Sources */,
+				AF0DC6E720D891540084A14C /* WeatherDetailTemperatureCell.swift in Sources */,
 				AF415F0320D7D8CF00BFA658 /* Weather.xcdatamodeld in Sources */,
 				AF0DC6E320D884890084A14C /* WeatherDetailViewController.swift in Sources */,
 				AF415F3D20D7E18900BFA658 /* Result.swift in Sources */,
@@ -583,10 +596,13 @@
 				AF0DC6E520D888C60084A14C /* WeatherTableViewController.swift in Sources */,
 				AF415F5420D7F38B00BFA658 /* Clouds.swift in Sources */,
 				AF415F6420D7FE8900BFA658 /* ActivityIndicator.swift in Sources */,
+				AF0DC6EB20D8A2970084A14C /* DetailModel.swift in Sources */,
 				AF415F6720D7FF0500BFA658 /* UIColor.swift in Sources */,
 				AF415F5E20D7F3E200BFA658 /* Wind.swift in Sources */,
 				AF415F4E20D7EDAF00BFA658 /* WeatherJSONProtocol.swift in Sources */,
+				AF0DC6ED20D8A3C40084A14C /* WeatherImageEnum.swift in Sources */,
 				AF415F4720D7E1DA00BFA658 /* NetworkError.swift in Sources */,
+				AF0DC6E920D891680084A14C /* WeatherDetailOthersCell.swift in Sources */,
 				AF415F5C20D7F3D300BFA658 /* WeatherInformation.swift in Sources */,
 				AF415F6220D7FE3300BFA658 /* ThemeColor.swift in Sources */,
 				AF415F5620D7F39900BFA658 /* Coord.swift in Sources */,
