@@ -87,7 +87,7 @@ class WeatherTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherInformationCell", for: indexPath) as! WeatherInformationCell
-        cell.configureCellWithData(dataObject: arrayWeather[indexPath.row])
+        cell.configureCellWithData(arrayWeather[indexPath.row])
         return cell
     }
     
@@ -104,7 +104,7 @@ class WeatherTableViewController: UITableViewController {
         let indexPath = (sender as! IndexPath);
         if segue.identifier == segueIdentifier {
             if let controller = segue.destination as? WeatherDetailViewController {
-                controller.dataSource = self.arrayWeather[indexPath.row]
+                controller.weatherData = self.arrayWeather[indexPath.row]
             }
         }
     }
