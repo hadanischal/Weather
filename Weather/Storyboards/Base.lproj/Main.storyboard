@@ -69,6 +69,7 @@
                     <navigationItem key="navigationItem" id="SnA-Ut-is6"/>
                     <connections>
                         <segue destination="Q08-DJ-gB4" kind="show" identifier="toDetailViewController" id="bsO-ty-Btt"/>
+                        <segue destination="TjT-V7-cXx" kind="presentation" identifier="toAddCitiesViewController" id="ecH-ag-dl3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jpn-mU-cCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -221,7 +222,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yOi-l0-3iO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2405.5999999999999" y="149.77511244377811"/>
+            <point key="canvasLocation" x="2538" y="-125"/>
+        </scene>
+        <!--Add Cities View Controller-->
+        <scene sceneID="sOB-ZX-hDy">
+            <objects>
+                <viewController storyboardIdentifier="AddCitiesViewController" id="TjT-V7-cXx" customClass="AddCitiesViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AoU-kv-xWu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="K1F-T9-Hhv"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qgL-wu-DUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2537" y="639"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pmX-Ng-bOP">
