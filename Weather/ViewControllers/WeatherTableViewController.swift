@@ -12,6 +12,7 @@ class WeatherTableViewController: UITableViewController {
     var arrayWeather : [WeatherInformation] = []
     fileprivate var activityIndicator : ActivityIndicator! = ActivityIndicator()
     let segueIdentifier = "toDetailViewController"
+    let segueIdentifierAddCity = "toAddCitiesViewController"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +26,17 @@ class WeatherTableViewController: UITableViewController {
         self.tableView.backgroundColor = ThemeColor.white
         self.view.backgroundColor = ThemeColor.white
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(setupAddCitiesControl))
     }
     
     func setupUIRefreshControl() {
         self.refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(actionPullRefresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
+    }
+    
+    @objc func setupAddCitiesControl() {
+        self.performSegue(withIdentifier: segueIdentifierAddCity, sender: nil)
     }
     
     func setUpDataSource(){
@@ -101,8 +107,8 @@ class WeatherTableViewController: UITableViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let indexPath = (sender as! IndexPath);
         if segue.identifier == segueIdentifier {
+            let indexPath = (sender as! IndexPath);
             if let controller = segue.destination as? WeatherDetailViewController {
                 controller.weatherData = self.arrayWeather[indexPath.row]
             }
