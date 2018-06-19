@@ -16,8 +16,8 @@ class WeatherInformationCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func configureCellWithData(dataObject : WeatherInformation){
-        labelCityName.text = dataObject.name
-        labelCityTemperature.text = "\(dataObject.main.temp) °C"
+    func configureCellWithData(_ data : WeatherInformation){
+        labelCityName.text = data.name
+        labelCityTemperature.text = "\(data.main.temp) °C"
     }
 }
