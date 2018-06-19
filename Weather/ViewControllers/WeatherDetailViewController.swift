@@ -9,20 +9,23 @@
 import UIKit
 
 class WeatherDetailViewController: UIViewController {
+    enum Sections: Int {
+        case headers, body
+    }
     @IBOutlet var collectionView: UICollectionView!
-    fileprivate let sectionInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
-    fileprivate let itemsPerRow: CGFloat = 2
-    final let totalnumberOfItemsInSection = 6
-    var dataSource : WeatherInformation!
-    
+    fileprivate let sectionInsets = UIEdgeInsets(top: 5.0, left: 0.0, bottom: 5.0, right: 0.0)
+    var weatherData  : WeatherInformation!
+    var dataSource = [[DetailModel]]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
+        self.dataSource = DetailModel.setupDetailModel(weatherData)
         self.setupCollectionView()
     }
     
     func setupUI() {
-        self.navigationItem.title = dataSource.name
+        self.navigationItem.title = weatherData.name
     }
     
     func setupCollectionView() -> Void{
@@ -38,17 +41,24 @@ class WeatherDetailViewController: UIViewController {
 
 extension WeatherDetailViewController :UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+       return self.dataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return totalnumberOfItemsInSection
+        return self.dataSource[section].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherDetailOthersCell", for: indexPath) as! WeatherDetailOthersCell
-        //cell.configureCellWithData(dataObject: self.)
-         return cell
+        switch Sections(rawValue: (indexPath as NSIndexPath).section)! {
+        case .headers:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherDetailTemperatureCell", for: indexPath) as! WeatherDetailTemperatureCell
+            cell.configureCellWithData(self.dataSource[indexPath.section][indexPath.row])
+            return cell
+        case .body:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherDetailOthersCell", for: indexPath) as! WeatherDetailOthersCell
+            cell.configureCellWithData(self.dataSource[indexPath.section][indexPath.row])
+            return cell
+        }
     }
 }
 
@@ -60,11 +70,18 @@ extension WeatherDetailViewController : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
+        let itemsPerRow:CGFloat  = CGFloat(self.dataSource[indexPath.section].count) / 2
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
-        let heightPerItem = widthPerItem + 21
-        return CGSize(width: widthPerItem, height: heightPerItem)
+ 
+        switch Sections(rawValue: indexPath.section)! {
+        case .headers:
+            return CGSize(width: view.frame.width, height: 160)
+        case .body:
+            return CGSize(width: widthPerItem, height: 100)
+        }
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
