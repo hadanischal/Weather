@@ -15,7 +15,7 @@ class WeatherInformationTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUI()
-       // self.setupUIRefreshControl()
+        self.setupUIRefreshControl()
         self.setUpDataSource()
     }
     
@@ -27,11 +27,12 @@ class WeatherInformationTableViewController: UITableViewController {
     }
     
     func setupUIRefreshControl() {
+        self.refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(actionPullRefresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
-        refreshControl?.addTarget(self, action: #selector(setUpDataSource), for: .valueChanged)
     }
     
-    @objc func setUpDataSource(){
+    func setUpDataSource(){
         self.activityIndicator.start()
         self.getWeatherInformationOfCityID(url: APIManager.sydneyURL) {
             self.getWeatherInformationOfCityID(url: APIManager.melbourneURL, successBlock: {
@@ -69,6 +70,10 @@ class WeatherInformationTableViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    @objc func actionPullRefresh() {
+        self.setUpDataSource()
+        self.refreshControl?.endRefreshing()
+    }
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -85,11 +90,8 @@ class WeatherInformationTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 55
     }
     
     

@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,23 +28,31 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ve-ok-WBY">
-                                            <rect key="frame" x="10" y="11" width="42" height="21"/>
+                                            <rect key="frame" x="10" y="11" width="212" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="CT1-ch-V9K"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZT-Zl-XqH">
-                                            <rect key="frame" x="289" y="11" width="42" height="21"/>
+                                            <rect key="frame" x="231" y="11" width="100" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="Eo0-6I-ajp"/>
+                                                <constraint firstAttribute="height" constant="21" id="Uoq-Vx-JHR"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="8Ve-ok-WBY" firstAttribute="centerY" secondItem="TjB-yA-yXA" secondAttribute="centerY" id="D1Q-L6-Bb2"/>
-                                        <constraint firstItem="SZT-Zl-XqH" firstAttribute="centerY" secondItem="8Ve-ok-WBY" secondAttribute="centerY" id="NdE-VV-IPE"/>
-                                        <constraint firstItem="8Ve-ok-WBY" firstAttribute="leading" secondItem="TjB-yA-yXA" secondAttribute="leading" constant="10" id="UaE-PC-lS7"/>
-                                        <constraint firstAttribute="trailing" secondItem="SZT-Zl-XqH" secondAttribute="trailing" constant="10" id="ygn-8n-SmE"/>
+                                        <constraint firstItem="SZT-Zl-XqH" firstAttribute="centerY" secondItem="TjB-yA-yXA" secondAttribute="centerY" id="9bK-V0-izO"/>
+                                        <constraint firstItem="8Ve-ok-WBY" firstAttribute="leading" secondItem="TjB-yA-yXA" secondAttribute="leading" constant="10" id="Cbc-cx-aHW"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="SZT-Zl-XqH" secondAttribute="trailing" constant="2" id="NtR-ja-Eh8"/>
+                                        <constraint firstItem="SZT-Zl-XqH" firstAttribute="leading" secondItem="8Ve-ok-WBY" secondAttribute="trailing" constant="9" id="X22-0H-DOg"/>
+                                        <constraint firstItem="8Ve-ok-WBY" firstAttribute="centerY" secondItem="TjB-yA-yXA" secondAttribute="centerY" id="n6G-Fj-BZu"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -57,10 +67,28 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="SnA-Ut-is6"/>
+                    <connections>
+                        <segue destination="Q08-DJ-gB4" kind="show" id="bsO-ty-Btt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jpn-mU-cCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1452" y="149.77511244377811"/>
+        </scene>
+        <!--Weather Detail View Controller-->
+        <scene sceneID="eD9-hK-Ld6">
+            <objects>
+                <viewController storyboardIdentifier="WeatherDetailViewController" id="Q08-DJ-gB4" customClass="WeatherDetailViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dA6-Ab-dAw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="sak-qq-alU"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yOi-l0-3iO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2406" y="150"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pmX-Ng-bOP">
