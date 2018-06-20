@@ -45,6 +45,7 @@
 		AF415F6220D7FE3300BFA658 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F6120D7FE3300BFA658 /* ThemeColor.swift */; };
 		AF415F6420D7FE8900BFA658 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F6320D7FE8900BFA658 /* ActivityIndicator.swift */; };
 		AF415F6720D7FF0500BFA658 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F6620D7FF0500BFA658 /* UIColor.swift */; };
+		AF752BC420DA21C9009B9563 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF752BC320DA21C9009B9563 /* UIViewController.swift */; };
 		AFCC53BE20D9055100B7B934 /* AddCitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCC53BD20D9055100B7B934 /* AddCitiesViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +115,7 @@
 		AF415F6120D7FE3300BFA658 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		AF415F6320D7FE8900BFA658 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		AF415F6620D7FF0500BFA658 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		AF752BC320DA21C9009B9563 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		AFCC53BD20D9055100B7B934 /* AddCitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCitiesViewController.swift; sourceTree = "<group>"; };
 		B0D8DE66C5FD53822054592F /* Pods_WeatherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D752A353B72E9D2CAEE9DE96 /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -284,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				AF415F6620D7FF0500BFA658 /* UIColor.swift */,
+				AF752BC320DA21C9009B9563 /* UIViewController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				AF415F6220D7FE3300BFA658 /* ThemeColor.swift in Sources */,
 				AFCC53BE20D9055100B7B934 /* AddCitiesViewController.swift in Sources */,
 				AF415F5620D7F39900BFA658 /* Coord.swift in Sources */,
+				AF752BC420DA21C9009B9563 /* UIViewController.swift in Sources */,
 				AF415F4C20D7E41500BFA658 /* WeatherJSONClient.swift in Sources */,
 				AF415F5020D7F18E00BFA658 /* JSONCompatible.swift in Sources */,
 				AF415F5A20D7F3B800BFA658 /* Sys.swift in Sources */,
