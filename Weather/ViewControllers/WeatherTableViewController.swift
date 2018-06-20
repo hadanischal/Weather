@@ -9,9 +9,13 @@
 import UIKit
 
 class WeatherTableViewController: UITableViewController {
+    //MARK:- Segues
+    enum Segues: String {
+        case showDetail = "toDetailViewController"
+        case saveAddCity = "toAddCitiesViewController"
+    }
     var arrayWeather : [WeatherInformation] = []
     fileprivate var activityIndicator : ActivityIndicator! = ActivityIndicator()
-    let segueIdentifier = "toDetailViewController"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +29,17 @@ class WeatherTableViewController: UITableViewController {
         self.tableView.backgroundColor = ThemeColor.white
         self.view.backgroundColor = ThemeColor.white
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(setupAddCitiesControl))
     }
     
     func setupUIRefreshControl() {
         self.refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(actionPullRefresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
+    }
+    
+    @objc func setupAddCitiesControl() {
+        self.performSegue(withIdentifier: Segues.saveAddCity.rawValue, sender: nil)
     }
     
     func setUpDataSource(){
@@ -59,16 +68,9 @@ class WeatherTableViewController: UITableViewController {
             case .failure(let error):
                 print(error.localizedDescription)
                 self.showAlert(title: "Error", message: error.localizedDescription)
+                self.activityIndicator.stop()
             }
         }
-    }
-    
-    func showAlert(title: String?, message: String?){
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func actionPullRefresh() {
@@ -101,11 +103,17 @@ class WeatherTableViewController: UITableViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let indexPath = (sender as! IndexPath);
-        if segue.identifier == segueIdentifier {
+        switch Segues(rawValue: segue.identifier!) {
+        case .showDetail?:
+            let indexPath = (sender as! IndexPath);
             if let controller = segue.destination as? WeatherDetailViewController {
                 controller.weatherData = self.arrayWeather[indexPath.row]
             }
+        case .saveAddCity?:
+            break
+        case .none:
+            break
         }
+        
     }
 }
