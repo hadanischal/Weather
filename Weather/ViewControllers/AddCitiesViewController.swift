@@ -14,13 +14,15 @@ class AddCitiesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setUpUI()
         self.filteredData = []
+        self.setUpUI()
     }
     
     func setUpUI(){
         self.title = "Add City"
         self.view.backgroundColor = ThemeColor.white
+        self.tableView.backgroundColor = ThemeColor.white
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(actionCancel))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(actionSave))
     }
@@ -59,5 +61,4 @@ extension AddCitiesViewController:UITabBarDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }
-    
 }
