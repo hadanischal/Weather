@@ -232,8 +232,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsO-Gc-ySz">
+                                <rect key="frame" x="0.0" y="64" width="375" height="64"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Tpk-5t-ADc">
+                                        <rect key="frame" x="0.0" y="10" width="375" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="gyR-Gf-eJ2"/>
+                                        </constraints>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="TjT-V7-cXx" id="Fqf-qx-CaE"/>
+                                        </connections>
+                                    </searchBar>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Tpk-5t-ADc" firstAttribute="centerY" secondItem="qsO-Gc-ySz" secondAttribute="centerY" id="AZF-wY-DIa"/>
+                                    <constraint firstAttribute="height" constant="64" id="U8f-7a-FRC"/>
+                                    <constraint firstItem="Tpk-5t-ADc" firstAttribute="leading" secondItem="qsO-Gc-ySz" secondAttribute="leading" id="ZJi-BD-RpR"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tpk-5t-ADc" secondAttribute="trailing" id="pkm-Ck-s04"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7pl-O2-w1a">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="157" width="375" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableCell" textLabel="aH4-9z-D09" detailTextLabel="5f0-6I-mB6" rowHeight="55" style="IBUITableViewCellStyleValue1" id="AOC-rD-dB2">
@@ -269,15 +291,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="7pl-O2-w1a" firstAttribute="top" secondItem="AoU-kv-xWu" secondAttribute="top" id="Kk1-Yo-02S"/>
-                            <constraint firstItem="7pl-O2-w1a" firstAttribute="leading" secondItem="K1F-T9-Hhv" secondAttribute="leading" id="c9S-zd-EoF"/>
-                            <constraint firstItem="7pl-O2-w1a" firstAttribute="bottom" secondItem="K1F-T9-Hhv" secondAttribute="bottom" id="jC7-Yp-yue"/>
-                            <constraint firstItem="7pl-O2-w1a" firstAttribute="trailing" secondItem="K1F-T9-Hhv" secondAttribute="trailing" id="sTX-1K-kJQ"/>
+                            <constraint firstItem="qsO-Gc-ySz" firstAttribute="top" secondItem="K1F-T9-Hhv" secondAttribute="top" id="LqT-sZ-opc"/>
+                            <constraint firstItem="7pl-O2-w1a" firstAttribute="bottom" secondItem="K1F-T9-Hhv" secondAttribute="bottom" id="Wbf-Nq-Y0u"/>
+                            <constraint firstItem="7pl-O2-w1a" firstAttribute="leading" secondItem="K1F-T9-Hhv" secondAttribute="leading" id="bV1-HU-s16"/>
+                            <constraint firstItem="7pl-O2-w1a" firstAttribute="top" secondItem="qsO-Gc-ySz" secondAttribute="bottom" constant="29" id="e92-ff-88n"/>
+                            <constraint firstItem="7pl-O2-w1a" firstAttribute="trailing" secondItem="K1F-T9-Hhv" secondAttribute="trailing" id="iVO-fP-ADw"/>
+                            <constraint firstItem="qsO-Gc-ySz" firstAttribute="leading" secondItem="AoU-kv-xWu" secondAttribute="leading" id="wC4-Y0-wnw"/>
+                            <constraint firstAttribute="trailing" secondItem="qsO-Gc-ySz" secondAttribute="trailing" id="z1b-e4-wbf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K1F-T9-Hhv"/>
                     </view>
                     <navigationItem key="navigationItem" id="FlC-yY-1AX"/>
                     <connections>
+                        <outlet property="searchBar" destination="Tpk-5t-ADc" id="Ezv-r8-guH"/>
                         <outlet property="tableView" destination="7pl-O2-w1a" id="p0i-51-HzB"/>
                     </connections>
                 </viewController>

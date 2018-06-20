@@ -10,8 +10,11 @@ import UIKit
 
 class AddCitiesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    var dataSource:AddCitiesModel?
     var filteredData: [String]!
-    
+    var searchActive : Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.filteredData = []
@@ -35,6 +38,43 @@ class AddCitiesViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 }
+
+// MARK: - UISearchBarDelegate Setup
+extension AddCitiesViewController : UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+        view.endEditing(true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        let strText:String =  searchText.replacingOccurrences(of: " ", with: "")
+        if (strText ).isEmpty {
+            searchActive = false;
+        }else{
+            self.dataSource = nil
+            searchActive = true;
+            let delayTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: delayTime) {
+            }
+        }
+        self.tableView.reloadData()
+    }
+}
+
 
 extension AddCitiesViewController:UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int{
