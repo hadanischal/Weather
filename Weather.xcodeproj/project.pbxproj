@@ -18,6 +18,8 @@
 		AF0DC6ED20D8A3C40084A14C /* WeatherImageEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0DC6EC20D8A3C40084A14C /* WeatherImageEnum.swift */; };
 		AF12114720DBCBF0008A8BF8 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12114620DBCBF0008A8BF8 /* UINavigationController.swift */; };
 		AF12114920DBE843008A8BF8 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12114820DBE843008A8BF8 /* ProgressHUD.swift */; };
+		AF12114C20DBED13008A8BF8 /* StartWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12114B20DBED13008A8BF8 /* StartWeatherModel.swift */; };
+		AF12114E20DBED54008A8BF8 /* StringFromDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12114D20DBED54008A8BF8 /* StringFromDate.swift */; };
 		AF13B25620DA7F6400B27BAD /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF13B25520DA7F6400B27BAD /* FileManager.swift */; };
 		AF13B25820DA806A00B27BAD /* citylist.json in Resources */ = {isa = PBXBuildFile; fileRef = AF13B25720DA806A00B27BAD /* citylist.json */; };
 		AF13F74D20DB4BA400D0E758 /* AddCitiesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF13F74C20DB4BA400D0E758 /* AddCitiesCell.swift */; };
@@ -93,6 +95,8 @@
 		AF0DC6EC20D8A3C40084A14C /* WeatherImageEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherImageEnum.swift; sourceTree = "<group>"; };
 		AF12114620DBCBF0008A8BF8 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		AF12114820DBE843008A8BF8 /* ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
+		AF12114B20DBED13008A8BF8 /* StartWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWeatherModel.swift; sourceTree = "<group>"; };
+		AF12114D20DBED54008A8BF8 /* StringFromDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFromDate.swift; sourceTree = "<group>"; };
 		AF13B25520DA7F6400B27BAD /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		AF13B25720DA806A00B27BAD /* citylist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citylist.json; sourceTree = "<group>"; };
 		AF13F74C20DB4BA400D0E758 /* AddCitiesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCitiesCell.swift; sourceTree = "<group>"; };
@@ -184,6 +188,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AF12114A20DBECF4008A8BF8 /* StartWeatherModel */ = {
+			isa = PBXGroup;
+			children = (
+				AF12114B20DBED13008A8BF8 /* StartWeatherModel.swift */,
+			);
+			name = StartWeatherModel;
+			sourceTree = "<group>";
+		};
 		AF13F74E20DB651200D0E758 /* FileManagerReadJson */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +285,7 @@
 		AF415F2E20D7DBCB00BFA658 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AF12114A20DBECF4008A8BF8 /* StartWeatherModel */,
 				AF140E6D20DA63390065E6A4 /* AddCitiesModel */,
 				AF415F4F20D7F18E00BFA658 /* JSONCompatible.swift */,
 				AF58520E20D90C5E001925F1 /* Detail */,
@@ -341,6 +354,7 @@
 			children = (
 				AF13F75320DB7C2200D0E758 /* Utility.swift */,
 				AF12114820DBE843008A8BF8 /* ProgressHUD.swift */,
+				AF12114D20DBED54008A8BF8 /* StringFromDate.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -686,6 +700,7 @@
 				AF415EFD20D7D8CF00BFA658 /* ViewController.swift in Sources */,
 				AF140E6C20DA632D0065E6A4 /* AddCitiesModel.swift in Sources */,
 				AF415F5220D7F1A800BFA658 /* Weather.swift in Sources */,
+				AF12114E20DBED54008A8BF8 /* StringFromDate.swift in Sources */,
 				AF415EFB20D7D8CF00BFA658 /* AppDelegate.swift in Sources */,
 				AFEA2AE420DA855700DC6544 /* ReachabilityError.swift in Sources */,
 				AF415F4520D7E1CC00BFA658 /* NetworkMethod.swift in Sources */,
@@ -708,6 +723,7 @@
 				AF415F6220D7FE3300BFA658 /* ThemeColor.swift in Sources */,
 				AFCC53BE20D9055100B7B934 /* AddCitiesViewController.swift in Sources */,
 				AF415F5620D7F39900BFA658 /* Coord.swift in Sources */,
+				AF12114C20DBED13008A8BF8 /* StartWeatherModel.swift in Sources */,
 				AFEA2AE020DA842500DC6544 /* File.swift in Sources */,
 				AF752BC420DA21C9009B9563 /* UIViewController.swift in Sources */,
 				AF13F74D20DB4BA400D0E758 /* AddCitiesCell.swift in Sources */,

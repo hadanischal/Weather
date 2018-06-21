@@ -34,17 +34,11 @@ extension DetailModel{
             DetailModel(title: "Temperature", description: "\(data.main.temp_max)° : \(data.main.temp_min)°", image: "Temperature"),
             DetailModel(title: "WindSpeed", description: "\(data.wind.speed)m/s", image: "WindSpeed"),
             DetailModel(title: "Visibility", description: "\(data.visibility)", image: "Visibility"),
-            DetailModel(title: "Sunrise", description: getTimeStringFromDate(date: dateSunrise as Date), image: "Sunrise"),
-            DetailModel(title: "Sunset", description: getTimeStringFromDate(date: dateSunset as Date), image: "Sunset")
+            DetailModel(title: "Sunrise", description: StringFromDate().getTimeStringFromDate(date: dateSunrise as Date), image: "Sunrise"),
+            DetailModel(title: "Sunset", description: StringFromDate().getTimeStringFromDate(date: dateSunset as Date), image: "Sunset")
         ]
         return [header,body]
     }
     
-    static func getTimeStringFromDate(date : Date) -> String{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .none
-        dateFormatter.timeStyle = .short
-        let dataString = dateFormatter.string(from: date)
-        return dataString
-    }
+
 }
