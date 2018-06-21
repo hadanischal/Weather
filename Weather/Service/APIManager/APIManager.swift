@@ -37,7 +37,7 @@ struct APIManager {
         let finalURL = URL(string: weatherInfoUrl)!
         return finalURL
     }
-    private static func weatherAPIURL(cityID: String) -> URL {
+    public static func weatherAPIURL(_ cityID: Int) -> URL {
         let weatherInfoUrl =  baseURLString + "id=\(cityID)&units=\(weatherUnit)&APPID=\(apiKey)"
         let finalURL = URL(string: weatherInfoUrl)!
         return finalURL

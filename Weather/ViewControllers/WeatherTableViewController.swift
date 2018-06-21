@@ -9,10 +9,6 @@
 import UIKit
 
 class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
-    func finishPassing(_ data: AddCitiesModel){
-        print("passing up")
-        print(data)
-    }
     
     //MARK:- Segues
     enum Segues: String {
@@ -49,7 +45,23 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
         controller.delegate = self
         let navigationController = UINavigationController(rootViewController: controller)
         self.present(navigationController, animated: true, completion: nil)
-        
+    }
+    
+    //MARK:- Add Cities Methods
+    func methodAddCities(_ data: AddCitiesModel){
+        let foundItems = self.arrayWeather.filter { $0.name == data.name && $0.id == data.id }
+        if foundItems.count == 0{
+            self.activityIndicator.start()
+            self.getWeatherInformationOfCityID(url: APIManager.weatherAPIURL(data.id!), successBlock: {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.activityIndicator.stop()
+                }
+                
+            })
+        }else{
+            self.showAlert(title: "Error", message:"City already added")
+        }
     }
     
     func setUpDataSource(){
@@ -96,7 +108,7 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.arrayWeather.count
     }
- 
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherInformationCell", for: indexPath) as! WeatherInformationCell
         cell.configureCellWithData(arrayWeather[indexPath.row])
