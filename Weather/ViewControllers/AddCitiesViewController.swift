@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AddCitiesDelegate {
+    func methodAddCities(_ data: AddCitiesModel)
+}
+
 class AddCitiesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -15,6 +19,8 @@ class AddCitiesViewController: UIViewController {
     fileprivate let readJson: FileManagerReadJson! = FileManagerReadJson()
     var dataSource:[AddCitiesModel] = [AddCitiesModel]()
     var filteredData:[AddCitiesModel] = [AddCitiesModel]()
+    var selectedCity:AddCitiesModel? = AddCitiesModel()
+    var delegate: AddCitiesDelegate?
     var searchActive : Bool = false
     
     override func viewDidLoad() {
@@ -32,6 +38,7 @@ class AddCitiesViewController: UIViewController {
         self.view.backgroundColor = ThemeColor.viewBackgroundColor
         self.tableView.backgroundColor = ThemeColor.tableViewBackgroundColor
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
+        self.navigationController?.presentThemeNavigationBar()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(actionCancel))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(actionSave))
     }
@@ -41,7 +48,13 @@ class AddCitiesViewController: UIViewController {
     }
     
     @IBAction func actionSave(_ sender: AnyObject) {
-        dismiss(animated: true, completion: nil)
+        if self.selectedCity != nil {
+            dismiss(animated: true, completion: {
+                self.delegate?.methodAddCities(self.selectedCity!)
+            })
+        }else{
+            self.showAlert(title: "Error", message:"Please select the city first")
+        }
     }
     
     func setUpDataSource(){
@@ -49,20 +62,20 @@ class AddCitiesViewController: UIViewController {
         Utility.showLoader()
         DispatchQueue.main.async {
             self.readJson.handellJSONSerialization(input: "citylist") { (Result) in
-            DispatchQueue.main.async {
-                if Result?.count != 0{
-                    for json in Result!{
-                        let result = AddCitiesModel.init(json: json as? [String : Any])
-                        self.dataSource.append(result!)
+                DispatchQueue.main.async {
+                    if Result?.count != 0{
+                        for json in Result!{
+                            let result = AddCitiesModel.init(json: json as? [String : Any])
+                            self.dataSource.append(result!)
+                        }
+                        self.filteredData = self.dataSource
+                        self.tableView.reloadData()
+                        // ActivityIndicator().stop()
+                        Utility.hideLoader()
                     }
-                    self.filteredData = self.dataSource
-                    self.tableView.reloadData()
-                   // ActivityIndicator().stop()
-                    Utility.hideLoader()
                 }
+                
             }
-            
-        }
         }
     }
 }
@@ -100,7 +113,7 @@ extension AddCitiesViewController : UISearchBarDelegate {
             let delayTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: delayTime) {
                 self.filteredData.removeAll()
-              //  let filterServices = self.dataSource.filter({$0.name?.lowercased().range(of: strText.lowercased()) != nil})
+                //  let filterServices = self.dataSource.filter({$0.name?.lowercased().range(of: strText.lowercased()) != nil})
                 let foundItems = self.dataSource.filter { $0.name == strText || $0.id == Int(strText) }
                 print(foundItems)
                 self.filteredData =  foundItems
@@ -126,12 +139,11 @@ extension AddCitiesViewController:UITableViewDataSource{
         cell.configureCellWithData(filteredData[indexPath.row])
         return cell
     }
-    
 }
 
-extension AddCitiesViewController:UITabBarDelegate{
+extension AddCitiesViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("didSelectRowAt")
+        self.selectedCity = filteredData[indexPath.row]
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

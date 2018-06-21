@@ -8,7 +8,12 @@
 
 import UIKit
 
-class WeatherTableViewController: UITableViewController {
+class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
+    func finishPassing(_ data: AddCitiesModel){
+        print("passing up")
+        print(data)
+    }
+    
     //MARK:- Segues
     enum Segues: String {
         case showDetail = "toDetailViewController"
@@ -29,7 +34,7 @@ class WeatherTableViewController: UITableViewController {
         self.tableView.backgroundColor = ThemeColor.tableViewBackgroundColor
         self.view.backgroundColor = ThemeColor.viewBackgroundColor
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(setupAddCitiesControl))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(actionAddCities))
     }
     
     func setupUIRefreshControl() {
@@ -38,8 +43,13 @@ class WeatherTableViewController: UITableViewController {
         tableView.refreshControl = refreshControl
     }
     
-    @objc func setupAddCitiesControl() {
-        self.performSegue(withIdentifier: Segues.saveAddCity.rawValue, sender: nil)
+    @IBAction func actionAddCities(_ sender: AnyObject){
+        // self.performSegue(withIdentifier: Segues.saveAddCity.rawValue, sender: nil)
+        let controller: AddCitiesViewController = storyboard!.instantiateViewController(withIdentifier: "AddCitiesViewController") as! AddCitiesViewController
+        controller.delegate = self
+        let navigationController = UINavigationController(rootViewController: controller)
+        self.present(navigationController, animated: true, completion: nil)
+        
     }
     
     func setUpDataSource(){
@@ -77,6 +87,7 @@ class WeatherTableViewController: UITableViewController {
         self.setUpDataSource()
         self.refreshControl?.endRefreshing()
     }
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -85,8 +96,7 @@ class WeatherTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.arrayWeather.count
     }
-    
-    
+ 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherInformationCell", for: indexPath) as! WeatherInformationCell
         cell.configureCellWithData(arrayWeather[indexPath.row])
