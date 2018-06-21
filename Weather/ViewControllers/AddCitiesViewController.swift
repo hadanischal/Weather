@@ -12,6 +12,7 @@ class AddCitiesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     fileprivate var activityIndicator : ActivityIndicator! = ActivityIndicator()
+    fileprivate let readJson: FileManagerReadJson! = FileManagerReadJson()
     var dataSource:[AddCitiesModel] = [AddCitiesModel]()
     var filteredData:[AddCitiesModel] = [AddCitiesModel]()
     var searchActive : Bool = false
@@ -44,27 +45,19 @@ class AddCitiesViewController: UIViewController {
     }
     
     func setUpDataSource(){
-        let data = FileManager.readJson("citylist")
         self.activityIndicator.start()
-        do {
-            if let list = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [AnyObject]{
-                for json in list{
-                    let result = AddCitiesModel.init(json: json as? [String : Any])
-                    self.dataSource.append(result!)
-                }
-                self.filteredData = self.dataSource
-                self.tableView.reloadData()
-                self.activityIndicator.stop()
-            } else {
-                self.activityIndicator.stop()
-                print("Error while parsing json data")
-            }
-        } catch {
+        readJson.handellJSONSerialization(input: "citylist") { (Result) in
             self.activityIndicator.stop()
-            print("Error while parsing json data")
+            for json in Result!{
+                let result = AddCitiesModel.init(json: json as? [String : Any])
+                self.dataSource.append(result!)
+            }
+            self.filteredData = self.dataSource
+            self.tableView.reloadData()
+            self.activityIndicator.stop()
+            
         }
     }
-    
 }
 
 // MARK: - UISearchBarDelegate Setup
@@ -82,24 +75,31 @@ extension AddCitiesViewController : UISearchBarDelegate {
         searchActive = false;
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false;
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+        // searchActive = false;
+        self.searchBarSearchBegin(searchBar)
         view.endEditing(true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        let strText:String =  searchText.replacingOccurrences(of: " ", with: "")
+        searchActive = true;
+    }
+    
+    func searchBarSearchBegin(_ searchBar: UISearchBar) {
+        let strText:String =  searchBar.text!.replacingOccurrences(of: " ", with: "")
         if (strText ).isEmpty {
             searchActive = false;
         }else{
-            self.filteredData.removeAll()
-            searchActive = true;
             let delayTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: delayTime) {
+                self.filteredData.removeAll()
+                let filterServices = self.dataSource.filter({$0.name?.lowercased().range(of: strText.lowercased()) != nil})
+                print(filterServices)
+                self.filteredData =  filterServices
+                self.searchActive = true;
+                self.tableView.reloadData()
             }
         }
-        self.tableView.reloadData()
     }
 }
 
