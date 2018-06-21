@@ -16,6 +16,8 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
         case saveAddCity = "toAddCitiesViewController"
     }
     var arrayWeather : [WeatherInformation] = []
+    var progressHUD: ProgressHUD { return ProgressHUD() }
+
     fileprivate var activityIndicator : ActivityIndicator! = ActivityIndicator()
     
     override func viewDidLoad() {
@@ -51,11 +53,11 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
     func methodAddCities(_ data: AddCitiesModel){
         let foundItems = self.arrayWeather.filter { $0.name == data.name && $0.id == data.id }
         if foundItems.count == 0{
-            self.activityIndicator.start()
+            self.progressHUD.ShowSVProgressHUD_Black()
             self.getWeatherInformationOfCityID(url: APIManager.weatherAPIURL(data.id!), successBlock: {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                    self.activityIndicator.stop()
+                    self.progressHUD.DismissSVProgressHUD()
                 }
                 
             })
@@ -65,13 +67,13 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
     }
     
     func setUpDataSource(){
-        self.activityIndicator.start()
+        self.progressHUD.ShowSVProgressHUD_Black()
         self.getWeatherInformationOfCityID(url: APIManager.sydneyURL) {
             self.getWeatherInformationOfCityID(url: APIManager.melbourneURL, successBlock: {
                 self.getWeatherInformationOfCityID(url: APIManager.brisbaneURL, successBlock: {
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
-                        self.activityIndicator.stop()
+                        self.progressHUD.DismissSVProgressHUD()
                     }
                     
                 })

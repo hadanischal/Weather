@@ -22,7 +22,8 @@ class AddCitiesViewController: UIViewController {
     var selectedCity:AddCitiesModel? = AddCitiesModel()
     var delegate: AddCitiesDelegate?
     var searchActive : Bool = false
-    
+    var progressHUD: ProgressHUD { return ProgressHUD() }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUI()
@@ -58,8 +59,7 @@ class AddCitiesViewController: UIViewController {
     }
     
     func setUpDataSource(){
-        //ActivityIndicator().start()
-        Utility.showLoader()
+        self.progressHUD.ShowSVProgressHUD_Black()
         DispatchQueue.main.async {
             self.readJson.handellJSONSerialization(input: "citylist") { (Result) in
                 DispatchQueue.main.async {
@@ -70,8 +70,7 @@ class AddCitiesViewController: UIViewController {
                         }
                         self.filteredData = self.dataSource
                         self.tableView.reloadData()
-                        // ActivityIndicator().stop()
-                        Utility.hideLoader()
+                        self.progressHUD.DismissSVProgressHUD()
                     }
                 }
                 

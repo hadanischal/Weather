@@ -17,6 +17,7 @@
 		AF0DC6EB20D8A2970084A14C /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0DC6EA20D8A2970084A14C /* DetailModel.swift */; };
 		AF0DC6ED20D8A3C40084A14C /* WeatherImageEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0DC6EC20D8A3C40084A14C /* WeatherImageEnum.swift */; };
 		AF12114720DBCBF0008A8BF8 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12114620DBCBF0008A8BF8 /* UINavigationController.swift */; };
+		AF12114920DBE843008A8BF8 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12114820DBE843008A8BF8 /* ProgressHUD.swift */; };
 		AF13B25620DA7F6400B27BAD /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF13B25520DA7F6400B27BAD /* FileManager.swift */; };
 		AF13B25820DA806A00B27BAD /* citylist.json in Resources */ = {isa = PBXBuildFile; fileRef = AF13B25720DA806A00B27BAD /* citylist.json */; };
 		AF13F74D20DB4BA400D0E758 /* AddCitiesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF13F74C20DB4BA400D0E758 /* AddCitiesCell.swift */; };
@@ -91,6 +92,7 @@
 		AF0DC6EA20D8A2970084A14C /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		AF0DC6EC20D8A3C40084A14C /* WeatherImageEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherImageEnum.swift; sourceTree = "<group>"; };
 		AF12114620DBCBF0008A8BF8 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		AF12114820DBE843008A8BF8 /* ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		AF13B25520DA7F6400B27BAD /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		AF13B25720DA806A00B27BAD /* citylist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citylist.json; sourceTree = "<group>"; };
 		AF13F74C20DB4BA400D0E758 /* AddCitiesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCitiesCell.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				AF13F75320DB7C2200D0E758 /* Utility.swift */,
+				AF12114820DBE843008A8BF8 /* ProgressHUD.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -525,6 +528,11 @@
 				TargetAttributes = {
 					AF415EF620D7D8CF00BFA658 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					AF415F0D20D7D8D100BFA658 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -688,6 +696,7 @@
 				AF13F75420DB7C2200D0E758 /* Utility.swift in Sources */,
 				AF13B25620DA7F6400B27BAD /* FileManager.swift in Sources */,
 				AF0DC6EB20D8A2970084A14C /* DetailModel.swift in Sources */,
+				AF12114920DBE843008A8BF8 /* ProgressHUD.swift in Sources */,
 				AF415F6720D7FF0500BFA658 /* UIColor.swift in Sources */,
 				AF415F5E20D7F3E200BFA658 /* Wind.swift in Sources */,
 				AF13F75020DB654000D0E758 /* FileManagerReadJson.swift in Sources */,
