@@ -17,14 +17,15 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
     }
     var arrayWeather : [WeatherInformation] = []
     var progressHUD: ProgressHUD { return ProgressHUD() }
+    var periodicTimer: Timer!
 
-    fileprivate var activityIndicator : ActivityIndicator! = ActivityIndicator()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUI()
         self.setupUIRefreshControl()
         self.setUpDataSource()
+        periodicTimer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+
     }
     
     func setUpUI(){
@@ -40,9 +41,12 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
         refreshControl?.addTarget(self, action: #selector(actionPullRefresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
     }
+    @IBAction func runTimedCode(_ sender: AnyObject){
+       // periodicTimer.invalidate()
+        self.setUpDataSource()
+    }
     
     @IBAction func actionAddCities(_ sender: AnyObject){
-        // self.performSegue(withIdentifier: Segues.saveAddCity.rawValue, sender: nil)
         let controller: AddCitiesViewController = storyboard!.instantiateViewController(withIdentifier: "AddCitiesViewController") as! AddCitiesViewController
         controller.delegate = self
         let navigationController = UINavigationController(rootViewController: controller)
@@ -92,7 +96,7 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
             case .failure(let error):
                 print(error.localizedDescription)
                 self.showAlert(title: "Error", message: error.localizedDescription)
-                self.activityIndicator.stop()
+                self.progressHUD.DismissSVProgressHUD()
             }
         }
     }
