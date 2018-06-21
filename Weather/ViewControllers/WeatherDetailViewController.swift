@@ -34,7 +34,7 @@ class WeatherDetailViewController: UIViewController {
         self.collectionView.collectionViewLayout = layout
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0 //0.0
-        self.collectionView.backgroundColor = ThemeColor.collectionViewBackgroundColor
+        self.collectionView.backgroundColor = ThemeColor.tableViewBackgroundColor
         self.collectionView.showsHorizontalScrollIndicator = false
     }
 }

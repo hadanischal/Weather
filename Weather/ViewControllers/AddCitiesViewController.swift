@@ -29,8 +29,8 @@ class AddCitiesViewController: UIViewController {
     
     func setUpUI(){
         self.title = "Add City"
-        self.view.backgroundColor = ThemeColor.white
-        self.tableView.backgroundColor = ThemeColor.white
+        self.view.backgroundColor = ThemeColor.viewBackgroundColor
+        self.tableView.backgroundColor = ThemeColor.tableViewBackgroundColor
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(actionCancel))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(actionSave))
@@ -45,17 +45,24 @@ class AddCitiesViewController: UIViewController {
     }
     
     func setUpDataSource(){
-        self.activityIndicator.start()
-        readJson.handellJSONSerialization(input: "citylist") { (Result) in
-            self.activityIndicator.stop()
-            for json in Result!{
-                let result = AddCitiesModel.init(json: json as? [String : Any])
-                self.dataSource.append(result!)
+        //ActivityIndicator().start()
+        Utility.showLoader()
+        DispatchQueue.main.async {
+            self.readJson.handellJSONSerialization(input: "citylist") { (Result) in
+            DispatchQueue.main.async {
+                if Result?.count != 0{
+                    for json in Result!{
+                        let result = AddCitiesModel.init(json: json as? [String : Any])
+                        self.dataSource.append(result!)
+                    }
+                    self.filteredData = self.dataSource
+                    self.tableView.reloadData()
+                   // ActivityIndicator().stop()
+                    Utility.hideLoader()
+                }
             }
-            self.filteredData = self.dataSource
-            self.tableView.reloadData()
-            self.activityIndicator.stop()
             
+        }
         }
     }
 }
@@ -93,9 +100,10 @@ extension AddCitiesViewController : UISearchBarDelegate {
             let delayTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: delayTime) {
                 self.filteredData.removeAll()
-                let filterServices = self.dataSource.filter({$0.name?.lowercased().range(of: strText.lowercased()) != nil})
-                print(filterServices)
-                self.filteredData =  filterServices
+              //  let filterServices = self.dataSource.filter({$0.name?.lowercased().range(of: strText.lowercased()) != nil})
+                let foundItems = self.dataSource.filter { $0.name == strText || $0.id == Int(strText) }
+                print(foundItems)
+                self.filteredData =  foundItems
                 self.searchActive = true;
                 self.tableView.reloadData()
             }
