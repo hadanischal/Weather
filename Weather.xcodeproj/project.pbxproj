@@ -20,6 +20,8 @@
 		AF12114920DBE843008A8BF8 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12114820DBE843008A8BF8 /* ProgressHUD.swift */; };
 		AF12114C20DBED13008A8BF8 /* StartWeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12114B20DBED13008A8BF8 /* StartWeatherModel.swift */; };
 		AF12114E20DBED54008A8BF8 /* StringFromDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12114D20DBED54008A8BF8 /* StringFromDate.swift */; };
+		AF12115020DBF2E8008A8BF8 /* WeatherInformationOfCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12114F20DBF2E8008A8BF8 /* WeatherInformationOfCity.swift */; };
+		AF12115220DC0598008A8BF8 /* AddCityDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF12115120DC0598008A8BF8 /* AddCityDataStore.swift */; };
 		AF13B25620DA7F6400B27BAD /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF13B25520DA7F6400B27BAD /* FileManager.swift */; };
 		AF13B25820DA806A00B27BAD /* citylist.json in Resources */ = {isa = PBXBuildFile; fileRef = AF13B25720DA806A00B27BAD /* citylist.json */; };
 		AF13F74D20DB4BA400D0E758 /* AddCitiesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF13F74C20DB4BA400D0E758 /* AddCitiesCell.swift */; };
@@ -97,6 +99,8 @@
 		AF12114820DBE843008A8BF8 /* ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		AF12114B20DBED13008A8BF8 /* StartWeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWeatherModel.swift; sourceTree = "<group>"; };
 		AF12114D20DBED54008A8BF8 /* StringFromDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFromDate.swift; sourceTree = "<group>"; };
+		AF12114F20DBF2E8008A8BF8 /* WeatherInformationOfCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInformationOfCity.swift; sourceTree = "<group>"; };
+		AF12115120DC0598008A8BF8 /* AddCityDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCityDataStore.swift; sourceTree = "<group>"; };
 		AF13B25520DA7F6400B27BAD /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		AF13B25720DA806A00B27BAD /* citylist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citylist.json; sourceTree = "<group>"; };
 		AF13F74C20DB4BA400D0E758 /* AddCitiesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCitiesCell.swift; sourceTree = "<group>"; };
@@ -330,7 +334,7 @@
 				AF13F74E20DB651200D0E758 /* FileManagerReadJson */,
 				AFEA2AE120DA855700DC6544 /* Reachability */,
 				AF415F3920D7E14800BFA658 /* APIManager */,
-				AF415F4820D7E39400BFA658 /* APIRouter */,
+				AF415F4820D7E39400BFA658 /* Router */,
 				AF415F3A20D7E15900BFA658 /* Result */,
 				AF415F3B20D7E16E00BFA658 /* Networking */,
 			);
@@ -402,13 +406,15 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		AF415F4820D7E39400BFA658 /* APIRouter */ = {
+		AF415F4820D7E39400BFA658 /* Router */ = {
 			isa = PBXGroup;
 			children = (
 				AF415F4D20D7EDAF00BFA658 /* WeatherJSONProtocol.swift */,
 				AF415F4B20D7E41500BFA658 /* WeatherJSONClient.swift */,
+				AF12114F20DBF2E8008A8BF8 /* WeatherInformationOfCity.swift */,
+				AF12115120DC0598008A8BF8 /* AddCityDataStore.swift */,
 			);
-			path = APIRouter;
+			path = Router;
 			sourceTree = "<group>";
 		};
 		AF415F6520D7FE9700BFA658 /* Helper */ = {
@@ -700,6 +706,7 @@
 				AF415EFD20D7D8CF00BFA658 /* ViewController.swift in Sources */,
 				AF140E6C20DA632D0065E6A4 /* AddCitiesModel.swift in Sources */,
 				AF415F5220D7F1A800BFA658 /* Weather.swift in Sources */,
+				AF12115220DC0598008A8BF8 /* AddCityDataStore.swift in Sources */,
 				AF12114E20DBED54008A8BF8 /* StringFromDate.swift in Sources */,
 				AF415EFB20D7D8CF00BFA658 /* AppDelegate.swift in Sources */,
 				AFEA2AE420DA855700DC6544 /* ReachabilityError.swift in Sources */,
@@ -720,6 +727,7 @@
 				AF415F4720D7E1DA00BFA658 /* NetworkError.swift in Sources */,
 				AF0DC6E920D891680084A14C /* WeatherDetailOthersCell.swift in Sources */,
 				AF415F5C20D7F3D300BFA658 /* WeatherInformation.swift in Sources */,
+				AF12115020DBF2E8008A8BF8 /* WeatherInformationOfCity.swift in Sources */,
 				AF415F6220D7FE3300BFA658 /* ThemeColor.swift in Sources */,
 				AFCC53BE20D9055100B7B934 /* AddCitiesViewController.swift in Sources */,
 				AF415F5620D7F39900BFA658 /* Coord.swift in Sources */,

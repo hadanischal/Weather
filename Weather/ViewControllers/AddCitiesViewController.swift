@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AddCitiesDelegate {
-    func methodAddCities(_ data: AddCitiesModel)
+    func methodAddCities(_ data: StartWeatherModel)
 }
 
 class AddCitiesViewController: UIViewController {
@@ -23,7 +23,7 @@ class AddCitiesViewController: UIViewController {
     var delegate: AddCitiesDelegate?
     var searchActive : Bool = false
     var progressHUD: ProgressHUD { return ProgressHUD() }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUI()
@@ -51,7 +51,8 @@ class AddCitiesViewController: UIViewController {
     @IBAction func actionSave(_ sender: AnyObject) {
         if self.selectedCity != nil {
             dismiss(animated: true, completion: {
-                self.delegate?.methodAddCities(self.selectedCity!)
+                let data =  StartWeatherModel(id: (self.selectedCity?.id)!, name: (self.selectedCity?.name)!)
+                self.delegate?.methodAddCities(data)
             })
         }else{
             self.showAlert(title: "Error", message:"Please select the city first")
@@ -59,24 +60,48 @@ class AddCitiesViewController: UIViewController {
     }
     
     func setUpDataSource(){
-        self.progressHUD.ShowSVProgressHUD_Black()
-        DispatchQueue.main.async {
-            self.readJson.handellJSONSerialization(input: "citylist") { (Result) in
-                DispatchQueue.main.async {
-                    if Result?.count != 0{
-                        for json in Result!{
-                            let result = AddCitiesModel.init(json: json as? [String : Any])
-                            self.dataSource.append(result!)
-                        }
+        if AddCityDataStore.sharedInstance.dataCity.count != 0{
+            self.progressHUD.ShowSVProgressHUD_Black()
+            self.dataSource =  AddCityDataStore.sharedInstance.dataCity
+            self.filteredData = self.dataSource
+            self.tableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.progressHUD.DismissSVProgressHUD()
+            }
+        }else{
+            self.progressHUD.ShowSVProgressHUD_Black()
+            DispatchQueue.main.async {
+                AddCityDataStore.sharedInstance.getCity(completion: {
+                    DispatchQueue.main.async {
+                        self.dataSource =  AddCityDataStore.sharedInstance.dataCity
                         self.filteredData = self.dataSource
                         self.tableView.reloadData()
                         self.progressHUD.DismissSVProgressHUD()
                     }
-                }
-                
+                })
             }
         }
     }
+    
+    /*{
+     self.progressHUD.ShowSVProgressHUD_Black()
+     DispatchQueue.main.async {
+     self.readJson.handellJSONSerialization(input: "citylist") { (Result) in
+     DispatchQueue.main.async {
+     if Result?.count != 0{
+     for json in Result!{
+     let result = AddCitiesModel.init(json: json as? [String : Any])
+     self.dataSource.append(result!)
+     }
+     self.filteredData = self.dataSource
+     self.tableView.reloadData()
+     self.progressHUD.DismissSVProgressHUD()
+     }
+     }
+     
+     }
+     }
+     }*/
 }
 
 // MARK: - UISearchBarDelegate Setup
