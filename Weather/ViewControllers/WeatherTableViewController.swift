@@ -15,14 +15,18 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
         case showDetail = "toDetailViewController"
         case saveAddCity = "toAddCitiesViewController"
     }
+    var dataSource : [StartWeatherModel] = StartWeatherModel.setupStartingModelData()
     var arrayWeather : [WeatherInformation] = []
-    fileprivate var activityIndicator : ActivityIndicator! = ActivityIndicator()
+    var progressHUD: ProgressHUD { return ProgressHUD() }
+    var periodicTimer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUI()
         self.setupUIRefreshControl()
         self.setUpDataSource()
+        periodicTimer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+        
     }
     
     func setUpUI(){
@@ -38,9 +42,12 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
         refreshControl?.addTarget(self, action: #selector(actionPullRefresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
     }
+    @IBAction func runTimedCode(_ sender: AnyObject){
+        // periodicTimer.invalidate()
+        self.setUpDataSource()
+    }
     
     @IBAction func actionAddCities(_ sender: AnyObject){
-        // self.performSegue(withIdentifier: Segues.saveAddCity.rawValue, sender: nil)
         let controller: AddCitiesViewController = storyboard!.instantiateViewController(withIdentifier: "AddCitiesViewController") as! AddCitiesViewController
         controller.delegate = self
         let navigationController = UINavigationController(rootViewController: controller)
@@ -48,53 +55,31 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
     }
     
     //MARK:- Add Cities Methods
-    func methodAddCities(_ data: AddCitiesModel){
+    func methodAddCities(_ data: StartWeatherModel){
         let foundItems = self.arrayWeather.filter { $0.name == data.name && $0.id == data.id }
         if foundItems.count == 0{
-            self.activityIndicator.start()
-            self.getWeatherInformationOfCityID(url: APIManager.weatherAPIURL(data.id!), successBlock: {
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.activityIndicator.stop()
-                }
-                
-            })
+            self.dataSource.append(data)
+            self.progressHUD.ShowSVProgressHUD_Black()
+            WeatherInformationOfCity.sharedInstance.addCityWeatherInformation(data) {
+                print("success")
+                self.arrayWeather = WeatherInformationOfCity.sharedInstance.arrayWeather
+                self.tableView.reloadData()
+                self.progressHUD.DismissSVProgressHUD()
+            }
         }else{
             self.showAlert(title: "Error", message:"City already added")
         }
     }
-    
+      
     func setUpDataSource(){
-        self.activityIndicator.start()
-        self.getWeatherInformationOfCityID(url: APIManager.sydneyURL) {
-            self.getWeatherInformationOfCityID(url: APIManager.melbourneURL, successBlock: {
-                self.getWeatherInformationOfCityID(url: APIManager.brisbaneURL, successBlock: {
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        self.activityIndicator.stop()
-                    }
-                    
-                })
-            })
+        self.progressHUD.ShowSVProgressHUD_Black()
+        WeatherInformationOfCity.sharedInstance.getWeatherInformationOfCityArray(dataSource) {
+            print("success")
+            self.arrayWeather = WeatherInformationOfCity.sharedInstance.arrayWeather
+            self.tableView.reloadData()
+            self.progressHUD.DismissSVProgressHUD()
         }
     }
-    
-    func getWeatherInformationOfCityID(url :URL, successBlock:@escaping () -> Void){
-        WeatherJSONClient.fetchWeather(url: url){ (result) in
-            switch result {
-            case .success(let json):
-                print(json)
-                let result = WeatherInformation.init(json: json)
-                self.arrayWeather.append(result!)
-                successBlock()
-            case .failure(let error):
-                print(error.localizedDescription)
-                self.showAlert(title: "Error", message: error.localizedDescription)
-                self.activityIndicator.stop()
-            }
-        }
-    }
-    
     @objc func actionPullRefresh() {
         self.setUpDataSource()
         self.refreshControl?.endRefreshing()

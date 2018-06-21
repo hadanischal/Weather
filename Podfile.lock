@@ -1,16 +1,20 @@
 PODS:
   - Alamofire (4.7.2)
+  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - SVProgressHUD
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 5ef2ed13c214b530e87c4b3deab6f21132f6c318
+PODFILE CHECKSUM: eb8242f9dfe3c022a4534dac8df4d647f4da1bfb
 
 COCOAPODS: 1.5.3

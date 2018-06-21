@@ -24,6 +24,7 @@ final class NetworkManager: Networking {
             .responseJSON { response in
                 switch response.result {
                 case .success(let value):
+                    print(response.result.value ?? "nil")
                     completionHandler(Result.success(value))
                 case .failure(let error):
                     completionHandler(Result.failure(error))
