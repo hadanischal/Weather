@@ -21,7 +21,10 @@ final class  WeatherInformationOfCity {
                 self.getWeatherInformationOfCityID(url: APIManager.weatherAPIURL(properties.id!), successBlock: {
                     semaphore.signal()
                     DispatchQueue.main.async {
-                        if properties.id == list.last?.id && properties.name == list.last?.name {
+                        /* if properties.id == list.last?.id && properties.name == list.last?.name {
+                         successBlock()
+                         }*/
+                        if self.arrayWeather.count == list.count{
                             successBlock()
                         }
                     }
