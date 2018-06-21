@@ -11,14 +11,19 @@ import UIKit
 class AddCitiesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    var dataSource:AddCitiesModel?
-    var filteredData: [String]!
+    fileprivate var activityIndicator : ActivityIndicator! = ActivityIndicator()
+    var dataSource:[AddCitiesModel] = [AddCitiesModel]()
+    var filteredData:[AddCitiesModel] = [AddCitiesModel]()
     var searchActive : Bool = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.filteredData = []
         self.setUpUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.setUpDataSource()
     }
     
     func setUpUI(){
@@ -37,6 +42,29 @@ class AddCitiesViewController: UIViewController {
     @IBAction func actionSave(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil)
     }
+    
+    func setUpDataSource(){
+        let data = FileManager.readJson("citylist")
+        self.activityIndicator.start()
+        do {
+            if let list = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [AnyObject]{
+                for json in list{
+                    let result = AddCitiesModel.init(json: json as? [String : Any])
+                    self.dataSource.append(result!)
+                }
+                self.filteredData = self.dataSource
+                self.tableView.reloadData()
+                self.activityIndicator.stop()
+            } else {
+                self.activityIndicator.stop()
+                print("Error while parsing json data")
+            }
+        } catch {
+            self.activityIndicator.stop()
+            print("Error while parsing json data")
+        }
+    }
+    
 }
 
 // MARK: - UISearchBarDelegate Setup
@@ -65,7 +93,7 @@ extension AddCitiesViewController : UISearchBarDelegate {
         if (strText ).isEmpty {
             searchActive = false;
         }else{
-            self.dataSource = nil
+            self.filteredData.removeAll()
             searchActive = true;
             let delayTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: delayTime) {
@@ -86,8 +114,8 @@ extension AddCitiesViewController:UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as UITableViewCell
-        cell.textLabel?.text = filteredData[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AddCitiesCell", for: indexPath) as! AddCitiesCell
+        cell.configureCellWithData(filteredData[indexPath.row])
         return cell
     }
     
