@@ -19,6 +19,7 @@
 		AF13B25620DA7F6400B27BAD /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF13B25520DA7F6400B27BAD /* FileManager.swift */; };
 		AF13B25820DA806A00B27BAD /* citylist.json in Resources */ = {isa = PBXBuildFile; fileRef = AF13B25720DA806A00B27BAD /* citylist.json */; };
 		AF13F74D20DB4BA400D0E758 /* AddCitiesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF13F74C20DB4BA400D0E758 /* AddCitiesCell.swift */; };
+		AF13F75020DB654000D0E758 /* FileManagerReadJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF13F74F20DB654000D0E758 /* FileManagerReadJson.swift */; };
 		AF140E6C20DA632D0065E6A4 /* AddCitiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF140E6B20DA632D0065E6A4 /* AddCitiesModel.swift */; };
 		AF415EFB20D7D8CF00BFA658 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415EFA20D7D8CF00BFA658 /* AppDelegate.swift */; };
 		AF415EFD20D7D8CF00BFA658 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415EFC20D7D8CF00BFA658 /* ViewController.swift */; };
@@ -90,6 +91,7 @@
 		AF13B25520DA7F6400B27BAD /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		AF13B25720DA806A00B27BAD /* citylist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citylist.json; sourceTree = "<group>"; };
 		AF13F74C20DB4BA400D0E758 /* AddCitiesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCitiesCell.swift; sourceTree = "<group>"; };
+		AF13F74F20DB654000D0E758 /* FileManagerReadJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerReadJson.swift; sourceTree = "<group>"; };
 		AF140E6B20DA632D0065E6A4 /* AddCitiesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCitiesModel.swift; sourceTree = "<group>"; };
 		AF415EF720D7D8CF00BFA658 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF415EFA20D7D8CF00BFA658 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,14 @@
 				0971620169CF8F283B9496FA /* Pods-WeatherUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		AF13F74E20DB651200D0E758 /* FileManagerReadJson */ = {
+			isa = PBXGroup;
+			children = (
+				AF13F74F20DB654000D0E758 /* FileManagerReadJson.swift */,
+			);
+			path = FileManagerReadJson;
 			sourceTree = "<group>";
 		};
 		AF140E6D20DA63390065E6A4 /* AddCitiesModel */ = {
@@ -298,6 +308,7 @@
 		AF415F3220D7DC0C00BFA658 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				AF13F74E20DB651200D0E758 /* FileManagerReadJson */,
 				AFEA2AE120DA855700DC6544 /* Reachability */,
 				AF415F3920D7E14800BFA658 /* APIManager */,
 				AF415F4820D7E39400BFA658 /* APIRouter */,
@@ -671,6 +682,7 @@
 				AF0DC6EB20D8A2970084A14C /* DetailModel.swift in Sources */,
 				AF415F6720D7FF0500BFA658 /* UIColor.swift in Sources */,
 				AF415F5E20D7F3E200BFA658 /* Wind.swift in Sources */,
+				AF13F75020DB654000D0E758 /* FileManagerReadJson.swift in Sources */,
 				AF415F4E20D7EDAF00BFA658 /* WeatherJSONProtocol.swift in Sources */,
 				AF0DC6ED20D8A3C40084A14C /* WeatherImageEnum.swift in Sources */,
 				AF415F4720D7E1DA00BFA658 /* NetworkError.swift in Sources */,

@@ -14,10 +14,4 @@ enum WeatherJSONClient: WeatherJSONProtocol {
             self.handle(result: result, completionHandler: completionHandler)
         }
     }
-    
-//    static func fetchWeather(page: Int = 1, _ completionHandler: @escaping WeatherJSONCompletionHandler) {
-//        NetworkManager().request(method: .get, url: APIManager.sydneyURL, parameters: nil) { (result) in
-//            self.handle(result: result, completionHandler: completionHandler)
-//        }
-//    }
-}
+ }
