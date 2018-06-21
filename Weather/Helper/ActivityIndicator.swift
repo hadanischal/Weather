@@ -37,12 +37,13 @@ class ActivityIndicator: NSObject {
     
     var defaultView:UIView? {
         get {
-            if let view = self.parentView {
-                return view
-                
-            } else {
-                return appDelegate?.window??.rootViewController?.view
-            }
+//            if let view = self.parentView {
+//                return view
+//
+//            } else {
+//                return appDelegate?.window??.rootViewController?.view
+//            }
+            return appDelegate?.window??.rootViewController?.view
         }
     }
     

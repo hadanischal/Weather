@@ -8,7 +8,8 @@
 
 import UIKit
 
-class WeatherTableViewController: UITableViewController {
+class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
+    
     //MARK:- Segues
     enum Segues: String {
         case showDetail = "toDetailViewController"
@@ -26,10 +27,10 @@ class WeatherTableViewController: UITableViewController {
     
     func setUpUI(){
         self.title = "Weather Information"
-        self.tableView.backgroundColor = ThemeColor.white
-        self.view.backgroundColor = ThemeColor.white
+        self.tableView.backgroundColor = ThemeColor.tableViewBackgroundColor
+        self.view.backgroundColor = ThemeColor.viewBackgroundColor
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(setupAddCitiesControl))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(actionAddCities))
     }
     
     func setupUIRefreshControl() {
@@ -38,8 +39,29 @@ class WeatherTableViewController: UITableViewController {
         tableView.refreshControl = refreshControl
     }
     
-    @objc func setupAddCitiesControl() {
-        self.performSegue(withIdentifier: Segues.saveAddCity.rawValue, sender: nil)
+    @IBAction func actionAddCities(_ sender: AnyObject){
+        // self.performSegue(withIdentifier: Segues.saveAddCity.rawValue, sender: nil)
+        let controller: AddCitiesViewController = storyboard!.instantiateViewController(withIdentifier: "AddCitiesViewController") as! AddCitiesViewController
+        controller.delegate = self
+        let navigationController = UINavigationController(rootViewController: controller)
+        self.present(navigationController, animated: true, completion: nil)
+    }
+    
+    //MARK:- Add Cities Methods
+    func methodAddCities(_ data: AddCitiesModel){
+        let foundItems = self.arrayWeather.filter { $0.name == data.name && $0.id == data.id }
+        if foundItems.count == 0{
+            self.activityIndicator.start()
+            self.getWeatherInformationOfCityID(url: APIManager.weatherAPIURL(data.id!), successBlock: {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.activityIndicator.stop()
+                }
+                
+            })
+        }else{
+            self.showAlert(title: "Error", message:"City already added")
+        }
     }
     
     func setUpDataSource(){
@@ -77,6 +99,7 @@ class WeatherTableViewController: UITableViewController {
         self.setUpDataSource()
         self.refreshControl?.endRefreshing()
     }
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -85,7 +108,6 @@ class WeatherTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.arrayWeather.count
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherInformationCell", for: indexPath) as! WeatherInformationCell

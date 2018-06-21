@@ -53,7 +53,7 @@ enum ThemeColor {
         return UIColor(red:0.122, green:0.737, blue:0.824, alpha:1.00)
     }
     
-    static var collectionViewBackgroundColor: UIColor{
+    static var tableViewBackgroundColor: UIColor{
         return UIColor(rgb:0xEAE8EA)
     }
     
