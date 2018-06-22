@@ -4,6 +4,7 @@
 //
 //  Created by Nischal Hada on 6/19/18.
 //  Copyright © 2018 NischalHada. All rights reserved.
+//  Provide a way to add more cities using another modal view controller which includes a search functionality to find a city by name or location.
 //
 
 import UIKit
@@ -15,11 +16,10 @@ protocol AddCitiesDelegate {
 class AddCitiesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    fileprivate var activityIndicator : ActivityIndicator! = ActivityIndicator()
     fileprivate let readJson: FileManagerReadJson! = FileManagerReadJson()
     var dataSource:[AddCitiesModel] = [AddCitiesModel]()
     var filteredData:[AddCitiesModel] = [AddCitiesModel]()
-    var selectedCity:AddCitiesModel? = AddCitiesModel()
+    var selectedCity:AddCitiesModel? //= AddCitiesModel()
     var delegate: AddCitiesDelegate?
     var searchActive : Bool = false
     var progressHUD: ProgressHUD { return ProgressHUD() }
@@ -82,27 +82,7 @@ class AddCitiesViewController: UIViewController {
             }
         }
     }
-    
-    /*{
-     self.progressHUD.ShowSVProgressHUD_Black()
-     DispatchQueue.main.async {
-     self.readJson.handellJSONSerialization(input: "citylist") { (Result) in
-     DispatchQueue.main.async {
-     if Result?.count != 0{
-     for json in Result!{
-     let result = AddCitiesModel.init(json: json as? [String : Any])
-     self.dataSource.append(result!)
-     }
-     self.filteredData = self.dataSource
-     self.tableView.reloadData()
-     self.progressHUD.DismissSVProgressHUD()
-     }
-     }
-     
-     }
-     }
-     }*/
-}
+  }
 
 // MARK: - UISearchBarDelegate Setup
 extension AddCitiesViewController : UISearchBarDelegate {
@@ -134,15 +114,16 @@ extension AddCitiesViewController : UISearchBarDelegate {
         if (strText ).isEmpty {
             searchActive = false;
         }else{
-            let delayTime = DispatchTime.now() + Double(Int64(1.0 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-            DispatchQueue.main.asyncAfter(deadline: delayTime) {
+            self.progressHUD.ShowSVProgressHUD_Black()
+
+            DispatchQueue.main.async {
                 self.filteredData.removeAll()
-                //  let filterServices = self.dataSource.filter({$0.name?.lowercased().range(of: strText.lowercased()) != nil})
-                let foundItems = self.dataSource.filter { $0.name == strText || $0.id == Int(strText) }
+                let foundItems = self.dataSource.filter { (($0.name?.range(of: strText)) != nil) || $0.id == Int(strText) }
                 print(foundItems)
                 self.filteredData =  foundItems
                 self.searchActive = true;
                 self.tableView.reloadData()
+                self.progressHUD.DismissSVProgressHUD()
             }
         }
     }

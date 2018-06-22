@@ -13,7 +13,6 @@ final class AddCityDataStore {
     static let sharedInstance = AddCityDataStore()
     fileprivate init() {}
     fileprivate let readJson: FileManagerReadJson! = FileManagerReadJson()
-    
     var dataCity: [AddCitiesModel] = []
     
     func getCity(completion: @escaping () -> Void){
@@ -28,8 +27,8 @@ final class AddCityDataStore {
                         completion()
                     }
                 }
-                
             }
         }
     }
 }
+

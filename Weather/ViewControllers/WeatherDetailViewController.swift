@@ -81,7 +81,6 @@ extension WeatherDetailViewController : UICollectionViewDelegateFlowLayout {
         case .body:
             return CGSize(width: widthPerItem, height: 100)
         }
-
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
