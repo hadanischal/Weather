@@ -53,8 +53,6 @@ final class  WeatherInformationOfCity {
             case .success(let json):
                 print(json)
                 self.arrayWeather =  self.weatherData.getBulkWeatherInformation(data: json)
-//                let result = WeatherInformation.init(json: json)
-//                self.arrayWeather.append(result!)
                 successBlock()
             case .failure(let error):
                 print(error.localizedDescription)
