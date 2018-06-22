@@ -15,17 +15,19 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
         case showDetail = "toDetailViewController"
         case saveAddCity = "toAddCitiesViewController"
     }
+    //MARK:- Information of Sydney, Melbourne and Brisbaneand their ID at begining as start.
     var dataSource : [StartWeatherModel] = StartWeatherModel.setupStartingModelData()
     var arrayWeather : [WeatherInformation] = []
     var progressHUD: ProgressHUD { return ProgressHUD() }
     var periodicTimer: Timer!
+    fileprivate let timePeriod = 60 * 10
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUI()
         self.setupUIRefreshControl()
         self.setUpDataSource()
-        periodicTimer = Timer.scheduledTimer(timeInterval: 600, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+        periodicTimer = Timer.scheduledTimer(timeInterval: TimeInterval(timePeriod), target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
         
     }
     
@@ -42,6 +44,8 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
         refreshControl?.addTarget(self, action: #selector(actionPullRefresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
     }
+    
+    //MARK:-  Weather automatically updated periodically
     @IBAction func runTimedCode(_ sender: AnyObject){
         // periodicTimer.invalidate()
         self.setUpDataSource()
@@ -70,7 +74,7 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
             self.showAlert(title: "Error", message:"City already added")
         }
     }
-      
+    
     func setUpDataSource(){
         self.progressHUD.ShowSVProgressHUD_Black()
         WeatherInformationOfCity.sharedInstance.getWeatherInformationOfCityArray(dataSource) {

@@ -28,6 +28,7 @@
 		AF13F75020DB654000D0E758 /* FileManagerReadJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF13F74F20DB654000D0E758 /* FileManagerReadJson.swift */; };
 		AF13F75420DB7C2200D0E758 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF13F75320DB7C2200D0E758 /* Utility.swift */; };
 		AF140E6C20DA632D0065E6A4 /* AddCitiesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF140E6B20DA632D0065E6A4 /* AddCitiesModel.swift */; };
+		AF170A6420DC7C2A0007420F /* WeatherDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF170A6320DC7C2A0007420F /* WeatherDataStore.swift */; };
 		AF415EFB20D7D8CF00BFA658 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415EFA20D7D8CF00BFA658 /* AppDelegate.swift */; };
 		AF415EFD20D7D8CF00BFA658 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415EFC20D7D8CF00BFA658 /* ViewController.swift */; };
 		AF415F0020D7D8CF00BFA658 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF415EFE20D7D8CF00BFA658 /* Main.storyboard */; };
@@ -107,6 +108,7 @@
 		AF13F74F20DB654000D0E758 /* FileManagerReadJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerReadJson.swift; sourceTree = "<group>"; };
 		AF13F75320DB7C2200D0E758 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		AF140E6B20DA632D0065E6A4 /* AddCitiesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCitiesModel.swift; sourceTree = "<group>"; };
+		AF170A6320DC7C2A0007420F /* WeatherDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataStore.swift; sourceTree = "<group>"; };
 		AF415EF720D7D8CF00BFA658 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF415EFA20D7D8CF00BFA658 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF415EFC20D7D8CF00BFA658 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				AF415F4B20D7E41500BFA658 /* WeatherJSONClient.swift */,
 				AF12114F20DBF2E8008A8BF8 /* WeatherInformationOfCity.swift */,
 				AF12115120DC0598008A8BF8 /* AddCityDataStore.swift */,
+				AF170A6320DC7C2A0007420F /* WeatherDataStore.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -713,6 +716,7 @@
 				AF415F4520D7E1CC00BFA658 /* NetworkMethod.swift in Sources */,
 				AFEA2AE520DA855700DC6544 /* Reachability.swift in Sources */,
 				AF0DC6E520D888C60084A14C /* WeatherTableViewController.swift in Sources */,
+				AF170A6420DC7C2A0007420F /* WeatherDataStore.swift in Sources */,
 				AF415F5420D7F38B00BFA658 /* Clouds.swift in Sources */,
 				AF415F6420D7FE8900BFA658 /* ActivityIndicator.swift in Sources */,
 				AF13F75420DB7C2200D0E758 /* Utility.swift in Sources */,
