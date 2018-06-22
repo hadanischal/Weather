@@ -1,5 +1,9 @@
 # Weather
 
+Notices
+
+Implement an iOS native app using Swift 4.1 to demonstrate weather information. The current version is working with Xcode Version Xcode 9.1 . If you are using different Xcode version, please check out the previous releases.
+
 Requirement:
 -  Use a UITableViewController to display weather information of Sydney, Melbourne and Brisbane as start.
 -  Provide a way to add more cities using another modal view controller which includes a search functionality to find a city by name or location.
@@ -25,7 +29,4 @@ Brownie Points:
 -  Support all different dimensions of the devices.
 -  Support landscape and portrait view together
 
-
-Submission:
-- Share us a Dropbox link to the project source code(Preferred) or send it is as a zip file.
-
+ 
