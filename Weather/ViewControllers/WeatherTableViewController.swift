@@ -28,7 +28,6 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
         self.setupUIRefreshControl()
         self.setUpDataSource()
         periodicTimer = Timer.scheduledTimer(timeInterval: TimeInterval(timePeriod), target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
-        
     }
     
     func setUpUI(){

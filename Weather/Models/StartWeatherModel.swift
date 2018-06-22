@@ -4,6 +4,7 @@
 //
 //  Created by Nischal Hada on 6/22/18.
 //  Copyright © 2018 NischalHada. All rights reserved.
+//  Display weather information of Sydney, Melbourne and Brisbane as start.
 //
 
 import Foundation

@@ -280,9 +280,9 @@
 		AF415F2E20D7DBCB00BFA658 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AF415F4F20D7F18E00BFA658 /* JSONCompatible.swift */,
 				AF12114A20DBECF4008A8BF8 /* StartWeatherModel */,
 				AF140E6D20DA63390065E6A4 /* AddCitiesModel */,
-				AF415F4F20D7F18E00BFA658 /* JSONCompatible.swift */,
 				AF58520E20D90C5E001925F1 /* Detail */,
 				AFCC53C120D90BF600B7B934 /* WeatherInformation */,
 			);

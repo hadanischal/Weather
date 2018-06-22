@@ -4,6 +4,7 @@
 //
 //  Created by Nischal Hada on 6/19/18.
 //  Copyright © 2018 NischalHada. All rights reserved.
+//  Provide a way to add more cities using another modal view controller which includes a search functionality to find a city by name or location.
 //
 
 import UIKit
@@ -15,7 +16,6 @@ protocol AddCitiesDelegate {
 class AddCitiesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    fileprivate var activityIndicator : ActivityIndicator! = ActivityIndicator()
     fileprivate let readJson: FileManagerReadJson! = FileManagerReadJson()
     var dataSource:[AddCitiesModel] = [AddCitiesModel]()
     var filteredData:[AddCitiesModel] = [AddCitiesModel]()
