@@ -2,7 +2,7 @@
 
 Notices
 
-Implement an iOS native app using Swift 4.1 to demonstrate weather information. The current version is working with Xcode Version Xcode 9.1 . If you are using different Xcode version, please rework for Swift version.
+Implement an iOS native app using Swift 4.1 to demonstrate weather information. The current version is working with Xcode Version Xcode 9.1
 
 Requirement:
 -  Use a UITableViewController to display weather information of Sydney, Melbourne and Brisbane as start.
