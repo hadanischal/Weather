@@ -52,7 +52,9 @@ final class  WeatherInformationOfCity {
             switch result {
             case .success(let json):
                 print(json)
-                self.arrayWeather =  self.weatherData.getBulkWeatherInformation(data: json)
+                if let list = self.weatherData.getBulkWeatherInformation(data: json){
+                    self.arrayWeather = list
+                }
                 successBlock()
             case .failure(let error):
                 print(error.localizedDescription)

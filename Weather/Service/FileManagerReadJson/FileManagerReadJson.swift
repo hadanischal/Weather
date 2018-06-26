@@ -14,9 +14,11 @@ protocol FileManaging {
 
 final class FileManagerReadJson:FileManaging{
     func handellJSONSerialization(input: String, completion: @escaping ([AnyObject]?) -> Void){
-        let data = FileManager.readJson(input)
+        guard let data = FileManager.readJson(input)else{
+            return
+        }
         do {
-            if let list = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [AnyObject]{
+            if let list = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [AnyObject]{
                 completion(list)
             } else {
                 completion([])

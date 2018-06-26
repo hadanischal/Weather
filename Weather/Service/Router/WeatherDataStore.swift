@@ -9,12 +9,14 @@
 import Foundation
 
 protocol WeatherData {
-    func getBulkWeatherInformation(data : [String:Any]) -> [WeatherInformation]
+    func getBulkWeatherInformation(data : [String:Any]) -> [WeatherInformation]?
 }
 
 class WeatherDataStore:WeatherData {
-    func getBulkWeatherInformation(data : [String:Any]) -> [WeatherInformation]{
-        let list = data["list"] as! [AnyObject]
+    func getBulkWeatherInformation(data : [String:Any]) -> [WeatherInformation]?{
+        guard let list = data["list"] as? [AnyObject]else{
+            return nil
+        }
         var arrayWeather: [WeatherInformation] = []
         for properties in list{
             let result = WeatherInformation.init(json: properties as? [String : Any])
