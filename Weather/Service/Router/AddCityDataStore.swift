@@ -18,14 +18,16 @@ final class AddCityDataStore {
 
     func getCity(completion: @escaping () -> Void){
         DispatchQueue.main.async {
-            self.readJson.handellJSONSerialization(input: self.jsonName) { (Result) in
-                DispatchQueue.main.async {
-                    guard let data = Result else{
+            let bundle = Bundle(for: type(of: self))
+            if let path = bundle.path(forResource: self.jsonName, ofType: "json") {
+                if let data = try? Data.init(contentsOf: URL.init(fileURLWithPath: path)) {
+                    let parsedData = self.parseJSON(data: data)
+                    guard let data = parsedData else{
                         return
                     }
                     if data.count != 0{
-                        for json in Result!{
-                            let result = AddCitiesModel.init(json: json as? [String : Any])
+                        for json in data{
+                            let result = AddCitiesModel.init(json: json)
                             self.dataCity.append(result!)
                         }
                         completion()
@@ -34,5 +36,12 @@ final class AddCityDataStore {
             }
         }
     }
+    
+    
+    func parseJSON(data : Data) -> [[String:Any]]? {
+        let cache: [[String:Any]]? = try? JSONSerialization.jsonObject(with: data, options: []) as! [[String:Any]]
+        return cache
+    }
+    
 }
 
