@@ -12,14 +12,12 @@ final class AddCityDataStore {
     
     static let sharedInstance = AddCityDataStore()
     fileprivate init() {}
-    fileprivate let readJson: FileManagerReadJson! = FileManagerReadJson()
     var dataCity: [AddCitiesModel] = []
-    fileprivate let jsonName = "citylist"
 
     func getCity(completion: @escaping () -> Void){
         DispatchQueue.main.async {
             let bundle = Bundle(for: type(of: self))
-            if let path = bundle.path(forResource: self.jsonName, ofType: "json") {
+            if let path = bundle.path(forResource: "citylist", ofType: "json") {
                 if let data = try? Data.init(contentsOf: URL.init(fileURLWithPath: path)) {
                     let parsedData = self.parseJSON(data: data)
                     guard let data = parsedData else{
