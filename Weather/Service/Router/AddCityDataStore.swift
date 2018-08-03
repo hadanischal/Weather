@@ -13,18 +13,15 @@ final class AddCityDataStore {
     static let sharedInstance = AddCityDataStore()
     fileprivate init() {}
     var dataCity: [AddCitiesModel] = []
-
+    
     func getCity(completion: @escaping () -> Void){
         DispatchQueue.main.async {
             let bundle = Bundle(for: type(of: self))
             if let path = bundle.path(forResource: "citylist", ofType: "json") {
                 if let data = try? Data.init(contentsOf: URL.init(fileURLWithPath: path)) {
-                    let parsedData = self.parseJSON(data: data)
-                    guard let data = parsedData else{
-                        return
-                    }
-                    if data.count != 0{
-                        for json in data{
+                    guard let list = self.parseJSON(data: data) else {return}
+                    if list.count != 0{
+                        for json in list{
                             let result = AddCitiesModel.init(json: json)
                             self.dataCity.append(result!)
                         }
