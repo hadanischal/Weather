@@ -32,8 +32,8 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
     
     func setUpUI(){
         self.title = "Weather Information"
-        self.tableView.backgroundColor = ThemeColor.tableViewBackgroundColor
-        self.view.backgroundColor = ThemeColor.viewBackgroundColor
+        self.tableView.backgroundColor = UIColor.tableViewBackgroundColor
+        self.view.backgroundColor = UIColor.viewBackgroundColor
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(actionAddCities))
     }

@@ -14,12 +14,16 @@ final class AddCityDataStore {
     fileprivate init() {}
     fileprivate let readJson: FileManagerReadJson! = FileManagerReadJson()
     var dataCity: [AddCitiesModel] = []
-    
+    fileprivate let jsonName = "citylist"
+
     func getCity(completion: @escaping () -> Void){
         DispatchQueue.main.async {
-            self.readJson.handellJSONSerialization(input: "citylist") { (Result) in
+            self.readJson.handellJSONSerialization(input: self.jsonName) { (Result) in
                 DispatchQueue.main.async {
-                    if Result?.count != 0{
+                    guard let data = Result else{
+                        return
+                    }
+                    if data.count != 0{
                         for json in Result!{
                             let result = AddCitiesModel.init(json: json as? [String : Any])
                             self.dataCity.append(result!)

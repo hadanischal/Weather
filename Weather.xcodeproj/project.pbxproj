@@ -57,7 +57,6 @@
 		AF415F6720D7FF0500BFA658 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F6620D7FF0500BFA658 /* UIColor.swift */; };
 		AF752BC420DA21C9009B9563 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF752BC320DA21C9009B9563 /* UIViewController.swift */; };
 		AFCC53BE20D9055100B7B934 /* AddCitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCC53BD20D9055100B7B934 /* AddCitiesViewController.swift */; };
-		AFEA2AE020DA842500DC6544 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEA2ADF20DA842500DC6544 /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,7 +137,6 @@
 		AF415F6620D7FF0500BFA658 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		AF752BC320DA21C9009B9563 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		AFCC53BD20D9055100B7B934 /* AddCitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCitiesViewController.swift; sourceTree = "<group>"; };
-		AFEA2ADF20DA842500DC6544 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		B0D8DE66C5FD53822054592F /* Pods_WeatherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D752A353B72E9D2CAEE9DE96 /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -441,7 +439,6 @@
 			isa = PBXGroup;
 			children = (
 				AF13B25720DA806A00B27BAD /* citylist.json */,
-				AFEA2ADF20DA842500DC6544 /* File.swift */,
 			);
 			path = citylist.json;
 			sourceTree = "<group>";
@@ -708,7 +705,6 @@
 				AFCC53BE20D9055100B7B934 /* AddCitiesViewController.swift in Sources */,
 				AF415F5620D7F39900BFA658 /* Coord.swift in Sources */,
 				AF12114C20DBED13008A8BF8 /* StartWeatherModel.swift in Sources */,
-				AFEA2AE020DA842500DC6544 /* File.swift in Sources */,
 				AF752BC420DA21C9009B9563 /* UIViewController.swift in Sources */,
 				AF13F74D20DB4BA400D0E758 /* AddCitiesCell.swift in Sources */,
 				AF415F4C20D7E41500BFA658 /* WeatherJSONClient.swift in Sources */,

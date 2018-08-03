@@ -36,8 +36,8 @@ class AddCitiesViewController: UIViewController {
     
     func setUpUI(){
         self.title = "Add City"
-        self.view.backgroundColor = ThemeColor.viewBackgroundColor
-        self.tableView.backgroundColor = ThemeColor.tableViewBackgroundColor
+        self.view.backgroundColor = UIColor.viewBackgroundColor
+        self.tableView.backgroundColor = UIColor.tableViewBackgroundColor
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.navigationController?.presentThemeNavigationBar()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(actionCancel))
@@ -82,7 +82,7 @@ class AddCitiesViewController: UIViewController {
             }
         }
     }
-  }
+}
 
 // MARK: - UISearchBarDelegate Setup
 extension AddCitiesViewController : UISearchBarDelegate {
@@ -115,7 +115,7 @@ extension AddCitiesViewController : UISearchBarDelegate {
             searchActive = false;
         }else{
             self.progressHUD.ShowSVProgressHUD_Black()
-
+            
             DispatchQueue.main.async {
                 self.filteredData.removeAll()
                 let foundItems = self.dataSource.filter { (($0.name?.range(of: strText)) != nil) || $0.id == Int(strText) }

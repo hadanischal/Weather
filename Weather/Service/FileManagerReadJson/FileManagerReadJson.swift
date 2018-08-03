@@ -21,15 +21,14 @@ final class FileManagerReadJson:FileManaging{
             if let list = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [AnyObject]{
                 completion(list)
             } else {
-                completion([])
+                completion(nil)
                 print("Error while parsing json data")
             }
-        } catch {
-            completion([])
+        }catch{
+            completion(nil)
             print("Error while parsing json data")
         }
     }
-    
 }
 
 
