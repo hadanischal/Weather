@@ -10,18 +10,16 @@ import Foundation
 
 class WeatherServiceCall {
     static let sharedInstance = WeatherServiceCall()
-    var weatherData: WeatherDataStore { return WeatherDataStore() }
     var arrayWeather: [WeatherInformation] = []
     var manager:NetworkManager = NetworkManager()
     
-    func getWeatherInformationOfCityArray(_ list : [StartWeatherModel], successBlock:@escaping () -> Void){
+    func fetchWeatherServiceCall_byGroup(_ list : [StartWeatherModel], successBlock:@escaping () -> Void){
         self.arrayWeather.removeAll()
         let arrayId = list.map { String($0.id!) }
         let stringId = arrayId.joined(separator: ",")
         
         manager.request(method: .get, url: APIManager.weatherGroupAPIURL(stringId), parameters: nil) { (result) in
             DispatchQueue.main.async {
-                
                 switch result {
                 case .success(let json):
                     print(json)
@@ -29,7 +27,7 @@ class WeatherServiceCall {
                         //let error = NetworkingError.badJSON
                         return
                     }
-                    if let list = self.weatherData.getBulkWeatherInformation(data: json){
+                    if let list = self.parseJSON(data: json){
                         self.arrayWeather = list
                     }
                     successBlock()
@@ -41,7 +39,7 @@ class WeatherServiceCall {
         }
     }
     
-    func getWeatherInformationOfCityID(_ data : StartWeatherModel, successBlock:@escaping () -> Void){
+    func fetchWeatherServiceCall_byCityId(_ data : StartWeatherModel, successBlock:@escaping () -> Void){
         manager.request(method: .get, url: APIManager.weatherAPIURL(data.id!), parameters: nil) { (result) in
             DispatchQueue.main.async {
                 switch result {
@@ -62,6 +60,16 @@ class WeatherServiceCall {
         }
     }
     
-    
+    func parseJSON(data : [String:Any]) -> [WeatherInformation]?{
+        guard let list = data["list"] as? [AnyObject]else{
+            return nil
+        }
+        var arrayWeather: [WeatherInformation] = []
+        for properties in list{
+            let result = WeatherInformation.init(json: properties as? [String : Any])
+            arrayWeather.append(result!)
+        }
+        return arrayWeather
+    }
 }
 
