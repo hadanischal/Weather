@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Sys: JSONCompatible {
+struct Sys {
     var sunset: Int
     var sunrise: Int
     var message: Double
