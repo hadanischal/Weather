@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Clouds: JSONCompatible {
+struct Clouds {
     var all: Int
     
     init?(json: [String: Any]?) {

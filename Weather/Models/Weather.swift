@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Weather: JSONCompatible {
+struct Weather {
     var main: String
     var icon: String
     var description: String

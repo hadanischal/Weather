@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Coord: JSONCompatible {
+struct Coord {
     var lon: Double
     var lat: Double
     

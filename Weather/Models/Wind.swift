@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Wind: JSONCompatible {
+struct Wind {
     var deg: Int
     var speed: Double
     

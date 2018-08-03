@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Main: JSONCompatible {
+struct Main {
     var humidity: Int
     var temp_min: Int
     var temp_max: Int

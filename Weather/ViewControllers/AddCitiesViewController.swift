@@ -16,7 +16,6 @@ protocol AddCitiesDelegate {
 class AddCitiesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    fileprivate let readJson: FileManagerReadJson! = FileManagerReadJson()
     var dataSource:[AddCitiesModel] = [AddCitiesModel]()
     var filteredData:[AddCitiesModel] = [AddCitiesModel]()
     var selectedCity:AddCitiesModel? //= AddCitiesModel()
