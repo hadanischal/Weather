@@ -99,7 +99,7 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherInformationCell", for: indexPath) as! WeatherInformationCell
-        cell.configureCellWithData(arrayWeather[indexPath.row])
+        cell.WeatherModel = arrayWeather[indexPath.row]
         return cell
     }
     

@@ -140,7 +140,7 @@ extension AddCitiesViewController:UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddCitiesCell", for: indexPath) as! AddCitiesCell
-        cell.configureCellWithData(filteredData[indexPath.row])
+        cell.addCitiesModel = filteredData[indexPath.row]
         return cell
     }
 }
