@@ -26,6 +26,8 @@ class WeatherDetailViewController: UIViewController {
     
     func setupUI() {
         self.navigationItem.title = weatherData.name
+        self.view.backgroundColor = UIColor.viewBackgroundColor
+        self.collectionView.backgroundColor = UIColor.collectionViewBackgroundColor
     }
     
     func setupCollectionView() -> Void{
@@ -34,7 +36,6 @@ class WeatherDetailViewController: UIViewController {
         self.collectionView.collectionViewLayout = layout
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0 //0.0
-        self.collectionView.backgroundColor = ThemeColor.tableViewBackgroundColor
         self.collectionView.showsHorizontalScrollIndicator = false
     }
 }
