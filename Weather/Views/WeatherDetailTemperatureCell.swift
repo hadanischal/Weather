@@ -14,9 +14,14 @@ class WeatherDetailTemperatureCell: UICollectionViewCell {
     @IBOutlet var detailLabel: UILabel?
     @IBOutlet var weatherImage: UIImageView?
     
-    func configureCellWithData(_ data : DetailModel){
-        titleLabel?.text = data.title
-        detailLabel?.text = data.description
-        weatherImage?.image = UIImage(named: data.image!)
+    var detailModel : DetailModel? {
+        didSet {
+            guard let data = detailModel else {
+                return
+            }
+            titleLabel?.text = data.title
+            detailLabel?.text = data.description
+            weatherImage?.image = UIImage(named: data.image!)
+        }
     }
 }
