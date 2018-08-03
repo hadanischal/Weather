@@ -63,9 +63,9 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
         if foundItems.count == 0{
             self.dataSource.append(data)
             self.progressHUD.ShowSVProgressHUD_Black()
-            WeatherInformationOfCity.sharedInstance.addCityWeatherInformation(data) {
+            WeatherServiceCall.sharedInstance.getWeatherInformationOfCityID(data) {
                 print("success")
-                self.arrayWeather = WeatherInformationOfCity.sharedInstance.arrayWeather
+                self.arrayWeather = WeatherServiceCall.sharedInstance.arrayWeather
                 self.tableView.reloadData()
                 self.progressHUD.DismissSVProgressHUD()
             }
@@ -76,9 +76,9 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
     
     func setUpDataSource(){
         self.progressHUD.ShowSVProgressHUD_Black()
-        WeatherInformationOfCity.sharedInstance.getWeatherInformationOfCityArray(dataSource) {
+        WeatherServiceCall.sharedInstance.getWeatherInformationOfCityArray(dataSource) {
             print("success")
-            self.arrayWeather = WeatherInformationOfCity.sharedInstance.arrayWeather
+            self.arrayWeather = WeatherServiceCall.sharedInstance.arrayWeather
             self.tableView.reloadData()
             self.progressHUD.DismissSVProgressHUD()
         }
