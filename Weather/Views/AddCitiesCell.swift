@@ -12,12 +12,17 @@ class AddCitiesCell: UITableViewCell {
     @IBOutlet weak var labelCityName: UILabel!
     @IBOutlet weak var labelCityId: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    var addCitiesModel : AddCitiesModel? {
+        didSet {
+            guard let data = addCitiesModel else {
+                return
+            }
+            labelCityName.text = data.name
+            labelCityId.text = "\(data.id ?? 0)"
+        }
     }
     
-    func configureCellWithData(_ data : AddCitiesModel){
-        labelCityName.text = data.name
-        labelCityId.text = "\(data.id ?? 0)"
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
 }

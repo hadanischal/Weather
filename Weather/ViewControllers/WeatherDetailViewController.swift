@@ -16,7 +16,7 @@ class WeatherDetailViewController: UIViewController {
     fileprivate let sectionInsets = UIEdgeInsets(top: 5.0, left: 0.0, bottom: 5.0, right: 0.0)
     var weatherData  : WeatherInformation!
     var dataSource = [[DetailModel]]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
@@ -42,7 +42,7 @@ class WeatherDetailViewController: UIViewController {
 
 extension WeatherDetailViewController :UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-       return self.dataSource.count
+        return self.dataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -53,11 +53,11 @@ extension WeatherDetailViewController :UICollectionViewDataSource {
         switch Sections(rawValue: (indexPath as NSIndexPath).section)! {
         case .headers:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherDetailTemperatureCell", for: indexPath) as! WeatherDetailTemperatureCell
-            cell.configureCellWithData(self.dataSource[indexPath.section][indexPath.row])
+            cell.detailModel = self.dataSource[indexPath.section][indexPath.row]
             return cell
         case .body:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherDetailOthersCell", for: indexPath) as! WeatherDetailOthersCell
-            cell.configureCellWithData(self.dataSource[indexPath.section][indexPath.row])
+            cell.detailModel = self.dataSource[indexPath.section][indexPath.row]
             return cell
         }
     }
@@ -75,7 +75,7 @@ extension WeatherDetailViewController : UICollectionViewDelegateFlowLayout {
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
- 
+        
         switch Sections(rawValue: indexPath.section)! {
         case .headers:
             return CGSize(width: view.frame.width, height: 160)

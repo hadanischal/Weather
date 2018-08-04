@@ -23,10 +23,7 @@ class WeatherServiceCall {
                 switch result {
                 case .success(let json):
                     print(json)
-                    guard let json = json as? [String : Any] else {
-                        //let error = NetworkingError.badJSON
-                        return
-                    }
+                    guard let json = json as? [String : Any] else {return }
                     if let list = self.parseJSON(data: json){
                         self.arrayWeather = list
                     }
@@ -45,10 +42,7 @@ class WeatherServiceCall {
                 switch result {
                 case .success(let json):
                     print(json)
-                    guard let json = json as? [String : Any] else {
-                        //let error = NetworkingError.badJSON
-                        return
-                    }
+                    guard let json = json as? [String : Any] else {return }
                     let result = WeatherInformation.init(json: json)
                     self.arrayWeather.append(result!)
                     successBlock()
@@ -61,9 +55,7 @@ class WeatherServiceCall {
     }
     
     func parseJSON(data : [String:Any]) -> [WeatherInformation]?{
-        guard let list = data["list"] as? [AnyObject]else{
-            return nil
-        }
+        guard let list = data["list"] as? [AnyObject]else {return nil }
         var arrayWeather: [WeatherInformation] = []
         for properties in list{
             let result = WeatherInformation.init(json: properties as? [String : Any])
