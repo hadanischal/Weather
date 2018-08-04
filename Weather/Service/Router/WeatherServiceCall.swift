@@ -10,7 +10,7 @@ import Foundation
 
 class WeatherServiceCall {
     static let sharedInstance = WeatherServiceCall()
-    var arrayWeather: [WeatherInformation] = []
+    var arrayWeather = [WeatherInformation]()
     var manager:NetworkManager = NetworkManager()
     
     func fetchWeatherServiceCall_byGroup(_ list : [StartWeatherModel], successBlock:@escaping () -> Void){
@@ -56,12 +56,14 @@ class WeatherServiceCall {
     
     func parseJSON(data : [String:Any]) -> [WeatherInformation]?{
         guard let list = data["list"] as? [AnyObject]else {return nil }
-        var arrayWeather: [WeatherInformation] = []
-        for properties in list{
-            let result = WeatherInformation.init(json: properties as? [String : Any])
-            arrayWeather.append(result!)
+         var weatherInfo = [WeatherInformation]()
+         for properties in list{
+            guard let result = WeatherInformation.init(json: properties as? [String : Any])else{
+                return nil
+            }
+            weatherInfo.append(result)
         }
-        return arrayWeather
+        return weatherInfo
     }
 }
 

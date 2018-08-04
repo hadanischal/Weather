@@ -12,7 +12,7 @@ final class AddCityDataStore {
     
     static let sharedInstance = AddCityDataStore()
     fileprivate init() {}
-    var dataCity: [AddCitiesModel] = []
+    var dataCity = [AddCitiesModel]()
     
     func getCity(completion: @escaping () -> Void){
         DispatchQueue.main.async {
