@@ -502,6 +502,7 @@
 				TargetAttributes = {
 					AF415EF620D7D8CF00BFA658 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -510,10 +511,12 @@
 					};
 					AF415F0D20D7D8D100BFA658 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = AF415EF620D7D8CF00BFA658;
 					};
 					AF415F1820D7D8D100BFA658 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = AF415EF620D7D8CF00BFA658;
 					};
 				};
@@ -864,7 +867,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Nischalhada.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -883,7 +886,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Nischalhada.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -903,7 +906,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Nischalhada.WeatherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Weather.app/Weather";
 			};
@@ -924,7 +927,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Nischalhada.WeatherTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Weather.app/Weather";
 			};
@@ -944,7 +947,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Nischalhada.WeatherUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Weather;
 			};
@@ -964,7 +967,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Nischalhada.WeatherUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Weather;
 			};

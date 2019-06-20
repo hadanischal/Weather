@@ -35,7 +35,7 @@ class WeatherTableViewController: UITableViewController,AddCitiesDelegate {
         self.tableView.backgroundColor = UIColor.tableViewBackgroundColor
         self.view.backgroundColor = UIColor.viewBackgroundColor
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(actionAddCities))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(actionAddCities))
     }
     
     func setupUIRefreshControl() {
