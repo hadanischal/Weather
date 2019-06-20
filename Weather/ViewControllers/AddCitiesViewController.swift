@@ -39,8 +39,8 @@ class AddCitiesViewController: UIViewController {
         self.tableView.backgroundColor = UIColor.tableViewBackgroundColor
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.navigationController?.presentThemeNavigationBar()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(actionCancel))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.save, target: self, action: #selector(actionSave))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(actionCancel))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.save, target: self, action: #selector(actionSave))
     }
     
     @IBAction func actionCancel(_ sender: AnyObject) {

@@ -32,7 +32,7 @@ class WeatherDetailViewController: UIViewController {
     
     func setupCollectionView() -> Void{
         let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.scrollDirection = UICollectionViewScrollDirection.vertical
+        layout.scrollDirection = UICollectionView.ScrollDirection.vertical
         self.collectionView.collectionViewLayout = layout
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0 //0.0
