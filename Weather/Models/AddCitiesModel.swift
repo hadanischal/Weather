@@ -9,43 +9,9 @@
 
 import Foundation
 
-struct AddCitiesModel{
+struct AddCitiesModel: Codable{
     let id: Int?
     let name: String?
-    let coord: Coord
-    let country: String
-    
-    init?(json: [String: Any]?) {
-        guard let json = json else {return nil}
-        id = json["id"] as? Int ?? 0
-        name = json["name"] as? String ?? ""
-        coord = Coord(json: json["coord"] as? [String: Any]) ?? Coord()
-        country = json["country"] as? String ?? ""
-    }
-    
-    init() {
-        self.init(json: [:])!
-    }
-    
-    init?(data: Data?) {
-        guard let data = data else {return nil}
-        guard let json = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String: Any] else {return nil}
-        self.init(json: json)
-    }
-    
-    init(id: Int, name: String, coord: Coord, country: String) {
-        self.id = id
-        self.name = name
-        self.coord = coord
-        self.country = country
-    }
-    
-    func jsonDictionary(useOriginalJsonKey: Bool) -> [String: Any] {
-        var dict: [String: Any] = [:]
-        dict["id"] = id
-        dict["name"] = name
-        dict["coord"] = coord.jsonDictionary(useOriginalJsonKey: useOriginalJsonKey)
-        dict["country"] = country
-        return dict
-    }
+    let coord: Coord?
+    let country: String?
 }
