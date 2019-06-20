@@ -18,16 +18,22 @@ class WeatherServiceCall {
         let arrayId = list.map { String($0.id!) }
         let stringId = arrayId.joined(separator: ",")
         
-        manager.request(method: .get, url: APIManager.weatherGroupAPIURL(stringId), parameters: nil) { (result) in
+        manager.responseData(method: .get, url: APIManager.weatherGroupAPIURL(stringId), parameters: nil) { (result) in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let json):
-                    print(json)
-                    guard let json = json as? [String : Any] else {return }
-                    if let list = self.parseJSON(data: json){
-                        self.arrayWeather = list
+                case .success(let data):
+                    //print(data)
+                    do {
+                        let decoder = JSONDecoder()
+                        let json = try decoder.decode(WeatherMapResult.self, from: data )
+                        if let list = json.list {
+                            self.arrayWeather = list
+                        }
+                        successBlock()
+                    } catch let error {
+                        print(error.localizedDescription)
+                        successBlock()
                     }
-                    successBlock()
                 case .failure(let error):
                     print(error.localizedDescription)
                     successBlock()
@@ -37,33 +43,26 @@ class WeatherServiceCall {
     }
     
     func fetchWeatherServiceCall_byCityId(_ data : StartWeatherModel, successBlock:@escaping () -> Void){
-        manager.request(method: .get, url: APIManager.weatherAPIURL(data.id!), parameters: nil) { (result) in
+        manager.responseData(method: .get, url: APIManager.weatherAPIURL(data.id!), parameters: nil) { (result) in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let json):
-                    print(json)
-                    guard let json = json as? [String : Any] else {return }
-                    let result = WeatherInformation.init(json: json)
-                    self.arrayWeather.append(result!)
-                    successBlock()
+                case .success(let data):
+                    //print(data)
+                    do {
+                        let decoder = JSONDecoder()
+                        let json = try decoder.decode(WeatherInformation.self, from: data )
+                        self.arrayWeather.append(json)
+                        successBlock()
+                    } catch let error {
+                        print(error.localizedDescription)
+                        successBlock()
+                    }
                 case .failure(let error):
                     print(error.localizedDescription)
                     successBlock()
                 }
             }
         }
-    }
-    
-    func parseJSON(data : [String:Any]) -> [WeatherInformation]?{
-        guard let list = data["list"] as? [AnyObject]else {return nil }
-         var weatherInfo = [WeatherInformation]()
-         for properties in list{
-            guard let result = WeatherInformation.init(json: properties as? [String : Any])else{
-                return nil
-            }
-            weatherInfo.append(result)
-        }
-        return weatherInfo
     }
 }
 

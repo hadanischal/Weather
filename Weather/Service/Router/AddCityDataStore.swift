@@ -19,23 +19,18 @@ final class AddCityDataStore {
             let bundle = Bundle(for: type(of: self))
             if let path = bundle.path(forResource: "citylist", ofType: "json") {
                 if let data = try? Data.init(contentsOf: URL.init(fileURLWithPath: path)) {
-                    guard let list = self.parseJSON(data: data) else {return}
-                    if list.count != 0{
-                        for json in list{
-                            let result = AddCitiesModel.init(json: json)
-                            self.dataCity.append(result!)
-                        }
+                    do {
+                        let decoder = JSONDecoder()
+                        let result = try decoder.decode([AddCitiesModel].self, from: data )
+                        self.dataCity = result
+                        completion()
+                    } catch let error {
+                        print(error.localizedDescription)
                         completion()
                     }
                 }
             }
         }
-    }
-    
-    
-    func parseJSON(data : Data) -> [[String:Any]]? {
-        let cache: [[String:Any]]? = try? JSONSerialization.jsonObject(with: data, options: []) as! [[String:Any]]
-        return cache
     }
     
 }

@@ -23,17 +23,17 @@ struct DetailModel{
 extension DetailModel{
     static func setupDetailModel(_ data : WeatherInformation) -> [[DetailModel]] {
         let header: [DetailModel] = [
-            DetailModel(title:data.weather[0].description, description:"\(data.main.temp)°", image:         WeatherImageProvider().provideValue(data.weather[0].main))
+            DetailModel(title:data.weather?[0].description ?? "", description:"\(data.main?.temp ?? 0)°", image:         WeatherImageProvider().provideValue(data.weather?[0].main ?? ""))
             ]
         
-        let dateSunrise = NSDate(timeIntervalSince1970: TimeInterval(data.sys.sunrise))
-        let dateSunset = NSDate(timeIntervalSince1970: TimeInterval(data.sys.sunset))
+        let dateSunrise = NSDate(timeIntervalSince1970: TimeInterval(data.sys?.sunrise ?? 0))
+        let dateSunset = NSDate(timeIntervalSince1970: TimeInterval(data.sys?.sunset ?? 0))
 
         let body: [DetailModel] = [
-            DetailModel(title: "Humidity", description: "\(data.main.humidity)%", image: "Humidity"),
-            DetailModel(title: "Temperature", description: "\(data.main.temp_max)° : \(data.main.temp_min)°", image: "Temperature"),
-            DetailModel(title: "WindSpeed", description: "\(data.wind.speed)m/s", image: "WindSpeed"),
-            DetailModel(title: "Visibility", description: "\(data.visibility)", image: "Visibility"),
+            DetailModel(title: "Humidity", description: "\(data.main?.humidity ?? 0)%", image: "Humidity"),
+            DetailModel(title: "Temperature", description: "\(data.main?.temp_max ?? 0)° : \(data.main?.temp_min ?? 0)°", image: "Temperature"),
+            DetailModel(title: "WindSpeed", description: "\(data.wind?.speed ?? 0)m/s", image: "WindSpeed"),
+            DetailModel(title: "Visibility", description: "\(data.visibility ?? 0)", image: "Visibility"),
             DetailModel(title: "Sunrise", description: StringFromDate().getTimeStringFromDate(date: dateSunrise as Date), image: "Sunrise"),
             DetailModel(title: "Sunset", description: StringFromDate().getTimeStringFromDate(date: dateSunset as Date), image: "Sunset")
         ]

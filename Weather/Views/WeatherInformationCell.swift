@@ -18,7 +18,7 @@ class WeatherInformationCell: UITableViewCell {
                 return
             }
             labelCityName.text = data.name
-            labelCityTemperature.text = "\(data.main.temp) °C"
+            labelCityTemperature.text = "\(data.main?.temp ?? 0) °C"
         }
     }
     
