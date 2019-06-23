@@ -17,17 +17,30 @@ class WeatherTableViewController: UITableViewController, AddCitiesDelegate {
     }
     // MARK: - Information of Sydney, Melbourne and Brisbaneand their ID at begining as start.
     var dataSource: [StartWeatherModel] = StartWeatherModel.setupStartingModelData()
-    var arrayWeather: [WeatherInformation] = []
+    var arrayWeather: [WeatherInformation] = [WeatherInformation]()
     var progressHUD: ProgressHUD { return ProgressHUD() }
-    var periodicTimer: Timer!
-    fileprivate let timePeriod = 60 * 10
+    
+    var viewModel: WeatherListViewModelProtocol = WeatherListViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUI()
-        self.setupUIRefreshControl()
-        self.setUpDataSource()
-        periodicTimer = Timer.scheduledTimer(timeInterval: TimeInterval(timePeriod), target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+//        self.setupUIRefreshControl()
+//        self.setUpDataSource()
+        self.viewModel.weatherList.bindAndFire { [weak self] list in
+            DispatchQueue.main.async {
+                self?.arrayWeather = list
+                self?.tableView.reloadData()
+            }
+        }
+        
+        self.viewModel.isFinished.bindAndFire { [weak self] isTrue in
+            if isTrue {
+                self?.progressHUD.DismissSVProgressHUD()
+            }else{
+                self?.progressHUD.ShowSVProgressHUD_Black()
+            }
+        }
     }
 
     func setUpUI() {
@@ -44,11 +57,7 @@ class WeatherTableViewController: UITableViewController, AddCitiesDelegate {
         tableView.refreshControl = refreshControl
     }
 
-    // MARK: - Weather automatically updated periodically
-    @IBAction func runTimedCode(_ sender: AnyObject) {
-        // periodicTimer.invalidate()
-        self.setUpDataSource()
-    }
+
 
     @IBAction func actionAddCities(_ sender: AnyObject) {
         let controller: AddCitiesViewController = storyboard!.instantiateViewController(withIdentifier: "AddCitiesViewController") as! AddCitiesViewController
@@ -73,18 +82,18 @@ class WeatherTableViewController: UITableViewController, AddCitiesDelegate {
             self.showAlert(title: "Error", message: "City already added")
         }
     }
-
-    func setUpDataSource() {
-        self.progressHUD.ShowSVProgressHUD_Black()
-        WeatherServiceCall.sharedInstance.fetchWeatherServiceCall_byGroup(dataSource) {
-            print("success")
-            self.arrayWeather = WeatherServiceCall.sharedInstance.arrayWeather
-            self.tableView.reloadData()
-            self.progressHUD.DismissSVProgressHUD()
-        }
-    }
+    ///TODO: remove this code
+//    func setUpDataSource() {
+//        self.progressHUD.ShowSVProgressHUD_Black()
+//        WeatherServiceCall.sharedInstance.fetchWeatherServiceCall_byGroup(dataSource) {
+//            print("success")
+//            self.arrayWeather = WeatherServiceCall.sharedInstance.arrayWeather
+//            self.tableView.reloadData()
+//            self.progressHUD.DismissSVProgressHUD()
+//        }
+//    }
     @objc func actionPullRefresh() {
-        self.setUpDataSource()
+        self.viewModel.pullToRefresh()
         self.refreshControl?.endRefreshing()
     }
 
@@ -98,7 +107,9 @@ class WeatherTableViewController: UITableViewController, AddCitiesDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherInformationCell", for: indexPath) as! WeatherInformationCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherInformationCell", for: indexPath) as? WeatherInformationCell else {
+            fatalError("WeatherCell not found")
+        }
         cell.WeatherModel = arrayWeather[indexPath.row]
         return cell
     }
