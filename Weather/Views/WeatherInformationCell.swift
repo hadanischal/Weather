@@ -11,8 +11,8 @@ import UIKit
 class WeatherInformationCell: UITableViewCell {
     @IBOutlet weak var labelCityName: UILabel!
     @IBOutlet weak var labelCityTemperature: UILabel!
-    
-    var WeatherModel : WeatherInformation? {
+
+    var WeatherModel: WeatherInformation? {
         didSet {
             guard let data = WeatherModel else {
                 return
@@ -21,7 +21,7 @@ class WeatherInformationCell: UITableViewCell {
             labelCityTemperature.text = "\(data.main?.temp ?? 0) °C"
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }

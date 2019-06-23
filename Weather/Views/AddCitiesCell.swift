@@ -11,8 +11,8 @@ import UIKit
 class AddCitiesCell: UITableViewCell {
     @IBOutlet weak var labelCityName: UILabel!
     @IBOutlet weak var labelCityId: UILabel!
-    
-    var addCitiesModel : AddCitiesModel? {
+
+    var addCitiesModel: AddCitiesModel? {
         didSet {
             guard let data = addCitiesModel else {
                 return
@@ -21,7 +21,7 @@ class AddCitiesCell: UITableViewCell {
             labelCityId.text = "\(data.id ?? 0)"
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }

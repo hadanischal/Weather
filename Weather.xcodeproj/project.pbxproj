@@ -51,6 +51,7 @@
 		AF415F6720D7FF0500BFA658 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F6620D7FF0500BFA658 /* UIColor.swift */; };
 		AF752BC420DA21C9009B9563 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF752BC320DA21C9009B9563 /* UIViewController.swift */; };
 		AFBF708922BB467F00629344 /* WeatherMapResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBF708822BB467F00629344 /* WeatherMapResult.swift */; };
+		AFC21A4E22BF62310032FC1D /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AFC21A4D22BF62310032FC1D /* .swiftlint.yml */; };
 		AFCC53BE20D9055100B7B934 /* AddCitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFCC53BD20D9055100B7B934 /* AddCitiesViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +127,7 @@
 		AF415F6620D7FF0500BFA658 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		AF752BC320DA21C9009B9563 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		AFBF708822BB467F00629344 /* WeatherMapResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapResult.swift; sourceTree = "<group>"; };
+		AFC21A4D22BF62310032FC1D /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		AFCC53BD20D9055100B7B934 /* AddCitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCitiesViewController.swift; sourceTree = "<group>"; };
 		B0D8DE66C5FD53822054592F /* Pods_WeatherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D752A353B72E9D2CAEE9DE96 /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +193,7 @@
 		AF415EEE20D7D8CF00BFA658 = {
 			isa = PBXGroup;
 			children = (
+				AFC21A4D22BF62310032FC1D /* .swiftlint.yml */,
 				AF415F2B20D7DB3300BFA658 /* .gitignore */,
 				AF415EF920D7D8CF00BFA658 /* Weather */,
 				AF415F1120D7D8D100BFA658 /* WeatherTests */,
@@ -546,6 +549,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFC21A4E22BF62310032FC1D /* .swiftlint.yml in Resources */,
 				AF415F2C20D7DB3300BFA658 /* .gitignore in Resources */,
 				AF13B25820DA806A00B27BAD /* citylist.json in Resources */,
 				AF415F0820D7D8D100BFA658 /* LaunchScreen.storyboard in Resources */,
@@ -612,17 +616,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Weather/Pods-Weather-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weather/Pods-Weather-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Weather/Pods-Weather-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Weather/Pods-Weather-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Weather/Pods-Weather-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9E687B2A7E811336250667F7 /* [CP] Check Pods Manifest.lock */ = {

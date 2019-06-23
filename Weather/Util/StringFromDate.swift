@@ -8,12 +8,12 @@
 
 import Foundation
 
-protocol StringFromDateProtocal{
-    func getTimeStringFromDate(date : Date) -> String
+protocol StringFromDateProtocal {
+    func getTimeStringFromDate(date: Date) -> String
 }
 
 class StringFromDate: StringFromDateProtocal {
-    func getTimeStringFromDate(date : Date) -> String{
+    func getTimeStringFromDate(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
