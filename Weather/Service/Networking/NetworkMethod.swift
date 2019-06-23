@@ -27,6 +27,3 @@ extension NetworkMethod {
         }
     }
 }
-
-
-

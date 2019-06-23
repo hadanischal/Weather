@@ -8,16 +8,16 @@
 
 import Alamofire
 
-typealias AlamofireJSONCompletionHandler = (Result<Any>)->()
-typealias responseDataJSONCompletionHandler = (Result<Data>)->()
+typealias AlamofireJSONCompletionHandler = (Result<Any>) -> Void
+typealias responseDataJSONCompletionHandler = (Result<Data>) -> Void
 
 protocol Networking {
-    func request(method: NetworkMethod, url: URL, parameters: [String : Any]?, completionHandler:@escaping AlamofireJSONCompletionHandler)
-    func responseData(method: NetworkMethod, url: URL, parameters: [String : Any]?, completionHandler:@escaping responseDataJSONCompletionHandler)
+    func request(method: NetworkMethod, url: URL, parameters: [String: Any]?, completionHandler:@escaping AlamofireJSONCompletionHandler)
+    func responseData(method: NetworkMethod, url: URL, parameters: [String: Any]?, completionHandler:@escaping responseDataJSONCompletionHandler)
 }
 
 final class NetworkManager: Networking {
-    func request(method: NetworkMethod, url: URL, parameters: [String : Any]?, completionHandler:@escaping AlamofireJSONCompletionHandler){
+    func request(method: NetworkMethod, url: URL, parameters: [String: Any]?, completionHandler:@escaping AlamofireJSONCompletionHandler) {
         print(url)
         print(parameters ?? "nil")
         let method = method.httpMethod()
@@ -33,8 +33,8 @@ final class NetworkManager: Networking {
                 }
         }
     }
-    
-    func responseData(method: NetworkMethod, url: URL, parameters: [String : Any]?, completionHandler:@escaping responseDataJSONCompletionHandler){
+
+    func responseData(method: NetworkMethod, url: URL, parameters: [String: Any]?, completionHandler:@escaping responseDataJSONCompletionHandler) {
         print(url)
         print(parameters ?? "nil")
         let method = method.httpMethod()

@@ -9,12 +9,12 @@
 import Foundation
 
 final class AddCityDataStore {
-    
+
     static let sharedInstance = AddCityDataStore()
     fileprivate init() {}
     var dataCity = [AddCitiesModel]()
-    
-    func getCity(completion: @escaping () -> Void){
+
+    func getCity(completion: @escaping () -> Void) {
         DispatchQueue.main.async {
             let bundle = Bundle(for: type(of: self))
             if let path = bundle.path(forResource: "citylist", ofType: "json") {
@@ -32,6 +32,5 @@ final class AddCityDataStore {
             }
         }
     }
-    
-}
 
+}

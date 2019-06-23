@@ -9,7 +9,7 @@
 
 import Foundation
 
-struct AddCitiesModel: Codable{
+struct AddCitiesModel: Codable {
     let id: Int?
     let name: String?
     let coord: Coord?

@@ -16,24 +16,24 @@ protocol AddCitiesDelegate {
 class AddCitiesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    var dataSource:[AddCitiesModel] = [AddCitiesModel]()
-    var filteredData:[AddCitiesModel] = [AddCitiesModel]()
-    var selectedCity:AddCitiesModel? //= AddCitiesModel()
+    var dataSource: [AddCitiesModel] = [AddCitiesModel]()
+    var filteredData: [AddCitiesModel] = [AddCitiesModel]()
+    var selectedCity: AddCitiesModel? //= AddCitiesModel()
     var delegate: AddCitiesDelegate?
-    var searchActive : Bool = false
+    var searchActive: Bool = false
     var progressHUD: ProgressHUD { return ProgressHUD() }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUI()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         self.setUpDataSource()
     }
-    
-    func setUpUI(){
+
+    func setUpUI() {
         self.title = "Add City"
         self.view.backgroundColor = UIColor.viewBackgroundColor
         self.tableView.backgroundColor = UIColor.tableViewBackgroundColor
@@ -42,24 +42,24 @@ class AddCitiesViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(actionCancel))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.save, target: self, action: #selector(actionSave))
     }
-    
+
     @IBAction func actionCancel(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil)
     }
-    
+
     @IBAction func actionSave(_ sender: AnyObject) {
         if self.selectedCity != nil {
             dismiss(animated: true, completion: {
                 let data =  StartWeatherModel(id: (self.selectedCity?.id)!, name: (self.selectedCity?.name)!)
                 self.delegate?.methodAddCities(data)
             })
-        }else{
-            self.showAlert(title: "Error", message:"Please select the city first")
+        } else {
+            self.showAlert(title: "Error", message: "Please select the city first")
         }
     }
-    
-    func setUpDataSource(){
-        if AddCityDataStore.sharedInstance.dataCity.count != 0{
+
+    func setUpDataSource() {
+        if AddCityDataStore.sharedInstance.dataCity.count != 0 {
             self.progressHUD.ShowSVProgressHUD_Black()
             self.dataSource =  AddCityDataStore.sharedInstance.dataCity
             self.filteredData = self.dataSource
@@ -67,7 +67,7 @@ class AddCitiesViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.progressHUD.DismissSVProgressHUD()
             }
-        }else{
+        } else {
             self.progressHUD.ShowSVProgressHUD_Black()
             DispatchQueue.main.async {
                 AddCityDataStore.sharedInstance.getCity(completion: {
@@ -84,43 +84,43 @@ class AddCitiesViewController: UIViewController {
 }
 
 // MARK: - UISearchBarDelegate Setup
-extension AddCitiesViewController : UISearchBarDelegate {
-    
+extension AddCitiesViewController: UISearchBarDelegate {
+
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true;
+        searchActive = true
     }
-    
+
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false;
+        searchActive = false
     }
-    
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false;
+        searchActive = false
     }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // searchActive = false;
         self.searchBarSearchBegin(searchBar)
         view.endEditing(true)
     }
-    
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchActive = true;
+        searchActive = true
     }
-    
+
     func searchBarSearchBegin(_ searchBar: UISearchBar) {
-        let strText:String =  searchBar.text!.replacingOccurrences(of: " ", with: "")
+        let strText: String =  searchBar.text!.replacingOccurrences(of: " ", with: "")
         if (strText ).isEmpty {
-            searchActive = false;
-        }else{
+            searchActive = false
+        } else {
             self.progressHUD.ShowSVProgressHUD_Black()
-            
+
             DispatchQueue.main.async {
                 self.filteredData.removeAll()
                 let foundItems = self.dataSource.filter { (($0.name?.range(of: strText)) != nil) || $0.id == Int(strText) }
                 print(foundItems)
                 self.filteredData =  foundItems
-                self.searchActive = true;
+                self.searchActive = true
                 self.tableView.reloadData()
                 self.progressHUD.DismissSVProgressHUD()
             }
@@ -128,16 +128,15 @@ extension AddCitiesViewController : UISearchBarDelegate {
     }
 }
 
-
-extension AddCitiesViewController:UITableViewDataSource{
-    func numberOfSections(in tableView: UITableView) -> Int{
+extension AddCitiesViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AddCitiesCell", for: indexPath) as! AddCitiesCell
         cell.addCitiesModel = filteredData[indexPath.row]
@@ -145,11 +144,11 @@ extension AddCitiesViewController:UITableViewDataSource{
     }
 }
 
-extension AddCitiesViewController:UITableViewDelegate{
+extension AddCitiesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedCity = filteredData[indexPath.row]
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }

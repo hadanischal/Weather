@@ -13,8 +13,8 @@ class WeatherDetailOthersCell: UICollectionViewCell {
     @IBOutlet var titleLabel: UILabel?
     @IBOutlet var detailLabel: UILabel?
     @IBOutlet var weatherImage: UIImageView?
-    
-    var detailModel : DetailModel? {
+
+    var detailModel: DetailModel? {
         didSet {
             guard let data = detailModel else {
                 return

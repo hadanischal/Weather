@@ -21,20 +21,20 @@ struct APIManager {
     private static let groupUnit = "group?"
 
     private static let Metric = "metric"
-    
+
     static var sydneyURL: URL {
         return weatherAPIURL(method: .sydneyId)
     }
-    
+
     static var melbourneURL: URL {
         return weatherAPIURL(method: .melbourneId)
     }
-    
+
     static var brisbaneURL: URL {
         return weatherAPIURL(method: .brisbaneId)
     }
-    
-    //MARK: -  General Methods
+
+    // MARK: - General Methods
     private static func weatherAPIURL(method: Method) -> URL {
         let weatherInfoUrl =  baseURLString + "id=\(method.rawValue)&units=\(weatherUnit)&APPID=\(apiKey)"
         let finalURL = URL(string: weatherInfoUrl)!
@@ -52,5 +52,3 @@ struct APIManager {
         return finalURL
     }
 }
-
-

@@ -8,8 +8,8 @@
 
 import UIKit
 
-extension UIColor{
-    convenience init(red: Int, green: Int, blue: Int){
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
         let newRed = CGFloat(red)/255
         let newGreen = CGFloat(green)/255
         let newBlue = CGFloat(blue)/255
@@ -28,20 +28,20 @@ extension UIColor {
     }
 }
 
-// MARK :- convert a hex color to a UIColor
+// MARK: - convert a hex color to a UIColor
 extension UIColor {
-    
+
     public convenience init?(hex: String) {
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        
+        var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
         if (cString.hasPrefix("#")) {
             cString.remove(at: cString.startIndex)
         }
-        
+
         if ((cString.count) != 6) {
             return nil
-        }else{
-            var rgbValue:UInt32 = 0
+        } else {
+            var rgbValue: UInt32 = 0
             Scanner(string: cString).scanHexInt32(&rgbValue)
             self.init(
                 red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
@@ -55,12 +55,12 @@ extension UIColor {
 
 extension UIColor {
     static var viewBackgroundColor: UIColor {
-        return UIColor(rgb:0xeef0f1)
+        return UIColor(rgb: 0xeef0f1)
     }
     static var collectionViewBackgroundColor: UIColor {
-        return UIColor(rgb:0xEAE8EA)
+        return UIColor(rgb: 0xEAE8EA)
     }
     static var tableViewBackgroundColor: UIColor {
-        return UIColor(rgb:0xEAE8EA)
+        return UIColor(rgb: 0xEAE8EA)
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 import SVProgressHUD
 
-protocol Progressing{
+protocol Progressing {
     func ShowSVProgressHUD_White()
     func ShowSVProgressHUD_Black()
     func DismissSVProgressHUD()
@@ -19,12 +19,12 @@ class ProgressHUD {
 }
 
 extension ProgressHUD: Progressing {
-    
+
     func ShowSVProgressHUD_White() {
         UIApplication.shared.beginIgnoringInteractionEvents()
         SVProgressHUD.show()
     }
-    
+
     func ShowSVProgressHUD_Black() {
         UIApplication.shared.beginIgnoringInteractionEvents()
         SVProgressHUD.show()
@@ -33,7 +33,7 @@ extension ProgressHUD: Progressing {
         SVProgressHUD.setForegroundColor( ThemeColor.white)
         SVProgressHUD.setRingThickness( 1.0)
     }
-    
+
     func DismissSVProgressHUD() {
         UIApplication.shared.endIgnoringInteractionEvents()
         SVProgressHUD.dismiss()

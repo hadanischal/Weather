@@ -11,13 +11,13 @@ import Foundation
 class WeatherServiceCall {
     static let sharedInstance = WeatherServiceCall()
     var arrayWeather = [WeatherInformation]()
-    var manager:NetworkManager = NetworkManager()
-    
-    func fetchWeatherServiceCall_byGroup(_ list : [StartWeatherModel], successBlock:@escaping () -> Void){
+    var manager: NetworkManager = NetworkManager()
+
+    func fetchWeatherServiceCall_byGroup(_ list: [StartWeatherModel], successBlock:@escaping () -> Void) {
         self.arrayWeather.removeAll()
         let arrayId = list.map { String($0.id!) }
         let stringId = arrayId.joined(separator: ",")
-        
+
         manager.responseData(method: .get, url: APIManager.weatherGroupAPIURL(stringId), parameters: nil) { (result) in
             DispatchQueue.main.async {
                 switch result {
@@ -41,8 +41,8 @@ class WeatherServiceCall {
             }
         }
     }
-    
-    func fetchWeatherServiceCall_byCityId(_ data : StartWeatherModel, successBlock:@escaping () -> Void){
+
+    func fetchWeatherServiceCall_byCityId(_ data: StartWeatherModel, successBlock:@escaping () -> Void) {
         manager.responseData(method: .get, url: APIManager.weatherAPIURL(data.id!), parameters: nil) { (result) in
             DispatchQueue.main.async {
                 switch result {
@@ -65,4 +65,3 @@ class WeatherServiceCall {
         }
     }
 }
-

@@ -8,24 +8,24 @@
 
 import Foundation
 
-struct DetailModel{
+struct DetailModel {
     let title: String?
     let description: String?
     let image: String?
     init(title: String,
-         description: String, image: String?){
+         description: String, image: String?) {
         self.title = title
         self.description = description
         self.image = image
     }
 }
 
-extension DetailModel{
-    static func setupDetailModel(_ data : WeatherInformation) -> [[DetailModel]] {
+extension DetailModel {
+    static func setupDetailModel(_ data: WeatherInformation) -> [[DetailModel]] {
         let header: [DetailModel] = [
-            DetailModel(title:data.weather?[0].description ?? "", description:"\(data.main?.temp ?? 0)°", image:         WeatherImageProvider().provideValue(data.weather?[0].main ?? ""))
+            DetailModel(title: data.weather?[0].description ?? "", description: "\(data.main?.temp ?? 0)°", image: WeatherImageProvider().provideValue(data.weather?[0].main ?? ""))
             ]
-        
+
         let dateSunrise = NSDate(timeIntervalSince1970: TimeInterval(data.sys?.sunrise ?? 0))
         let dateSunset = NSDate(timeIntervalSince1970: TimeInterval(data.sys?.sunset ?? 0))
 
@@ -37,8 +37,7 @@ extension DetailModel{
             DetailModel(title: "Sunrise", description: StringFromDate().getTimeStringFromDate(date: dateSunrise as Date), image: "Sunrise"),
             DetailModel(title: "Sunset", description: StringFromDate().getTimeStringFromDate(date: dateSunset as Date), image: "Sunset")
         ]
-        return [header,body]
+        return [header, body]
     }
-    
 
 }

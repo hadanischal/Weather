@@ -10,7 +10,7 @@ import Foundation
 
 enum  WeatherImageEnum: String {
     case Clouds, Clear, Rain, Squall, Drizzle, Snow, Thunderstorm
-    
+
     var create: String {
         switch self {
         case .Clouds:
@@ -33,10 +33,10 @@ enum  WeatherImageEnum: String {
 
 struct WeatherImageProvider {
     func provideValue(_ weather: String) -> String {
-        if let imageValue = WeatherImageEnum(rawValue: weather){
+        if let imageValue = WeatherImageEnum(rawValue: weather) {
             let colorSelected = imageValue.create
             return colorSelected
-        }else{
+        } else {
             print("handle invalid weather error")
             return WeatherImageEnum.Clear.rawValue
         }
