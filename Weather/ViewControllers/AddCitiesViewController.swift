@@ -59,15 +59,15 @@ class AddCitiesViewController: UIViewController {
         self.tableView.backgroundColor = UIColor.tableViewBackgroundColor
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.navigationController?.presentThemeNavigationBar()
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(actionCancel))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.save, target: self, action: #selector(actionSave))
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(actionCancel))
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.save, target: self, action: #selector(actionSave))
     }
 
     @IBAction func actionCancel(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func actionSave(_ sender: AnyObject) {}
+//    @IBAction func actionSave(_ sender: AnyObject) {}
 
 }
 
@@ -106,7 +106,6 @@ extension AddCitiesViewController: UISearchBarDelegate {
             DispatchQueue.main.async {
                 self.filteredList.removeAll()
                 let foundItems = self.cityList.filter { (($0.name?.range(of: strText)) != nil) || $0.id == Int(strText) }
-//                print(foundItems)
                 self.filteredList =  foundItems
                 self.searchActive = true
                 self.tableView.reloadData()
@@ -139,7 +138,8 @@ extension AddCitiesViewController: UITableViewDelegate {
         let city = filteredList[indexPath.row]
         if let delegate = self.delegate {
             delegate.methodAddCities(city)
-            self.dismiss(animated: true)
+            self.navigationController?.popViewController(animated: true)
+//            self.dismiss(animated: true)
         }
     }
 

@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol WeatherDetailHandlerProtocol {
+    func fetchWeatherInfo(withWeatherInfo data: WeatherInformation, completion: @escaping ((Result<[[DetailModel]], ErrorResult>) -> Void))
+}

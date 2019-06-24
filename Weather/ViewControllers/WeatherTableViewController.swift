@@ -67,8 +67,9 @@ class WeatherTableViewController: UITableViewController, AddCitiesDelegate {
     @IBAction func actionAddCities(_ sender: AnyObject) {
         let controller: AddCitiesViewController = storyboard!.instantiateViewController(withIdentifier: "AddCitiesViewController") as! AddCitiesViewController
         controller.delegate = self
-        let navigationController = UINavigationController(rootViewController: controller)
-        self.present(navigationController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(controller, animated: true)
+//        let navigationController = UINavigationController(rootViewController: controller)
+//        self.present(navigationController, animated: true, completion: nil)
     }
 
     // MARK: - Add Cities Methods

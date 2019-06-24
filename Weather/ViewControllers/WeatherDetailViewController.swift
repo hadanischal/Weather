@@ -14,18 +14,18 @@ class WeatherDetailViewController: UIViewController {
     }
     @IBOutlet var collectionView: UICollectionView!
     fileprivate let sectionInsets = UIEdgeInsets(top: 5.0, left: 0.0, bottom: 5.0, right: 0.0)
-    var weatherData: WeatherInformation!
+    var weatherData: WeatherInformation?
     var dataSource = [[DetailModel]]()
-
+    var viewModel: WeatherDetailViewModelProtocol?
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupViewModel()
         self.setupUI()
-        self.dataSource = DetailModel.setupDetailModel(weatherData)
         self.setupCollectionView()
     }
 
     func setupUI() {
-        self.navigationItem.title = weatherData.name
+        self.navigationItem.title = weatherData?.name
         self.view.backgroundColor = UIColor.viewBackgroundColor
         self.collectionView.backgroundColor = UIColor.collectionViewBackgroundColor
     }
@@ -37,6 +37,18 @@ class WeatherDetailViewController: UIViewController {
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0 //0.0
         self.collectionView.showsHorizontalScrollIndicator = false
+    }
+    func setupViewModel() {
+        self.viewModel = WeatherDetailViewModel(withWeatherInformation: weatherData)
+        self.viewModel?.dataSource.bindAndFire { [weak self] list in
+            DispatchQueue.main.async {
+                self?.dataSource = list
+                self?.collectionView.reloadData()
+            }
+        }
+        self.viewModel?.onErrorHandling = { [weak self] error in
+            self?.showAlert(title: "An error occured", message: error?.localizedDescription)
+        }
     }
 }
 
