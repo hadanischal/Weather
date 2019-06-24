@@ -15,31 +15,38 @@ class WeatherTableViewController: UITableViewController, AddCitiesDelegate {
         case showDetail = "toDetailViewController"
         case saveAddCity = "toAddCitiesViewController"
     }
-    // MARK: - Information of Sydney, Melbourne and Brisbaneand their ID at begining as start.
-    var dataSource: [StartWeatherModel] = StartWeatherModel.setupStartingModelData()
     var arrayWeather: [WeatherInformation] = [WeatherInformation]()
     var progressHUD: ProgressHUD { return ProgressHUD() }
-    
+
     var viewModel: WeatherListViewModelProtocol = WeatherListViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUpUI()
+        self.setupViewModel()
 //        self.setupUIRefreshControl()
 //        self.setUpDataSource()
+
+    }
+
+    func setupViewModel() {
         self.viewModel.weatherList.bindAndFire { [weak self] list in
             DispatchQueue.main.async {
                 self?.arrayWeather = list
                 self?.tableView.reloadData()
             }
         }
-        
+
         self.viewModel.isFinished.bindAndFire { [weak self] isTrue in
             if isTrue {
                 self?.progressHUD.DismissSVProgressHUD()
-            }else{
+            } else {
                 self?.progressHUD.ShowSVProgressHUD_Black()
             }
+        }
+
+        self.viewModel.onErrorHandling = { [weak self] error in
+            self?.showAlert(title: "An error occured", message: error?.localizedDescription)
         }
     }
 
@@ -57,8 +64,6 @@ class WeatherTableViewController: UITableViewController, AddCitiesDelegate {
         tableView.refreshControl = refreshControl
     }
 
-
-
     @IBAction func actionAddCities(_ sender: AnyObject) {
         let controller: AddCitiesViewController = storyboard!.instantiateViewController(withIdentifier: "AddCitiesViewController") as! AddCitiesViewController
         controller.delegate = self
@@ -67,31 +72,10 @@ class WeatherTableViewController: UITableViewController, AddCitiesDelegate {
     }
 
     // MARK: - Add Cities Methods
-    func methodAddCities(_ data: StartWeatherModel) {
-        let foundItems = self.arrayWeather.filter { $0.name == data.name && $0.id == data.id }
-        if foundItems.count == 0 {
-            self.dataSource.append(data)
-            self.progressHUD.ShowSVProgressHUD_Black()
-            WeatherServiceCall.sharedInstance.fetchWeatherServiceCall_byCityId(data) {
-                print("success")
-                self.arrayWeather = WeatherServiceCall.sharedInstance.arrayWeather
-                self.tableView.reloadData()
-                self.progressHUD.DismissSVProgressHUD()
-            }
-        } else {
-            self.showAlert(title: "Error", message: "City already added")
-        }
+    func methodAddCities(_ data: CityListModel) {
+        viewModel.fetchWeatherInfo(byCity: data)
     }
-    ///TODO: remove this code
-//    func setUpDataSource() {
-//        self.progressHUD.ShowSVProgressHUD_Black()
-//        WeatherServiceCall.sharedInstance.fetchWeatherServiceCall_byGroup(dataSource) {
-//            print("success")
-//            self.arrayWeather = WeatherServiceCall.sharedInstance.arrayWeather
-//            self.tableView.reloadData()
-//            self.progressHUD.DismissSVProgressHUD()
-//        }
-//    }
+
     @objc func actionPullRefresh() {
         self.viewModel.pullToRefresh()
         self.refreshControl?.endRefreshing()

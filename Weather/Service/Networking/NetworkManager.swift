@@ -8,8 +8,8 @@
 
 import Alamofire
 
-typealias AlamofireJSONCompletionHandler = (Result<Any>) -> Void
-typealias responseDataJSONCompletionHandler = (Result<Data>) -> Void
+typealias AlamofireJSONCompletionHandler = (NetworkResult<Any>) -> Void
+typealias responseDataJSONCompletionHandler = (NetworkResult<Data>) -> Void
 
 protocol Networking {
     func request(method: NetworkMethod, url: URL, parameters: [String: Any]?, completionHandler:@escaping AlamofireJSONCompletionHandler)
@@ -27,9 +27,9 @@ final class NetworkManager: Networking {
                 switch response.result {
                 case .success(let value):
                     print(response.result.value ?? "nil")
-                    completionHandler(Result.success(value))
+                    completionHandler(NetworkResult.success(value))
                 case .failure(let error):
-                    completionHandler(Result.failure(error))
+                    completionHandler(NetworkResult.failure(error))
                 }
         }
     }
@@ -44,11 +44,11 @@ final class NetworkManager: Networking {
                 switch response.result {
                 case .success:
                     if let data = response.data {
-                        completionHandler(Result.success(data))
+                        completionHandler(NetworkResult.success(data))
                     }
                     print(response.result.value ?? "nil")
                 case .failure(let error):
-                    completionHandler(Result.failure(error))
+                    completionHandler(NetworkResult.failure(error))
                 }
             })
     }

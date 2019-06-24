@@ -9,78 +9,98 @@
 import Foundation
 
 class WeatherListViewModel: WeatherListViewModelProtocol {
+
     let weatherList: Dynamic<[WeatherInformation]>
     let isFinished: Dynamic<Bool>
+    var onErrorHandling: ((ErrorResult?) -> Void)?
 
-    private let cityListHandler: CityListHandlerProtocol!
-    private let webService: WebServiceProtocol!
+    private var cityList: [CityListModel]!
+    private let weatherListHandler: WeatherListHandlerProtocol!
     private var periodicTimer: Timer!
     private let timePeriod = 60 * 10 //10
 
-    init(withCityListHandler cityListHandler: CityListHandlerProtocol = CityListHandler(), withWebservice webService: WebServiceProtocol = WebService()) {
-        self.cityListHandler = cityListHandler
-        self.webService = webService
+    init(withWeatherListHandler weatherListHandler: WeatherListHandlerProtocol = WeatherListHandler()) {
+        self.weatherListHandler = weatherListHandler
         self.weatherList = Dynamic([])
         self.isFinished = Dynamic(false)
-        
+
         periodicTimer = Timer.scheduledTimer(timeInterval: TimeInterval(timePeriod), target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
-        self.getCityInfo()
+        self.fetchCityInfo()
     }
 
     // MARK: - Weather automatically updated periodically
     @objc private func runTimedCode(_ sender: AnyObject) {
         // periodicTimer.invalidate()
-        self.getCityInfo()
+        self.fetchCityInfo()
     }
-    
-    func pullToRefresh(){
-        self.getCityInfo()
+
+    func pullToRefresh() {
+        self.fetchCityInfo()
     }
-}
 
-extension WeatherListViewModel {
-    
-    private func getCityInfo() {
-        let cityResource = CityResource<[CityListModel]>(fileName: "StartCity") { data in
-            let cityListModel = try? JSONDecoder().decode([CityListModel].self, from: data)
-            return cityListModel
-        }
-
-        self.cityListHandler.load(resource: cityResource) { [weak self] response in
-            if let cityList = response {
-                let arrayId = cityList.map { String($0.id!) }
-                let stringIds = arrayId.joined(separator: ",")
-                self?.getWeatherInfo(byCityIDs: stringIds)
+    private func fetchCityInfo() {
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.weatherListHandler.fetchCityInfo(withfileName: "StartCity") { [weak self] result in
+                switch result {
+                case .success(let list) :
+                    self?.cityList = list
+                    self?.fetchWeatherInfo(byCityList: list)
+                    break
+                case .failure(let error) :
+                    print("Parser error \(error)")
+                    self?.isFinished.value = true
+                    self?.onErrorHandling?(error)
+                    break
+                }
             }
         }
     }
 
-    private func getWeatherInfo(byCityIDs cityIDs: String) {
-        let weatherURL = APIManager.weatherGroupAPIURL(cityIDs)
-        let cityResource = Resource<WeatherMapResult>(url: weatherURL) { data in
-            let cityListModel = try? JSONDecoder().decode(WeatherMapResult.self, from: data)
-            return cityListModel
-        }
+    private func fetchWeatherInfo(byCityList cityList: [CityListModel]) {
+        let arrayId = cityList.map { String($0.id!) }
+        let cityIDs = arrayId.joined(separator: ",")
 
-        self.webService.load(resource: cityResource) { [weak self] response in
-            if
-                let result = response,
-                let weatherInfo = result.list
-            {
-                self?.weatherList.value = weatherInfo
+        self.weatherListHandler.fetchWeatherInfo(withCityIDs: cityIDs) { [weak self] result in
+            DispatchQueue.main.async {
                 self?.isFinished.value = true
+                switch result {
+                case .success(let list) :
+                    self?.weatherList.value = list
+                    break
+                case .failure(let error) :
+                    print("Parser error \(error)")
+                    self?.onErrorHandling?(error)
+                    break
+                }
             }
         }
     }
+    //relay.accept(relay.value + ["Item 2"])
 
-    private func getWeatherInfo(byCityID cityID: String) {
-        let weatherURL = APIManager.weatherGroupAPIURL(cityID)
-        let cityResource = Resource<WeatherInformation>(url: weatherURL) { data in
-            let cityListModel = try? JSONDecoder().decode(WeatherInformation.self, from: data)
-            return cityListModel
-        }
-
-        self.webService.load(resource: cityResource) { response in
+    func fetchWeatherInfo(byCity city: CityListModel) {
+        let results = self.cityList.filter { $0.name == city.name && $0.id == city.id }
+        let isExists = results.isEmpty == false
+        if
+            let cityId = city.id,
+            !isExists
+        {
+            self.isFinished.value = false
+            self.weatherListHandler.fetchWeatherInfo(withCityID: "\(cityId)") { [weak self] result in
+                var list = self?.weatherList.value
+                DispatchQueue.main.async {
+                    self?.isFinished.value = true
+                    switch result {
+                    case .success(let info) :
+                        list?.append(info)
+                        self?.weatherList.value = list ?? [info]
+                        break
+                    case .failure(let error) :
+                        print("Parser error \(error)")
+                        self?.onErrorHandling?(error)
+                        break
+                    }
+                }
+            }
         }
     }
 }

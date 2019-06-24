@@ -12,7 +12,7 @@ class AddCitiesCell: UITableViewCell {
     @IBOutlet weak var labelCityName: UILabel!
     @IBOutlet weak var labelCityId: UILabel!
 
-    var addCitiesModel: AddCitiesModel? {
+    var addCitiesModel: CityListModel? {
         didSet {
             guard let data = addCitiesModel else {
                 return

@@ -10,6 +10,10 @@ import Foundation
 
 protocol WeatherListViewModelProtocol {
     var weatherList: Dynamic<[WeatherInformation]> { get }
+    var onErrorHandling: ((ErrorResult?) -> Void)? { get set }
+
     var isFinished: Dynamic<Bool> { get }
     func pullToRefresh()
+    func fetchWeatherInfo(byCity city: CityListModel)
+
 }
