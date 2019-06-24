@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+protocol WeatherDetailViewModelProtocol {
+    var dataSource: Dynamic<[[DetailModel]]> { get }
+    var onErrorHandling: ((ErrorResult?) -> Void)? { get set }
+}
