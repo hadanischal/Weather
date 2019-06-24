@@ -1,5 +1,5 @@
 //
-//  CityListHandler.swift
+//  FileManagerHandler.swift
 //  Weather
 //
 //  Created by Nischal Hada on 6/23/19.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-struct CityResource<T> {
+struct FileManagerResource<T> {
     let fileName: String
     let parse: (Data) -> T?
 }
 
-class CityListHandler: CityListHandlerProtocol {
+class FileManagerHandler: FileManagerHandlerProtocol {
     init() {}
 
-        func load<T>(resource: CityResource<T>, completion: @escaping (T?) -> Void) {
+        func load<T>(resource: FileManagerResource<T>, completion: @escaping (T?) -> Void) {
              if let url = Bundle.main.url(forResource: resource.fileName, withExtension: "json") {
                 do {
                     let data = try Data(contentsOf: url)
