@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8dj-0m-ZzT">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8dj-0m-ZzT">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,19 +15,19 @@
             <objects>
                 <tableViewController storyboardIdentifier="WeatherTableViewController" id="QXi-Qd-Aw8" customClass="WeatherTableViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yNa-G7-gRb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="WeatherInformationCell" id="MhS-9i-Aft" customClass="WeatherInformationCell" customModule="Weather" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MhS-9i-Aft" id="TjB-yA-yXA">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ve-ok-WBY">
-                                            <rect key="frame" x="10" y="11" width="212" height="21"/>
+                                            <rect key="frame" x="10" y="11.333333333333336" width="247" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="CT1-ch-V9K"/>
                                             </constraints>
@@ -37,7 +36,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZT-Zl-XqH">
-                                            <rect key="frame" x="231" y="11" width="100" height="21"/>
+                                            <rect key="frame" x="266" y="11.333333333333336" width="100" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Eo0-6I-ajp"/>
                                                 <constraint firstAttribute="height" constant="21" id="Uoq-Vx-JHR"/>
@@ -66,26 +65,76 @@
                             <outlet property="delegate" destination="QXi-Qd-Aw8" id="OIn-XM-gK0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="SnA-Ut-is6"/>
+                    <navigationItem key="navigationItem" id="SnA-Ut-is6">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="settings" id="erX-I5-wO2">
+                            <connections>
+                                <segue destination="JKU-yX-anT" kind="presentation" identifier="toSettingsViewController" id="sM7-jJ-T8P"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="nSK-bQ-FbE">
+                            <connections>
+                                <segue destination="Myr-k2-wIs" kind="presentation" identifier="toAddCitiesViewController" id="SDs-F3-8SZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="Q08-DJ-gB4" kind="show" identifier="toDetailViewController" id="bsO-ty-Btt"/>
-                        <segue destination="TjT-V7-cXx" kind="presentation" identifier="toAddCitiesViewController" id="5SH-VZ-GTU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jpn-mU-cCS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1452" y="149.77511244377811"/>
         </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="1lk-rb-RwD">
+            <objects>
+                <tableViewController storyboardIdentifier="SettingsViewController" id="LL4-i9-HSx" customClass="SettingsViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="eRV-C5-i57">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsCell" id="rQ8-K4-gL2" customClass="SettingsCell">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rQ8-K4-gL2" id="vsu-ar-gXj">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="LL4-i9-HSx" id="key-d1-Muo"/>
+                            <outlet property="delegate" destination="LL4-i9-HSx" id="PgM-gt-ZNS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Pyj-cE-9Mk">
+                        <barButtonItem key="leftBarButtonItem" image="cancel" id="vzw-ws-b7H">
+                            <connections>
+                                <action selector="actionCancel:" destination="LL4-i9-HSx" id="z1W-Lg-Sfo"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="done" id="k0s-rr-PIe">
+                            <connections>
+                                <action selector="actionSave:" destination="LL4-i9-HSx" id="l7b-pC-McY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i9x-JQ-wVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3446.376811594203" y="-855.13392857142856"/>
+        </scene>
         <!--Weather Detail View Controller-->
         <scene sceneID="eD9-hK-Ld6">
             <objects>
                 <viewController storyboardIdentifier="WeatherDetailViewController" id="Q08-DJ-gB4" customClass="WeatherDetailViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dA6-Ab-dAw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CS3-q4-O6A">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="T4u-6G-9Jj">
                                     <size key="itemSize" width="50" height="50"/>
@@ -95,7 +144,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WeatherDetailTemperatureCell" id="W8q-IF-5tk" customClass="WeatherDetailTemperatureCell" customModule="Weather" customModuleProvider="target">
-                                        <rect key="frame" x="1" y="0.0" width="373" height="156"/>
+                                        <rect key="frame" x="20.666666666666668" y="0.0" width="373" height="156"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="373" height="156"/>
@@ -105,19 +154,19 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="373" height="156"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btu-jx-zbi">
-                                                            <rect key="frame" x="146.5" y="20" width="80.5" height="66"/>
+                                                            <rect key="frame" x="146.33333333333334" y="20" width="80.333333333333343" height="66"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="55"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7s-ba-ZN7">
-                                                            <rect key="frame" x="165.5" y="94" width="42" height="21"/>
+                                                            <rect key="frame" x="165.66666666666666" y="94" width="42" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ClearSky" translatesAutoresizingMaskIntoConstraints="NO" id="Vbu-w0-MRf">
-                                                            <rect key="frame" x="235" y="46" width="40" height="40"/>
+                                                            <rect key="frame" x="234.66666666666666" y="46" width="39.999999999999972" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="40" id="aPN-2F-owN"/>
                                                                 <constraint firstAttribute="height" constant="40" id="eBg-CS-lRu"/>
@@ -150,21 +199,21 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WeatherDetailOthersCell" id="YcX-iR-5jH" customClass="WeatherDetailOthersCell" customModule="Weather" customModuleProvider="target">
-                                        <rect key="frame" x="137" y="166" width="101" height="95"/>
+                                        <rect key="frame" x="156.66666666666666" y="166" width="101" height="95"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="101" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hdH-8C-XP6">
-                                                    <rect key="frame" x="35" y="17" width="30" height="30"/>
+                                                    <rect key="frame" x="35.666666666666664" y="61" width="29.999999999999993" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="J77-uL-ebb"/>
                                                         <constraint firstAttribute="width" constant="30" id="l8L-5d-Fom"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H35-j7-5ao">
-                                                    <rect key="frame" x="10" y="52" width="80" height="18"/>
+                                                    <rect key="frame" x="10" y="96" width="80" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="r7V-IA-zvZ"/>
                                                     </constraints>
@@ -173,7 +222,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hdn-ud-Yz8">
-                                                    <rect key="frame" x="3" y="72" width="95" height="21"/>
+                                                    <rect key="frame" x="3" y="116" width="95" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="fcn-nH-BEq"/>
                                                     </constraints>
@@ -222,21 +271,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yOi-l0-3iO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2538" y="-125"/>
+            <point key="canvasLocation" x="2535" y="-80"/>
         </scene>
         <!--Add Cities View Controller-->
         <scene sceneID="sOB-ZX-hDy">
             <objects>
                 <viewController storyboardIdentifier="AddCitiesViewController" id="TjT-V7-cXx" customClass="AddCitiesViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AoU-kv-xWu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qsO-Gc-ySz">
-                                <rect key="frame" x="0.0" y="20" width="375" height="64"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="64"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Tpk-5t-ADc">
-                                        <rect key="frame" x="0.0" y="10" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="10" width="414" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="gyR-Gf-eJ2"/>
                                         </constraints>
@@ -255,18 +304,18 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7pl-O2-w1a">
-                                <rect key="frame" x="0.0" y="84" width="375" height="583"/>
+                                <rect key="frame" x="0.0" y="152" width="414" height="710"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AddCitiesCell" id="WXE-ra-mh7" customClass="AddCitiesCell" customModule="Weather" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WXE-ra-mh7" id="SeG-yR-kgh">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04z-Ww-H6c">
-                                                    <rect key="frame" x="10" y="11" width="213" height="21"/>
+                                                    <rect key="frame" x="10" y="11.333333333333336" width="247" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="SER-8s-Nyi"/>
                                                     </constraints>
@@ -275,7 +324,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nyk-3F-WKX">
-                                                    <rect key="frame" x="232" y="11" width="100" height="21"/>
+                                                    <rect key="frame" x="266" y="11.333333333333336" width="100" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Nss-Ph-VTv"/>
                                                         <constraint firstAttribute="height" constant="21" id="zL2-fI-9gZ"/>
@@ -317,7 +366,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K1F-T9-Hhv"/>
                     </view>
-                    <navigationItem key="navigationItem" id="FlC-yY-1AX"/>
+                    <navigationItem key="navigationItem" id="FlC-yY-1AX">
+                        <barButtonItem key="leftBarButtonItem" image="cancel" id="6Ud-Yr-kid">
+                            <connections>
+                                <action selector="actionCancel:" destination="TjT-V7-cXx" id="P0t-tp-eFC"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="done" id="Kgp-EB-0Sy">
+                            <connections>
+                                <action selector="actionSave:" destination="TjT-V7-cXx" id="3r8-g2-mrg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="Tpk-5t-ADc" id="Ezv-r8-guH"/>
                         <outlet property="tableView" destination="7pl-O2-w1a" id="p0i-51-HzB"/>
@@ -325,7 +385,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qgL-wu-DUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2537" y="640"/>
+            <point key="canvasLocation" x="3446.376811594203" y="639.50892857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pmX-Ng-bOP">
@@ -333,7 +393,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8dj-0m-ZzT" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lGg-My-6Se">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -345,8 +405,47 @@
             </objects>
             <point key="canvasLocation" x="512.79999999999995" y="149.77511244377811"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="K2c-rz-eWP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JKU-yX-anT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AFN-Pw-uSH">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LL4-i9-HSx" kind="relationship" relationship="rootViewController" id="s1Z-WE-jw7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0fC-CL-izD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2536.231884057971" y="-855.13392857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zJU-sI-Q8b">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Myr-k2-wIs" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="j4m-iu-hJ4">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TjT-V7-cXx" kind="relationship" relationship="rootViewController" id="9ET-2N-La2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="avX-2s-5En" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2536.231884057971" y="639.50892857142856"/>
+        </scene>
     </scenes>
     <resources>
         <image name="ClearSky" width="300" height="200"/>
+        <image name="cancel" width="22" height="22"/>
+        <image name="done" width="22" height="22"/>
+        <image name="settings" width="22" height="22"/>
     </resources>
 </document>
