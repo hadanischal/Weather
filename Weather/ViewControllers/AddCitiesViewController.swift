@@ -39,7 +39,6 @@ class AddCitiesViewController: UIViewController {
                 self?.tableView.reloadData()
             }
         }
-
         self.viewModel.isFinished.bindAndFire { [weak self] isTrue in
             if isTrue {
                 self?.progressHUD.DismissSVProgressHUD()
@@ -47,7 +46,6 @@ class AddCitiesViewController: UIViewController {
                 self?.progressHUD.ShowSVProgressHUD_Black()
             }
         }
-
         self.viewModel.onErrorHandling = { [weak self] error in
             self?.showAlert(title: "An error occured", message: "Oops, something went wrong!")
         }
@@ -59,15 +57,13 @@ class AddCitiesViewController: UIViewController {
         self.tableView.backgroundColor = UIColor.tableViewBackgroundColor
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         self.navigationController?.presentThemeNavigationBar()
-//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(actionCancel))
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.save, target: self, action: #selector(actionSave))
     }
 
     @IBAction func actionCancel(_ sender: AnyObject) {
         dismiss(animated: true, completion: nil)
     }
 
-//    @IBAction func actionSave(_ sender: AnyObject) {}
+    @IBAction func actionSave(_ sender: AnyObject) {}
 
 }
 
@@ -135,11 +131,20 @@ extension AddCitiesViewController: UITableViewDataSource {
 
 extension AddCitiesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if let cell = tableView.cellForRow(at: indexPath) {
+//            cell.accessoryType = .checkmark
+//        }
+
         let city = filteredList[indexPath.row]
         if let delegate = self.delegate {
             delegate.methodAddCities(city)
-            self.navigationController?.popViewController(animated: true)
-//            self.dismiss(animated: true)
+            self.dismiss(animated: true)
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .none
         }
     }
 

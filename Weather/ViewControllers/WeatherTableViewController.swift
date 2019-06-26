@@ -14,6 +14,7 @@ class WeatherTableViewController: UITableViewController, AddCitiesDelegate {
     enum Segues: String {
         case showDetail = "toDetailViewController"
         case saveAddCity = "toAddCitiesViewController"
+        case settings = "toSettingsViewController"
     }
     var arrayWeather: [WeatherInformation] = [WeatherInformation]()
     var progressHUD: ProgressHUD { return ProgressHUD() }
@@ -24,9 +25,7 @@ class WeatherTableViewController: UITableViewController, AddCitiesDelegate {
         super.viewDidLoad()
         self.setUpUI()
         self.setupViewModel()
-//        self.setupUIRefreshControl()
-//        self.setUpDataSource()
-
+        self.setupUIRefreshControl()
     }
 
     func setupViewModel() {
@@ -36,7 +35,6 @@ class WeatherTableViewController: UITableViewController, AddCitiesDelegate {
                 self?.tableView.reloadData()
             }
         }
-
         self.viewModel.isFinished.bindAndFire { [weak self] isTrue in
             if isTrue {
                 self?.progressHUD.DismissSVProgressHUD()
@@ -44,7 +42,6 @@ class WeatherTableViewController: UITableViewController, AddCitiesDelegate {
                 self?.progressHUD.ShowSVProgressHUD_Black()
             }
         }
-
         self.viewModel.onErrorHandling = { [weak self] error in
             self?.showAlert(title: "An error occured", message: error?.localizedDescription)
         }
@@ -55,21 +52,12 @@ class WeatherTableViewController: UITableViewController, AddCitiesDelegate {
         self.tableView.backgroundColor = UIColor.tableViewBackgroundColor
         self.view.backgroundColor = UIColor.viewBackgroundColor
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(actionAddCities))
     }
 
     func setupUIRefreshControl() {
         self.refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(actionPullRefresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
-    }
-
-    @IBAction func actionAddCities(_ sender: AnyObject) {
-        let controller: AddCitiesViewController = storyboard!.instantiateViewController(withIdentifier: "AddCitiesViewController") as! AddCitiesViewController
-        controller.delegate = self
-        self.navigationController?.pushViewController(controller, animated: true)
-//        let navigationController = UINavigationController(rootViewController: controller)
-//        self.present(navigationController, animated: true, completion: nil)
     }
 
     // MARK: - Add Cities Methods
@@ -109,17 +97,60 @@ class WeatherTableViewController: UITableViewController, AddCitiesDelegate {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch Segues(rawValue: segue.identifier!) {
-        case .showDetail?:
-            let indexPath = (sender as! IndexPath)
-            if let controller = segue.destination as? WeatherDetailViewController {
-                controller.weatherData = self.arrayWeather[indexPath.row]
-            }
-        case .saveAddCity?:
-            break
-        case .none:
-            break
-        }
+        if
+            let identifier = segue.identifier,
+            let segueValue = Segues(rawValue: identifier)
+        {
 
+            switch segueValue {
+            case .showDetail:
+                self.prepareSegueForWeatherDetailVC(for: segue, sender: sender)
+
+            case .saveAddCity:
+                self.prepareSegueForAddWeatherVC(segue: segue)
+                break
+
+            case .settings:
+                self.prepareSegueForSettingsVC(segue: segue)
+                break
+            }
+
+        } else {
+            fatalError("segue not found")
+        }
+    }
+}
+
+extension WeatherTableViewController {
+
+    private func prepareSegueForWeatherDetailVC(for segue: UIStoryboardSegue, sender: Any?) {
+        if
+            let indexPath = sender as? IndexPath,
+            let controller = segue.destination as? WeatherDetailViewController
+        {
+            controller.weatherData = self.arrayWeather[indexPath.row]
+        }
+    }
+
+    private func prepareSegueForSettingsVC(segue: UIStoryboardSegue) {
+        if
+            let navigationController = segue.destination as? UINavigationController,
+            let SettingsVc = navigationController.viewControllers.first as? SettingsViewController
+        {
+//            SettingsVc.delegate = self
+        } else {
+            fatalError("NavigationController not found")
+        }
+    }
+
+    private func prepareSegueForAddWeatherVC(segue: UIStoryboardSegue) {
+        if
+            let navigationController = segue.destination as? UINavigationController,
+            let CitiesVC = navigationController.viewControllers.first as? AddCitiesViewController
+        {
+            CitiesVC.delegate = self
+        } else {
+            fatalError("NavigationController not found")
+        }
     }
 }
