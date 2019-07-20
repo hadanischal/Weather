@@ -38,8 +38,6 @@
 		AF415F2C20D7DB3300BFA658 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = AF415F2B20D7DB3300BFA658 /* .gitignore */; };
 		AF415F3D20D7E18900BFA658 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F3C20D7E18900BFA658 /* Result.swift */; };
 		AF415F3F20D7E19900BFA658 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F3E20D7E19900BFA658 /* APIManager.swift */; };
-		AF415F4120D7E1AE00BFA658 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F4020D7E1AE00BFA658 /* NetworkManager.swift */; };
-		AF415F4520D7E1CC00BFA658 /* NetworkMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F4420D7E1CC00BFA658 /* NetworkMethod.swift */; };
 		AF415F5220D7F1A800BFA658 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F5120D7F1A800BFA658 /* Weather.swift */; };
 		AF415F5420D7F38B00BFA658 /* Clouds.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F5320D7F38B00BFA658 /* Clouds.swift */; };
 		AF415F5620D7F39900BFA658 /* Coord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF415F5520D7F39900BFA658 /* Coord.swift */; };
@@ -141,8 +139,6 @@
 		AF415F2B20D7DB3300BFA658 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		AF415F3C20D7E18900BFA658 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		AF415F3E20D7E19900BFA658 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		AF415F4020D7E1AE00BFA658 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		AF415F4420D7E1CC00BFA658 /* NetworkMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMethod.swift; sourceTree = "<group>"; };
 		AF415F5120D7F1A800BFA658 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		AF415F5320D7F38B00BFA658 /* Clouds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clouds.swift; sourceTree = "<group>"; };
 		AF415F5520D7F39900BFA658 /* Coord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coord.swift; sourceTree = "<group>"; };
@@ -363,8 +359,6 @@
 			children = (
 				AFC21A5D22BF7BF40032FC1D /* FileManagerHandlerProtocol.swift */,
 				AFC21A5B22BF7BDE0032FC1D /* FileManagerHandler.swift */,
-				AFC21A6422BF82260032FC1D /* WebServiceProtocol.swift */,
-				AFC21A4F22BF65C00032FC1D /* WebService.swift */,
 				AF415F3920D7E14800BFA658 /* APIManager */,
 				AF415F3A20D7E15900BFA658 /* Result */,
 				AF415F3B20D7E16E00BFA658 /* Networking */,
@@ -428,9 +422,9 @@
 		AF415F3B20D7E16E00BFA658 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				AFC21A6422BF82260032FC1D /* WebServiceProtocol.swift */,
+				AFC21A4F22BF65C00032FC1D /* WebService.swift */,
 				AF1C5D042114185100D95E2A /* NetworkingError.swift */,
-				AF415F4020D7E1AE00BFA658 /* NetworkManager.swift */,
-				AF415F4420D7E1CC00BFA658 /* NetworkMethod.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -767,7 +761,6 @@
 				AFC21A6D22BFC4CC0032FC1D /* AddCityViewModelProtocol.swift in Sources */,
 				AF1C5D052114185100D95E2A /* NetworkingError.swift in Sources */,
 				AF93614622C1019F00855659 /* WeatherDetailViewModelProtocol.swift in Sources */,
-				AF415F4120D7E1AE00BFA658 /* NetworkManager.swift in Sources */,
 				AF415F5820D7F3AB00BFA658 /* Main.swift in Sources */,
 				AFC21A6522BF82260032FC1D /* WebServiceProtocol.swift in Sources */,
 				AF415F5220D7F1A800BFA658 /* Weather.swift in Sources */,
@@ -778,7 +771,6 @@
 				AF46FA8322C0E6BC00A13945 /* CityListHandlerProtocol.swift in Sources */,
 				AF415EFB20D7D8CF00BFA658 /* AppDelegate.swift in Sources */,
 				AF46FA7F22C0D5E400A13945 /* ErrorResult.swift in Sources */,
-				AF415F4520D7E1CC00BFA658 /* NetworkMethod.swift in Sources */,
 				AF0DC6E520D888C60084A14C /* WeatherTableViewController.swift in Sources */,
 				AF415F5420D7F38B00BFA658 /* Clouds.swift in Sources */,
 				AFC21A5E22BF7BF40032FC1D /* FileManagerHandlerProtocol.swift in Sources */,

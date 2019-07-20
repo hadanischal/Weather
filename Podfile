@@ -6,7 +6,6 @@ target 'Weather' do
     use_frameworks!
     
     # Pods for Weather
-    pod 'Alamofire', '~> 4.8.2'
     pod 'SVProgressHUD'
     pod 'SwiftLint'
 
