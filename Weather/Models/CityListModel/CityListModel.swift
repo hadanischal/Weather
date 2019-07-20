@@ -14,3 +14,9 @@ struct CityListModel: Codable {
     let coord: Coord?
     let country: String?
 }
+
+extension CityListModel {
+    static var empty: CityListModel {
+        return CityListModel(id: nil, name: nil, coord: nil, country: nil)
+    }
+}

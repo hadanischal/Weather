@@ -22,3 +22,9 @@ struct WeatherInformation: Codable {
     var visibility: Int?
     var wind: Wind?
 }
+
+extension WeatherInformation {
+    static var empty: WeatherInformation {
+        return WeatherInformation(main: nil, name: nil, id: nil, coord: nil, weather: nil, clouds: nil, dt: nil, base: nil, sys: nil, cod: nil, visibility: nil, wind: nil)
+    }
+}
