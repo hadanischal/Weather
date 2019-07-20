@@ -15,7 +15,7 @@ class MockFileManagerHandler: FileManagerHandlerProtocol {
     func load<T>(resource: FileManagerResource<T>, completion: @escaping (T?) -> Void) {
         if let data = cityData {
             completion(resource.parse(data))
-        }else {
+        } else {
             completion(nil)
         }
     }

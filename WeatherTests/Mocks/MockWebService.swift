@@ -15,7 +15,7 @@ class MockWebService: WebServiceProtocol {
     func load<T>(resource: Resource<T>, completion: @escaping (T?) -> Void) {
         if let data = weatherData {
             completion(resource.parse(data))
-        }else {
+        } else {
             completion(nil)
         }
     }

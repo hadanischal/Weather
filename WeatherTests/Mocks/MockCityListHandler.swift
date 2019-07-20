@@ -11,7 +11,7 @@ import Foundation
 
 class MockCityListHandler: CityListHandlerProtocol {
     var cityListData: [CityListModel]? = [CityListModel]()
-    
+
     func fetchCityInfo(withfileName fileName: String, completion: @escaping ((Result<[CityListModel], ErrorResult>) -> Void)) {
         if let result = cityListData {
             completion(.success(result))
