@@ -9,7 +9,14 @@
 import Foundation
 @testable import Weather
 
-class MockWebService: WebService {
-    override func load<T>(resource: Resource<T>, completion: @escaping (T?) -> Void) {
+class MockWebService: WebServiceProtocol {
+    var weatherData: Data?
+
+    func load<T>(resource: Resource<T>, completion: @escaping (T?) -> Void) {
+        if let data = weatherData {
+            completion(resource.parse(data))
+        }else {
+            completion(nil)
+        }
     }
 }

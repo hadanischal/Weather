@@ -9,7 +9,14 @@
 import Foundation
 @testable import Weather
 
-class MockFileManagerHandler: FileManagerHandler {
-    override func load<T>(resource: FileManagerResource<T>, completion: @escaping (T?) -> Void) {
+class MockFileManagerHandler: FileManagerHandlerProtocol {
+    var cityData: Data?
+
+    func load<T>(resource: FileManagerResource<T>, completion: @escaping (T?) -> Void) {
+        if let data = cityData {
+            completion(resource.parse(data))
+        }else {
+            completion(nil)
+        }
     }
 }

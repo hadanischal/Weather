@@ -7,27 +7,38 @@
 //
 
 import XCTest
+@testable import Weather
 
 class WeatherListViewModelTests: XCTestCase {
-
+    
+    var viewModel: WeatherListViewModel!
+    var mockWeatherListHandler: MockWeatherListHandler!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        mockWeatherListHandler = MockWeatherListHandler()
+        viewModel = WeatherListViewModel(withWeatherListHandler: mockWeatherListHandler)
     }
-
+    
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        self.viewModel = nil
+        self.mockWeatherListHandler = nil
     }
+    
+    func testWeatherList() {
+        let exp = expectation(description: "Loading service call")
+        self.mockWeatherListHandler.cityListData = StubData.shared.stubCity()
+        self.mockWeatherListHandler.weatherListData = StubData.shared.stubWeather()
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        self.viewModel.weatherList.bindAndFire { result in
+            if result.count > 0 {
+                exp.fulfill()
+                XCTAssertNotNil(result, "expect weather list to be not nil")
+                XCTAssertEqual(result.count, 7, "expected to have array count 7")
+                XCTAssertEqual(result[0].name, "Sydney", "expected city to be sydney")
+                XCTAssertEqual(result[1].name, "Melbourne", "expected Melbourne to be sydney")
+            }
         }
+        self.viewModel.pullToRefresh()
+        waitForExpectations(timeout: 3)
     }
-
 }

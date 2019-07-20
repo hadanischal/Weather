@@ -9,50 +9,32 @@
 import Foundation
 @testable import Weather
 
-class MockWeatherListHandler: WeatherListHandler {
-    convenience init() {
-        self.init(withFileManagerHandler: MockFileManagerHandler(), withWebservice: MockWebService())
-    }
-    var invokedFetchCityInfo = false
-    var invokedFetchCityInfoCount = 0
-    var invokedFetchCityInfoParameters: (fileName: String, Void)?
-    var invokedFetchCityInfoParametersList = [(fileName: String, Void)]()
-    var stubbedFetchCityInfoCompletionResult: (Result<[CityListModel], ErrorResult>, Void)?
-    override func fetchCityInfo(withfileName fileName: String, completion: @escaping ((Result<[CityListModel], ErrorResult>) -> Void)) {
-        invokedFetchCityInfo = true
-        invokedFetchCityInfoCount += 1
-        invokedFetchCityInfoParameters = (fileName, ())
-        invokedFetchCityInfoParametersList.append((fileName, ()))
-        if let result = stubbedFetchCityInfoCompletionResult {
-            completion(result.0)
+class MockWeatherListHandler: WeatherListHandlerProtocol {
+    var cityListData: [CityListModel]? = [CityListModel]()
+    var weatherListData: [WeatherInformation]? = [WeatherInformation]()
+    var weatherData: WeatherInformation?
+    
+    func fetchCityInfo(withfileName fileName: String, completion: @escaping ((Result<[CityListModel], ErrorResult>) -> Void)) {
+        if let result = cityListData {
+            completion(.success(result))
+        } else {
+            completion(.failure(.parser(string: "Error while parsing json data")))
         }
     }
-    var invokedFetchWeatherInfoWithCityIDs = false
-    var invokedFetchWeatherInfoWithCityIDsCount = 0
-    var invokedFetchWeatherInfoWithCityIDsParameters: (cityIDs: String, Void)?
-    var invokedFetchWeatherInfoWithCityIDsParametersList = [(cityIDs: String, Void)]()
-    var stubbedFetchWeatherInfoWithCityIDsCompletionResult: (Result<[WeatherInformation], ErrorResult>, Void)?
-    override func fetchWeatherInfo(withCityIDs cityIDs: String, completion: @escaping ((Result<[WeatherInformation], ErrorResult>) -> Void)) {
-        invokedFetchWeatherInfoWithCityIDs = true
-        invokedFetchWeatherInfoWithCityIDsCount += 1
-        invokedFetchWeatherInfoWithCityIDsParameters = (cityIDs, ())
-        invokedFetchWeatherInfoWithCityIDsParametersList.append((cityIDs, ()))
-        if let result = stubbedFetchWeatherInfoWithCityIDsCompletionResult {
-            completion(result.0)
+    
+    func fetchWeatherInfo(withCityIDs cityIDs: String, completion: @escaping ((Result<[WeatherInformation], ErrorResult>) -> Void)) {
+        if let result = weatherListData {
+            completion(.success(result))
+        } else {
+            completion(.failure(.parser(string: "Error while parsing json data")))
         }
     }
-    var invokedFetchWeatherInfoWithCityID = false
-    var invokedFetchWeatherInfoWithCityIDCount = 0
-    var invokedFetchWeatherInfoWithCityIDParameters: (cityID: String, Void)?
-    var invokedFetchWeatherInfoWithCityIDParametersList = [(cityID: String, Void)]()
-    var stubbedFetchWeatherInfoWithCityIDCompletionResult: (Result<WeatherInformation, ErrorResult>, Void)?
-    override func fetchWeatherInfo(withCityID cityID: String, completion: @escaping ((Result<WeatherInformation, ErrorResult>) -> Void)) {
-        invokedFetchWeatherInfoWithCityID = true
-        invokedFetchWeatherInfoWithCityIDCount += 1
-        invokedFetchWeatherInfoWithCityIDParameters = (cityID, ())
-        invokedFetchWeatherInfoWithCityIDParametersList.append((cityID, ()))
-        if let result = stubbedFetchWeatherInfoWithCityIDCompletionResult {
-            completion(result.0)
+    
+    func fetchWeatherInfo(withCityID cityID: String, completion: @escaping ((Result<WeatherInformation, ErrorResult>) -> Void)) {
+        if let result = weatherData {
+            completion(.success(result))
+        } else {
+            completion(.failure(.parser(string: "Error while parsing json data")))
         }
     }
 }
