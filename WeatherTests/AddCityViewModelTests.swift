@@ -15,7 +15,7 @@ class AddCityViewModelTests: XCTestCase {
 
     override func setUp() {
         self.mockCityListHandler = MockCityListHandler()
-//        self.viewModel = AddCityViewModel(withCityListHandler: mockCityListHandler)
+        //        self.viewModel = AddCityViewModel(withCityListHandler: mockCityListHandler)
     }
 
     override func tearDown() {
@@ -46,7 +46,7 @@ class AddCityViewModelTests: XCTestCase {
         let cityData = StubData.shared.stubCity()
         mockCityListHandler.cityListData = cityData
         self.viewModel = AddCityViewModel(withCityListHandler: mockCityListHandler)
-        
+
         self.viewModel.isFinished.bindAndFire { isTrue in
             if isTrue {
                 exp.fulfill()
@@ -56,17 +56,17 @@ class AddCityViewModelTests: XCTestCase {
         }
         waitForExpectations(timeout: 3)
     }
-    
+
     func testFetchWeatherInfoByCityFails() {
         let exp = expectation(description: "Loading service call")
         self.mockCityListHandler.cityListData = nil
         self.viewModel = AddCityViewModel(withCityListHandler: mockCityListHandler)
-        
+
         self.viewModel.cityListModel.bindAndFire { result in
             XCTAssertNotNil(result, "expect city list to be not nil")
             XCTAssertEqual(result.count, 0, "expected to have array count 0")
         }
-        
+
         let errorMock = ErrorResult.parser(string: "Error while parsing json data")
         self.viewModel.onErrorHandling = { error in
             exp.fulfill()
@@ -81,7 +81,7 @@ class AddCityViewModelTests: XCTestCase {
         let exp = expectation(description: "Loading service call")
         self.mockCityListHandler.cityListData = nil
         self.viewModel = AddCityViewModel(withCityListHandler: mockCityListHandler)
-        
+
         self.viewModel.isFinished.bindAndFire { isTrue in
             if isTrue {
                 exp.fulfill()

@@ -16,7 +16,7 @@ class WeatherDetailViewModelTests: XCTestCase {
 
     override func setUp() {
         self.mockWeatherDetailHandler = MockWeatherDetailHandler()
-//        self.viewModel = WeatherDetailViewModel(withCityListHandler: mockWeatherDetailHandler, withWeatherInformation: mockWeatherInformation)
+        //        self.viewModel = WeatherDetailViewModel(withCityListHandler: mockWeatherDetailHandler, withWeatherInformation: mockWeatherInformation)
     }
 
     override func tearDown() {
@@ -28,10 +28,10 @@ class WeatherDetailViewModelTests: XCTestCase {
     func testFetchWeatherInfo() {
         let exp = expectation(description: "Loading service call")
         let weatherData = StubData.shared.stubWeather()
-        
+
         self.mockWeatherInformation = weatherData[0]
         mockWeatherDetailHandler.weatherData = StubData.shared.stubDetailModel()
-        
+
         self.viewModel = WeatherDetailViewModel(withCityListHandler: mockWeatherDetailHandler, withWeatherInformation: mockWeatherInformation)
 
         self.viewModel.dataSource.bindAndFire { list in
@@ -39,31 +39,27 @@ class WeatherDetailViewModelTests: XCTestCase {
                 exp.fulfill()
                 XCTAssertNotNil(list, "expect detail list to be not nil")
                 XCTAssertEqual(list.count, 2, "expected to have array count 2")
-                
+
                 let section1 = list[0]
                 let section2 = list[1]
-
                 XCTAssertEqual(section1.count, 2, "expected to have array count 2")
                 XCTAssertEqual(section2.count, 2, "expected to have array count 2")
 
                 let section1_Row1 = section1[0]
                 let section2_Row2 = section2[0]
-
-                
                 XCTAssertEqual(section1_Row1.title, "Humidity", "expected title to be Humidity")
                 XCTAssertEqual(section2_Row2.title, "WindSpeed", "expected title to be WindSpeed")
-
             }
         }
         waitForExpectations(timeout: 3)
     }
-    
+
     func testFetchWeatherInfoFails() {
         let exp = expectation(description: "Loading service call")
-        
+
         let weatherData = StubData.shared.stubWeather()
         self.mockWeatherInformation = weatherData[0]
-        
+
         mockWeatherDetailHandler.weatherData = nil
         self.viewModel = WeatherDetailViewModel(withCityListHandler: mockWeatherDetailHandler, withWeatherInformation: mockWeatherInformation)
 
@@ -71,7 +67,7 @@ class WeatherDetailViewModelTests: XCTestCase {
             XCTAssertNotNil(list, "expect city list to be not nil")
             XCTAssertEqual(list.count, 1, "expected to have array count 0")
         }
-        
+
         let errorMock = ErrorResult.parser(string: "Error while parsing json data")
         self.viewModel.onErrorHandling = { error in
             exp.fulfill()

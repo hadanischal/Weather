@@ -15,10 +15,35 @@ class StubData {
     init() {
 
     }
+
+    func stubCityData() -> Data {
+        guard let data = self.readJson(forResource: "testCityList") else {
+            XCTAssert(false, "Can't get data from testCityList.json")
+            return Data()
+        }
+        return data
+    }
+
+    func stubWeatherData() -> Data {
+        guard let data = self.readJson(forResource: "testWeatherData") else {
+            XCTAssert(false, "Can't get data from testWeatherData.json")
+            return Data()
+        }
+        return data
+    }
+
+    func stubWeatherListData() -> Data {
+        guard let data = self.readJson(forResource: "testWeatherList") else {
+            XCTAssert(false, "Can't get data from \("testWeatherList").json")
+            return Data()
+        }
+        return data
+    }
+
     func stubCity() -> [CityListModel] {
 
         guard let data = self.readJson(forResource: "testCityList") else {
-            XCTAssert(false, "Can't get data from Person.json")
+            XCTAssert(false, "Can't get data from testCityList.json")
             return [CityListModel.empty]
         }
 
@@ -39,14 +64,17 @@ class StubData {
         }
 
         let decoder = JSONDecoder()
-        if let result = try? decoder.decode([WeatherInformation].self, from: data) {
-            return result
+        if
+            let result = try? decoder.decode(WeatherMapResult.self, from: data),
+            let weatherList = result.list
+        {
+            return weatherList
         } else {
             XCTAssert(false, "Unable to parse WeatherInformation results")
             return [WeatherInformation.empty]
         }
     }
-    
+
     func stubDetailModel() -> [[DetailModel]] {
         let detail = [
             [
@@ -57,7 +85,7 @@ class StubData {
                 DetailModel(title: "WindSpeed", description: "WindSpeed description", image: "WindSpeed image"),
                 DetailModel(title: "Visibility", description: "Visibility description", image: "Visibility image")
             ]
-            
+
         ]
         return detail
     }

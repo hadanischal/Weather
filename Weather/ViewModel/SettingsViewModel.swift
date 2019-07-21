@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+///TODO: Need to implement settings
 enum Unit: String, CaseIterable {
 
     case celsius = "metric"

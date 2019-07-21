@@ -41,34 +41,34 @@ class WeatherListViewModelTests: XCTestCase {
         self.viewModel.pullToRefresh()
         waitForExpectations(timeout: 3)
     }
-    
+
     func testFetchWeatherListFails() {
         let exp = expectation(description: "Loading service call")
         self.mockWeatherListHandler.cityListData = nil
         self.mockWeatherListHandler.weatherListData = nil
-        
+
         self.viewModel.weatherList.bindAndFire { result in
-                XCTAssertNotNil(result, "expect weather list to be not nil")
-                XCTAssertEqual(result.count, 0, "expected to have array count 0")
+            XCTAssertNotNil(result, "expect weather list to be not nil")
+            XCTAssertEqual(result.count, 0, "expected to have array count 0")
         }
-        
+
         let errorMock = ErrorResult.parser(string: "Error while parsing json data")
         self.viewModel.onErrorHandling = { error in
-             exp.fulfill()
+            exp.fulfill()
             XCTAssertNotNil(error, "expect error to be not nil")
             XCTAssertEqual(error?.localizedDescription, errorMock.localizedDescription, "expected to error out with Error while parsing json data")
         }
-        
+
         self.viewModel.pullToRefresh()
         waitForExpectations(timeout: 3)
     }
-    
+
     func testFetchWeatherInfoByCity() {
         let exp = expectation(description: "Loading service call")
         let cityData = StubData.shared.stubCity()
         let weatherdata = StubData.shared.stubWeather()
         self.mockWeatherListHandler.weatherData = weatherdata[0]
-        
+
         self.viewModel.weatherList.bindAndFire { result in
             if result.count > 0 {
                 exp.fulfill()
@@ -80,24 +80,24 @@ class WeatherListViewModelTests: XCTestCase {
         self.viewModel.fetchWeatherInfo(byCity: cityData[0])
         waitForExpectations(timeout: 3)
     }
-    
+
     func testFetchWeatherInfoByCityFails() {
         let exp = expectation(description: "Loading service call")
         let cityData = StubData.shared.stubCity()
         self.mockWeatherListHandler.weatherData = nil
-        
+
         self.viewModel.weatherList.bindAndFire { result in
             XCTAssertNotNil(result, "expect weather list to be not nil")
             XCTAssertEqual(result.count, 0, "expected to have array count 0")
         }
-        
+
         let errorMock = ErrorResult.parser(string: "Error while parsing json data")
         self.viewModel.onErrorHandling = { error in
             exp.fulfill()
             XCTAssertNotNil(error, "expect error to be not nil")
             XCTAssertEqual(error?.localizedDescription, errorMock.localizedDescription, "expected to error out with Error while parsing json data")
         }
-        
+
         self.viewModel.fetchWeatherInfo(byCity: cityData[0])
         waitForExpectations(timeout: 3)
     }
