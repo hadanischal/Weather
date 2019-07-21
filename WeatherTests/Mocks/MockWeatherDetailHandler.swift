@@ -10,11 +10,11 @@ import Foundation
 @testable import Weather
 
 class MockWeatherDetailHandler: WeatherDetailHandlerProtocol {
-    var weatherData: [DetailModel]?
+    var weatherData: [[DetailModel]]? = [[DetailModel]]()
 
     func fetchWeatherInfo(withWeatherInfo data: WeatherInformation, completion: @escaping ((Result<[[DetailModel]], ErrorResult>) -> Void)) {
         if let result = weatherData {
-            completion(.success([result]))
+            completion(.success(result))
         } else {
             completion(.failure(.parser(string: "Error while parsing json data")))
         }

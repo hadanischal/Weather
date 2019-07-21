@@ -135,7 +135,7 @@ extension WeatherTableViewController {
     private func prepareSegueForSettingsVC(segue: UIStoryboardSegue) {
         if
             let navigationController = segue.destination as? UINavigationController,
-            let SettingsVc = navigationController.viewControllers.first as? SettingsViewController
+            let _ = navigationController.viewControllers.first as? SettingsViewController
         {
 //            SettingsVc.delegate = self
         } else {
