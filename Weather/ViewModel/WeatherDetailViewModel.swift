@@ -21,10 +21,10 @@ class WeatherDetailViewModel: WeatherDetailViewModelProtocol {
         self.weatherInfo = weatherInfo
 
         self.dataSource = Dynamic([[]])
-        self.fetchCityInfo()
+        self.fetchWeatherInfo()
     }
 
-    private func fetchCityInfo() {
+    private func fetchWeatherInfo() {
         if let weatherInfo = self.weatherInfo {
             self.weatherDetailHandler.fetchWeatherInfo(withWeatherInfo: weatherInfo) { [weak self] result in
                 DispatchQueue.main.async {

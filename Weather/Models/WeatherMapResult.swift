@@ -12,9 +12,3 @@ struct WeatherMapResult: Codable {
     var cnt: Int?
     var list: [WeatherInformation]?
 }
-
-extension WeatherMapResult {
-    static var empty: WeatherMapResult {
-        return WeatherMapResult(cnt: nil, list: nil)
-    }
-}

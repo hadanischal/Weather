@@ -46,6 +46,21 @@ class StubData {
             return [WeatherInformation.empty]
         }
     }
+    
+    func stubDetailModel() -> [[DetailModel]] {
+        let detail = [
+            [
+                DetailModel(title: "Humidity", description: "Humidity description", image: "Humidity image"),
+                DetailModel(title: "Temperature", description: "Temperature description", image: "Temperature image")
+            ],
+            [
+                DetailModel(title: "WindSpeed", description: "WindSpeed description", image: "WindSpeed image"),
+                DetailModel(title: "Visibility", description: "Visibility description", image: "Visibility image")
+            ]
+            
+        ]
+        return detail
+    }
 }
 
 extension StubData {
